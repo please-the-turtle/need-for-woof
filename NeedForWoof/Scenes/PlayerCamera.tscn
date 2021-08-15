@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="PlayerCamera" type="Camera2D"]
+position = Vector2( 0, -150 )
+rotating = true
+current = true
