@@ -145,7 +145,7 @@ anims/run = SubResource( 2 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 7 )
 animation = "run"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

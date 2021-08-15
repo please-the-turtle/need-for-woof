@@ -17,5 +17,6 @@ scale = Vector2( 4, 4 )
 [node name="SibaDog" parent="." instance=ExtResource( 1 )]
 
 [node name="PlayerCamera" parent="SibaDog" instance=ExtResource( 3 )]
+position = Vector2( 0, -250 )
 smoothing_enabled = true
-smoothing_speed = 8.0
+smoothing_speed = 6.0
