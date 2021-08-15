@@ -9,8 +9,13 @@ namespace NeedForWoof.Scripts
 	{
 		[Export(PropertyHint.Range, "1, 1000, or_greater")]
 		public float Speed = 200;
+
+		[Export(PropertyHint.Range, "0, 3.14")] public float TurnSpeed = .5f;
+
+		public MoveState MoveState = MoveState.Run;
 		
 		private Vector2 _velocity = Vector2.Zero;
+		private Vector2 _forwardDirection = Vector2.Up;
 		private AnimatedSprite _animatedSprite;
 		private AnimationPlayer _animationPlayer;
 		
@@ -25,7 +30,8 @@ namespace NeedForWoof.Scripts
 		{
 			base._PhysicsProcess(delta);
 			
-			MoveAndCollide(_velocity);
+			RunAhead();
+			MoveAndSlide(_velocity);
 			_velocity = Vector2.Zero;
 		}
 
@@ -34,11 +40,9 @@ namespace NeedForWoof.Scripts
 			base._Process(delta);
 		}
 		
-		public void RunTo(Vector2 direction)
+		public void RunAhead()
 		{
-			direction = direction.Normalized();
-			direction *= Speed * GetPhysicsProcessDeltaTime();
-			_velocity = direction;
+			RunTo(_forwardDirection);
 		}
 
 		public void RunRight()
@@ -51,11 +55,42 @@ namespace NeedForWoof.Scripts
 			RunTo(Vector2.Left);
 		}
 
+		public void TurnRight()
+		{
+			Turn(false);
+		}
+
+		public void TurnLeft()
+		{
+			Turn();
+		}
+		
 		public void Jump()
 		{
 			_animationPlayer.CurrentAnimation = "jump";
 			_animationPlayer.Queue("run");
 		}
 		
+		private void RunTo(Vector2 direction)
+		{
+			direction = direction.Normalized();
+			direction *= Speed;
+			_velocity += direction;
+		}
+		
+		private void Turn(bool left = true)
+		{
+			float phi = TurnSpeed * GetPhysicsProcessDeltaTime();
+			if (left) phi = -phi;
+			_forwardDirection = _forwardDirection.Rotated(phi);
+			Rotate(phi);
+		}
+		
+	}
+
+	public enum MoveState
+	{
+		Run, 
+		Jump
 	}
 }

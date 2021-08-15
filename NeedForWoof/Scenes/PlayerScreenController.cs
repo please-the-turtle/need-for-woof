@@ -33,11 +33,11 @@ namespace NeedForWoof.Scenes
 
 			if (_runRightButton.Pressed)
 			{
-				_player.RunRight();
+				_player.TurnRight();
 			}
 			if (_runLeftButton.Pressed)
 			{
-				_player.RunLeft();
+				_player.TurnLeft();
 			}
 		}
 
