@@ -7,12 +7,23 @@ namespace NeedForWoof.Scripts
 	/// </summary>
 	public abstract class Dog : KinematicBody2D
 	{
+		/// <summary>
+		/// <para>Constant speed of the Dog</para>
+		/// </summary>
 		[Export(PropertyHint.Range, "1, 1000, or_greater")]
 		public float Speed = 200;
+		
+		/// <summary>
+		/// <para>Angular rate of rotation. Measured in radians</para>
+		/// </summary>
+		[Export(PropertyHint.Range, "0, 3")] public float TurnSpeed = .5f;
 
-		[Export(PropertyHint.Range, "0, 3.14")] public float TurnSpeed = .5f;
-
-		public MoveState MoveState = MoveState.Run;
+		/// <summary>
+		/// <para>BoostSpeed. Used for jumping. Controlled by the AnimationPlayer.</para>
+		/// </summary>
+		[Export(PropertyHint.Range, "1, 10")] public float SpeedBoost = 1f;
+		
+		[Export] public MoveState MoveState = MoveState.Run;
 		
 		private Vector2 _velocity = Vector2.Zero;
 		private Vector2 _forwardDirection = Vector2.Up;
@@ -75,15 +86,22 @@ namespace NeedForWoof.Scripts
 		{
 			direction = direction.Normalized();
 			direction *= Speed;
+			if (MoveState == MoveState.Jump)
+			{
+			 	direction *= SpeedBoost;
+			}
 			_velocity += direction;
 		}
 		
 		private void Turn(bool left = true)
 		{
-			float phi = TurnSpeed * GetPhysicsProcessDeltaTime();
-			if (left) phi = -phi;
-			_forwardDirection = _forwardDirection.Rotated(phi);
-			Rotate(phi);
+			if (MoveState != MoveState.Jump)
+			{
+				float phi = TurnSpeed * GetPhysicsProcessDeltaTime();
+				if (left) phi = -phi;
+				_forwardDirection = _forwardDirection.Rotated(phi);
+				Rotate(phi);
+			}
 		}
 		
 	}

@@ -1,0 +1,8 @@
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/ExportDebug/NeedForWoof.dll
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/ExportDebug/NeedForWoof.pdb
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/ExportDebug/NeedForWoof.csprojAssemblyReference.cache
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/ExportDebug/NeedForWoof.AssemblyInfoInputs.cache
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/ExportDebug/NeedForWoof.AssemblyInfo.cs
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/ExportDebug/NeedForWoof.csproj.CoreCompileInputs.cache
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/ExportDebug/NeedForWoof.dll
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/ExportDebug/NeedForWoof.pdb

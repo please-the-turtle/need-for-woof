@@ -7,9 +7,6 @@
 
 [node name="MainLevel" type="Node2D"]
 
-[node name="ScreenControls" parent="." instance=ExtResource( 2 )]
-Player = NodePath("../SibaDog")
-
 [node name="RoadTileMap" parent="." instance=ExtResource( 4 )]
 position = Vector2( -17.0742, 871.824 )
 scale = Vector2( 4, 4 )
@@ -20,3 +17,6 @@ scale = Vector2( 4, 4 )
 position = Vector2( 0, -250 )
 smoothing_enabled = true
 smoothing_speed = 6.0
+
+[node name="ScreenControls" parent="." instance=ExtResource( 2 )]
+Player = NodePath("../SibaDog")

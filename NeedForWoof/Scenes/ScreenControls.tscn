@@ -6,69 +6,27 @@
 [ext_resource path="res://Textures/MainLevel/Buttons/jump.png" type="Texture" id=4]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_left_pressed.png" type="Texture" id=5]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_right_pressed.png" type="Texture" id=6]
-[ext_resource path="res://Scenes/PlayerScreenController.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/PlayerScreenController.cs" type="Script" id=7]
 
 [node name="ScreenControls" type="CanvasLayer"]
 script = ExtResource( 7 )
 
-[node name="ControllerButtons" type="GridContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 692.0
-margin_right = -15.0
-margin_bottom = -15.0
-grow_vertical = 0
-size_flags_horizontal = 7
-size_flags_vertical = 11
-custom_constants/hseparation = 15
-columns = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RunLeftButton" type="TouchScreenButton" parent="."]
+position = Vector2( 10, 694 )
+scale = Vector2( 6, 6 )
+normal = ExtResource( 1 )
+pressed = ExtResource( 5 )
 
-[node name="RunLeftButton" type="TextureButton" parent="ControllerButtons"]
-margin_right = 140.0
-margin_bottom = 93.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-action_mode = 0
-texture_normal = ExtResource( 1 )
-texture_pressed = ExtResource( 5 )
-expand = true
-stretch_mode = 4
+[node name="JumpButton" type="TouchScreenButton" parent="."]
+position = Vector2( 168, 694 )
+scale = Vector2( 6, 6 )
+normal = ExtResource( 4 )
+pressed = ExtResource( 3 )
 
-[node name="JumpButton" type="TextureButton" parent="ControllerButtons"]
-margin_left = 155.0
-margin_right = 295.0
-margin_bottom = 93.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-action_mode = 0
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 3 )
-expand = true
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RunRightButton" type="TouchScreenButton" parent="."]
+position = Vector2( 326, 694 )
+scale = Vector2( 6, 6 )
+normal = ExtResource( 2 )
+pressed = ExtResource( 6 )
 
-[node name="RunRightButton" type="TextureButton" parent="ControllerButtons"]
-margin_left = 310.0
-margin_right = 450.0
-margin_bottom = 93.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-action_mode = 0
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 6 )
-expand = true
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="pressed" from="ControllerButtons/JumpButton" to="." method="OnJumpButton_pressed"]
+[connection signal="pressed" from="JumpButton" to="." method="OnJumpButton_pressed"]

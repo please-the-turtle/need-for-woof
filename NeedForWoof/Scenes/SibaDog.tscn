@@ -49,6 +49,28 @@ tracks/3/keys = {
 "update": 1,
 "values": [ "jump", "run" ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("..:MoveState")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("..:SpeedBoost")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.06465, 2.13987, 5, -0.0750362, -0.0342488, 0.0650008, -0.00562859, 1, -0.141256, 0.847937, 0.100702, -0.146408 ),
+"times": PoolRealArray( 0, 0.1, 0.3 )
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.3
@@ -114,15 +136,15 @@ region = Rect2( 42, 0, 14, 28 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "run",
 "speed": 7.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=8]
@@ -144,8 +166,7 @@ anims/run = SubResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Visualization"]
 scale = Vector2( 5, 5 )
 frames = SubResource( 7 )
-animation = "run"
-frame = 3
+animation = "jump"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
