@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Textures/MainLevel/map_tiles.png" type="Texture" id=1]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 70, 235, 38, 21 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16.9678, 6.64112 )
+
+[node name="Plank" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 1 )
+region_rect = Rect2( 0, 0, 130.081, 119.971 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.827312 )
+shape = SubResource( 2 )

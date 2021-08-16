@@ -49,27 +49,56 @@ tracks/3/keys = {
 "update": 1,
 "values": [ "jump", "run" ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("..:MoveState")
-tracks/4/interp = 0
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("..:SpeedBoost")
+tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.06465, 2.13987, 5, -0.0750362, -0.0342488, 0.0650008, -0.00562859, 1, -0.141256, 0.847937, 0.100702, -0.146408 ),
+"times": PoolRealArray( 0, 0.1, 0.3 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:collision_mask")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 11, 15 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AnimatedSprite:z_index")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 1, 0 ]
 }
-tracks/5/type = "bezier"
-tracks/5/path = NodePath("..:SpeedBoost")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.06465, 2.13987, 5, -0.0750362, -0.0342488, 0.0650008, -0.00562859, 1, -0.141256, 0.847937, 0.100702, -0.146408 ),
-"times": PoolRealArray( 0, 0.1, 0.3 )
+tracks/7/type = "method"
+tracks/7/path = NodePath("..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "SetMoveState"
+}, {
+"args": [ 0 ],
+"method": "SetMoveState"
+} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -136,15 +165,15 @@ region = Rect2( 42, 0, 14, 28 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
-"loop": true,
-"name": "run",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "run",
+"speed": 7.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=8]
@@ -154,8 +183,8 @@ height = 67.3273
 [node name="SibaDog" type="KinematicBody2D"]
 position = Vector2( 240, 600 )
 scale = Vector2( 0.75, 0.75 )
+collision_mask = 11
 script = ExtResource( 3 )
-TurnSpeed = 1.0
 
 [node name="Visualization" type="Node2D" parent="."]
 

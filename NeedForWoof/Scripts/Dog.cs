@@ -16,23 +16,21 @@ namespace NeedForWoof.Scripts
 		/// <summary>
 		/// <para>Angular rate of rotation. Measured in radians</para>
 		/// </summary>
-		[Export(PropertyHint.Range, "0, 3")] public float TurnSpeed = .5f;
+		[Export(PropertyHint.Range, "0, 3")] public float TurnSpeed = 1f;
 
 		/// <summary>
 		/// <para>BoostSpeed. Used for jumping. Controlled by the AnimationPlayer.</para>
 		/// </summary>
-		[Export(PropertyHint.Range, "1, 10")] public float SpeedBoost = 1f;
+		public float SpeedBoost = 1f;
 		
-		[Export] public MoveState MoveState = MoveState.Run;
+		public MoveState MoveState = MoveState.Run;
 		
 		private Vector2 _velocity = Vector2.Zero;
 		private Vector2 _forwardDirection = Vector2.Up;
-		private AnimatedSprite _animatedSprite;
 		private AnimationPlayer _animationPlayer;
 		
 		public override void _Ready()
 		{
-			_animatedSprite = GetNode<AnimatedSprite>("Visualization/AnimatedSprite");
 			_animationPlayer = GetNode<AnimationPlayer>("Visualization/AnimationPlayer");
 			_animationPlayer.CurrentAnimation = "run";
 		}
@@ -40,6 +38,20 @@ namespace NeedForWoof.Scripts
 		public override void _PhysicsProcess(float delta)
 		{
 			base._PhysicsProcess(delta);
+
+			if (Input.IsActionPressed("ui_right"))
+			{
+				RunRight();
+			}
+			if (Input.IsActionPressed("ui_left"))
+			{
+				RunLeft();
+			}
+
+			if (Input.IsActionPressed("ui_up"))
+			{
+				Jump();
+			}
 			
 			RunAhead();
 			MoveAndSlide(_velocity);
@@ -50,7 +62,12 @@ namespace NeedForWoof.Scripts
 		{
 			base._Process(delta);
 		}
-		
+
+		public void SetMoveState(MoveState moveState)
+		{
+			MoveState = moveState;
+		}
+
 		public void RunAhead()
 		{
 			RunTo(_forwardDirection);
@@ -85,11 +102,7 @@ namespace NeedForWoof.Scripts
 		private void RunTo(Vector2 direction)
 		{
 			direction = direction.Normalized();
-			direction *= Speed;
-			if (MoveState == MoveState.Jump)
-			{
-			 	direction *= SpeedBoost;
-			}
+			direction *= Speed * SpeedBoost;
 			_velocity += direction;
 		}
 		
@@ -108,7 +121,7 @@ namespace NeedForWoof.Scripts
 
 	public enum MoveState
 	{
-		Run, 
-		Jump
+		Run = 0, 
+		Jump = 1
 	}
 }
