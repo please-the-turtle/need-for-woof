@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Textures/MainLevel/Buttons/run_left.png" type="Texture" id=1]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_right.png" type="Texture" id=2]
@@ -6,24 +6,28 @@
 [ext_resource path="res://Textures/MainLevel/Buttons/jump.png" type="Texture" id=4]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_left_pressed.png" type="Texture" id=5]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_right_pressed.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/MoveButtons.cs" type="Script" id=8]
 
 [node name="ScreenControls" type="CanvasLayer"]
 
-[node name="RunLeftButton" type="TouchScreenButton" parent="."]
+[node name="MoveButtons" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="RunLeftButton" type="TouchScreenButton" parent="MoveButtons"]
 position = Vector2( 10, 694 )
 scale = Vector2( 6, 6 )
 normal = ExtResource( 1 )
 pressed = ExtResource( 5 )
 action = "ui_left"
 
-[node name="JumpButton" type="TouchScreenButton" parent="."]
+[node name="JumpButton" type="TouchScreenButton" parent="MoveButtons"]
 position = Vector2( 168, 694 )
 scale = Vector2( 6, 6 )
 normal = ExtResource( 4 )
 pressed = ExtResource( 3 )
 action = "ui_up"
 
-[node name="RunRightButton" type="TouchScreenButton" parent="."]
+[node name="RunRightButton" type="TouchScreenButton" parent="MoveButtons"]
 position = Vector2( 326, 694 )
 scale = Vector2( 6, 6 )
 normal = ExtResource( 2 )

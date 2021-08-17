@@ -6,5 +6,6 @@
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 9
+collision_layer = 2
 format = 1
 tile_data = PoolIntArray( -393216, 4, 0, -327680, 3, 0, -262144, 3, 0, -196608, 3, 0, -131072, 3, 0, -65536, 1073741828, 0 )
