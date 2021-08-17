@@ -8,6 +8,10 @@
 
 config_version=4
 
+[android]
+
+modules="git "
+
 [application]
 
 config/name="NeedForWoof"

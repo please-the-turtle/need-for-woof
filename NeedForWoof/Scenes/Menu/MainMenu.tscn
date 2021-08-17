@@ -10,22 +10,22 @@
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 80, 44 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 2, 50, 11, 12 )
 margin = Rect2( 0, 3.25, 2, 8.038 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 19, 48, 10, 19 )
 margin = Rect2( 0, 1.01, 0, 3.938 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
 region = Rect2( 33, 49, 14, 14 )
 margin = Rect2( -1, 2, 0, 6 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 50, 49, 12, 15 )
 margin = Rect2( 0, 3.423, 2, 6 )
@@ -91,7 +91,7 @@ __meta__ = {
 margin_right = 681.0
 margin_bottom = 228.0
 rect_scale = Vector2( 0.5, 0.5 )
-texture = SubResource( 4 )
+texture = SubResource( 2 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -117,7 +117,7 @@ expand = true
 margin_right = 681.0
 margin_bottom = 228.0
 rect_scale = Vector2( 0.5, 0.5 )
-texture = SubResource( 5 )
+texture = SubResource( 3 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -143,7 +143,7 @@ stretch_mode = 4
 margin_right = 332.0
 margin_bottom = 228.0
 rect_scale = Vector2( 0.5, 0.5 )
-texture = SubResource( 6 )
+texture = SubResource( 4 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -169,7 +169,7 @@ expand = true
 margin_right = 332.0
 margin_bottom = 228.0
 rect_scale = Vector2( 0.5, 0.5 )
-texture = SubResource( 7 )
+texture = SubResource( 5 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
