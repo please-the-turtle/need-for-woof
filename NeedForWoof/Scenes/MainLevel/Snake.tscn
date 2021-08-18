@@ -6,25 +6,28 @@
 [node name="Snake" type="YSort"]
 
 [node name="Cookie" parent="." instance=ExtResource( 2 )]
-position = Vector2( 34.0081, 123.218 )
+position = Vector2( 0.848583, 150.001 )
 
 [node name="Cookie2" parent="." instance=ExtResource( 2 )]
-position = Vector2( -27.6568, 38.8324 )
+position = Vector2( -0.874115, -0.703949 )
 
 [node name="Cookie3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 36.8016, -29.0183 )
+position = Vector2( -1.4594, -268.787 )
 
 [node name="Cookie4" parent="." instance=ExtResource( 2 )]
-position = Vector2( -23.0294, -99.3252 )
+position = Vector2( -1.34819, -145.238 )
 
 [node name="Pillar" parent="." instance=ExtResource( 1 )]
-position = Vector2( -56.4543, 164.38 )
+position = Vector2( -24.5701, 235.801 )
 
 [node name="Pillar2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 41.5972, 70.178 )
+position = Vector2( 26.2928, 88.0331 )
 
 [node name="Pillar3" parent="." instance=ExtResource( 1 )]
-position = Vector2( -60.1631, -25.435 )
+position = Vector2( -25.7282, -58.5945 )
 
 [node name="Pillar4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 42.652, -106.212 )
+position = Vector2( 28.623, -208.241 )
+
+[node name="Pillar5" parent="." instance=ExtResource( 1 )]
+position = Vector2( -22.3917, -342.155 )
