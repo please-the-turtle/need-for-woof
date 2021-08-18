@@ -15,6 +15,19 @@ namespace NeedForWoof.Scripts
         /// </summary>
         [Export(PropertyHint.Range, "0, 3")] public float TurnSpeed = 1f;
 
+        [Export(PropertyHint.Range, "0, 500, or_greater")]
+        public float JumpStaminaExpenditure
+        {
+            get => _jumpStaminaExpenditure;
+            set
+            {
+                if (value > 0)
+                {
+                    _jumpStaminaExpenditure = value;
+                }
+            }
+        }
+
         /// <summary>
         /// <para>BoostSpeed. Used for jumping. Controlled by the AnimationPlayer.</para>
         /// </summary>
@@ -24,7 +37,8 @@ namespace NeedForWoof.Scripts
         
         private Vector2 _velocity = Vector2.Zero;
         private Vector2 _forwardDirection = Vector2.Up;
-    
+        private float _jumpStaminaExpenditure = 100;
+        
         public override void _Ready()
         {
             _dog = GetParent<Dog>();
@@ -94,7 +108,11 @@ namespace NeedForWoof.Scripts
 		
         public void Jump()
         {
-            _dog.PlayAnimation("jump");
+            if (_dog.Stamina >= JumpStaminaExpenditure && _dog.MoveState == MoveState.Run)
+            {
+                _dog.Stamina -= JumpStaminaExpenditure;
+                _dog.PlayAnimation("jump");
+            }
         }
 		
         private void RunTo(Vector2 direction)

@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/MainLevel/RoadTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainLevel/ScreenControls.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MainLevel/SibaDog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/MainLevel/PlayerCamera.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/MainLevel/Obstructions/Pillar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/MainLevel/Snake.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/MainLevel/FinishLine.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/MainLevel/Obstructions/Plank.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/MainLevel/Tunnel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/MainLevel/OnScreenInfo.tscn" type="PackedScene" id=9]
 
 [node name="MainLevel" type="Node2D"]
 
@@ -20,40 +21,37 @@ position = Vector2( 239.156, -1910.58 )
 scale = Vector2( 4, 4 )
 collision_layer = 16
 
-[node name="Tunnel" parent="." instance=ExtResource( 8 )]
-position = Vector2( 132.466, -400.157 )
+[node name="YSort" type="YSort" parent="."]
 
-[node name="Tunnel2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 233.338, -1767.53 )
+[node name="SibaDog" parent="YSort" instance=ExtResource( 3 )]
 
-[node name="Tunnel3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 292.18, -1442.5 )
-
-[node name="Tunnel4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 129.664, -901.715 )
-
-[node name="GameObjects" type="YSort" parent="."]
-
-[node name="SibaDog" parent="GameObjects" instance=ExtResource( 3 )]
-
-[node name="PlayerCamera" parent="GameObjects/SibaDog" instance=ExtResource( 4 )]
+[node name="PlayerCamera" parent="YSort/SibaDog" instance=ExtResource( 4 )]
 position = Vector2( 0, -250 )
 smoothing_enabled = true
 smoothing_speed = 6.0
 drag_margin_left = 1.0
 drag_margin_right = 1.0
 
-[node name="Plank" parent="GameObjects" instance=ExtResource( 7 )]
-position = Vector2( 296.835, -190.692 )
-scale = Vector2( 4, 4 )
+[node name="Tunnel" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 132.466, -400.157 )
 
-[node name="Plank2" parent="GameObjects" instance=ExtResource( 7 )]
+[node name="Tunnel2" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 233.338, -1767.53 )
+
+[node name="Tunnel3" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 292.18, -1442.5 )
+
+[node name="Tunnel4" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 129.664, -901.715 )
+
+[node name="Plank2" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 165.712, -1150.72 )
 scale = Vector2( 4, 4 )
 
-[node name="Pillar" parent="GameObjects" instance=ExtResource( 5 )]
-position = Vector2( 178.802, 219.348 )
+[node name="Snake" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 177.395, 100.069 )
+
+[node name="OnScreenInfo" parent="." instance=ExtResource( 9 )]
+Dog = NodePath("../YSort/SibaDog")
 
 [node name="ScreenControls" parent="." instance=ExtResource( 2 )]
-
-[connection signal="body_exited" from="FinishLine" to="GameObjects/SibaDog" method="Finish"]

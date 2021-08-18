@@ -15,7 +15,7 @@ modules="git "
 [application]
 
 config/name="NeedForWoof"
-run/main_scene="res://Scenes/Menu/MainMenu.tscn"
+run/main_scene="res://Scenes/MainLevel/MainLevel.tscn"
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 config/quit_on_go_back=false

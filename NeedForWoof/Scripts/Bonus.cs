@@ -1,0 +1,33 @@
+using Godot;
+using System;
+using NeedForWoof.Scripts;
+
+public class Bonus : Area2D
+{
+    [Export(PropertyHint.Range, "1, 10, or_greater")]
+    public int BonusSize = 1;
+
+    private AnimationPlayer _animationPlayer;
+
+    public override void _Ready()
+    {
+        GetNode<Sprite>("Sprite").Scale = new Vector2(3.5f, 3.5f);
+        _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        _animationPlayer.CurrentAnimation = "idle";
+    }
+
+    public void Taken()
+    {
+        _animationPlayer.CurrentAnimation = "taken";
+    }
+
+    public void OnCookie_body_entered(Node body)
+    {
+        if (body.GetType() == typeof(Dog))
+        {
+            Dog dog = (Dog)body;
+            dog.Score += BonusSize;
+            Taken();
+        }
+    }
+}

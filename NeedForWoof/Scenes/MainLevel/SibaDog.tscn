@@ -7,7 +7,7 @@
 [ext_resource path="res://Textures/siba.png" type="Texture" id=5]
 [ext_resource path="res://Textures/MainLevel/siba_shadow.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=1]
 resource_name = "finish"
 length = 0.3
 loop = true
@@ -36,8 +36,7 @@ tracks/1/keys = {
 "values": [ "finish" ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "jump"
+[sub_resource type="Animation" id=2]
 length = 0.3
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("AnimatedSprite:position:y")
@@ -133,7 +132,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 length = 0.3
 loop = true
 tracks/0/type = "bezier"
@@ -179,41 +178,41 @@ tracks/3/keys = {
 "values": [ "run", "run" ]
 }
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 14, 28 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 14, 0, 14, 28 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 28, 0, 14, 28 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
 region = Rect2( 42, 0, 14, 28 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "jump",
-"speed": 7.0
-}, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
-"loop": true,
-"name": "run",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "finish",
 "speed": 7.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "run",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "jump",
+"speed": 7.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=9]
 radius = 38.0413
 height = 67.3273
 
@@ -222,6 +221,7 @@ position = Vector2( 240, 600 )
 scale = Vector2( 0.75, 0.75 )
 collision_mask = 15
 script = ExtResource( 3 )
+MaxStamina = 300.0
 
 [node name="DogMovement" parent="." instance=ExtResource( 4 )]
 
@@ -234,18 +234,18 @@ texture = ExtResource( 6 )
 scale = Vector2( 1.06319, 1.04136 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visualization"]
-anims/finish = SubResource( 9 )
-anims/jump = SubResource( 1 )
-anims/run = SubResource( 2 )
+anims/finish = SubResource( 1 )
+anims/jump = SubResource( 2 )
+anims/run = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Visualization"]
 position = Vector2( 0, -2.15197 )
 scale = Vector2( 5, 5 )
-frames = SubResource( 7 )
+frames = SubResource( 8 )
 animation = "run"
 frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.4375 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )

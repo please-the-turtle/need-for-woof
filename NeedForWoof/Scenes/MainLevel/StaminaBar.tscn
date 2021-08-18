@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Textures/MainLevel/stamina_progress.png" type="Texture" id=2]
+
+[node name="StaminaBar" type="TextureProgress"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -66.412
+margin_top = -100.0
+margin_right = 65.588
+margin_bottom = -16.0
+value = 100.0
+texture_progress = ExtResource( 2 )
+fill_mode = 3
+tint_progress = Color( 1, 1, 1, 0.403922 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

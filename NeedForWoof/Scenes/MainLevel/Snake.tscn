@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/MainLevel/Obstructions/Pillar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/MainLevel/Bonuses/Cookie.tscn" type="PackedScene" id=2]
+
+[node name="Snake" type="YSort"]
+
+[node name="Cookie" parent="." instance=ExtResource( 2 )]
+position = Vector2( 34.0081, 123.218 )
+
+[node name="Cookie2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -27.6568, 38.8324 )
+
+[node name="Cookie3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 36.8016, -29.0183 )
+
+[node name="Cookie4" parent="." instance=ExtResource( 2 )]
+position = Vector2( -23.0294, -99.3252 )
+
+[node name="Pillar" parent="." instance=ExtResource( 1 )]
+position = Vector2( -56.4543, 164.38 )
+
+[node name="Pillar2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 41.5972, 70.178 )
+
+[node name="Pillar3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -60.1631, -25.435 )
+
+[node name="Pillar4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 42.652, -106.212 )
