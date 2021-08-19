@@ -11,6 +11,9 @@
 [ext_resource path="res://Scenes/MainLevel/OnScreenInfo.tscn" type="PackedScene" id=9]
 
 [node name="MainLevel" type="Node2D"]
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
 
 [node name="RoadTileMap" parent="." instance=ExtResource( 1 )]
 position = Vector2( -17.0742, 871.824 )
@@ -24,6 +27,7 @@ collision_layer = 16
 [node name="YSort" type="YSort" parent="."]
 
 [node name="SibaDog" parent="YSort" instance=ExtResource( 3 )]
+MaxStamina = 200.0
 
 [node name="PlayerCamera" parent="YSort/SibaDog" instance=ExtResource( 4 )]
 position = Vector2( 0, -250 )
@@ -31,9 +35,6 @@ smoothing_enabled = true
 smoothing_speed = 6.0
 drag_margin_left = 1.0
 drag_margin_right = 1.0
-
-[node name="Tunnel" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 305.493, -653.67 )
 
 [node name="Tunnel3" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 143.059, -1594.79 )
@@ -43,6 +44,14 @@ position = Vector2( 155.046, -911.233 )
 
 [node name="Plank2" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 165.712, -1150.72 )
+scale = Vector2( 4, 4 )
+
+[node name="Plank3" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 337.916, -516.286 )
+scale = Vector2( 4, 4 )
+
+[node name="Plank4" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 165.712, -511.754 )
 scale = Vector2( 4, 4 )
 
 [node name="Snake" parent="YSort" instance=ExtResource( 5 )]

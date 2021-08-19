@@ -1,17 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Textures/Menu/main_menu.png" type="Texture" id=1]
 [ext_resource path="res://Assets/big_btn_menu_bg.tres" type="Texture" id=2]
 [ext_resource path="res://Assets/big_btn_menu_bg_pressed.tres" type="Texture" id=3]
 [ext_resource path="res://Assets/small_btn_menu_bg.tres" type="Texture" id=4]
 [ext_resource path="res://Assets/small_btn_menu_bg_pressed.tres" type="Texture" id=5]
-
-[sub_resource type="Gradient" id=6]
-colors = PoolColorArray( 0.968627, 0.8, 0.576471, 1, 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
-width = 480
+[ext_resource path="res://Scenes/Menu/MenuBackground.tscn" type="PackedScene" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -48,17 +42,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 800.0
-margin_right = 800.0
-margin_bottom = 1280.0
-rect_rotation = -90.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = SubResource( 7 )
-stretch_mode = 1
+[node name="Background" parent="." instance=ExtResource( 6 )]
+margin_right = 480.0
+margin_bottom = 800.0
 
 [node name="Logo" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -85,7 +71,6 @@ margin_right = 410.0
 margin_bottom = 515.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-action_mode = 0
 button_mask = 3
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
@@ -117,6 +102,7 @@ margin_bottom = 640.0
 rect_min_size = Vector2( 68, 23 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+button_mask = 3
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 expand = true
@@ -131,7 +117,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HostButton2" type="TextureButton" parent="."]
+[node name="SettingsButton" type="TextureButton" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -142,12 +128,16 @@ margin_right = 235.0
 margin_bottom = 765.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+button_mask = 3
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
 stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Icon" type="TextureRect" parent="HostButton2"]
+[node name="Icon" type="TextureRect" parent="SettingsButton"]
 margin_right = 332.0
 margin_bottom = 228.0
 rect_scale = Vector2( 0.5, 0.5 )
@@ -157,7 +147,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConnectButton2" type="TextureButton" parent="."]
+[node name="UserButton" type="TextureButton" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -169,11 +159,12 @@ margin_bottom = 765.0
 rect_min_size = Vector2( 68, 23 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+button_mask = 3
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
 
-[node name="Icon" type="TextureRect" parent="ConnectButton2"]
+[node name="Icon" type="TextureRect" parent="UserButton"]
 margin_right = 332.0
 margin_bottom = 228.0
 rect_scale = Vector2( 0.5, 0.5 )
