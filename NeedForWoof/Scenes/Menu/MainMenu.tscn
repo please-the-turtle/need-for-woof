@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Textures/Menu/main_menu.png" type="Texture" id=1]
 [ext_resource path="res://Assets/big_btn_menu_bg.tres" type="Texture" id=2]
@@ -6,9 +6,11 @@
 [ext_resource path="res://Assets/small_btn_menu_bg.tres" type="Texture" id=4]
 [ext_resource path="res://Assets/small_btn_menu_bg_pressed.tres" type="Texture" id=5]
 [ext_resource path="res://Scenes/Menu/MenuBackground.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/Menu/HostButton.cs" type="Script" id=7]
-[ext_resource path="res://Scripts/Menu/SettingsButton.cs" type="Script" id=8]
-[ext_resource path="res://Scripts/Menu/ConnectButton.cs" type="Script" id=9]
+[ext_resource path="res://Scripts/MainMenu/HostButton.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/MainMenu/SettingsButton.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/MainMenu/ServerCreator.cs" type="Script" id=9]
+[ext_resource path="res://Scripts/MainMenu/ConnectButton.cs" type="Script" id=10]
+[ext_resource path="res://Scenes/Menu/ErrorLabel.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -41,6 +43,7 @@ margin_right = -480.0
 margin_bottom = -800.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -62,6 +65,11 @@ stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ErrorLabel" parent="." instance=ExtResource( 11 )]
+margin_top = 340.0
+margin_right = 440.0
+margin_bottom = 380.0
 
 [node name="HostButton" type="TextureButton" parent="."]
 anchor_left = 0.5
@@ -110,7 +118,7 @@ button_mask = 3
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 expand = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [node name="Icon" type="TextureRect" parent="ConnectButton"]
 margin_right = 681.0
@@ -180,6 +188,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="HostButton" to="HostButton" method="OnHostButton_pressed"]
+[connection signal="pressed" from="HostButton" to="." method="CreateServer"]
 [connection signal="pressed" from="ConnectButton" to="ConnectButton" method="OnConnectButton_pressed"]
 [connection signal="pressed" from="SettingsButton" to="SettingsButton" method="OnSettingsButton_pressed"]

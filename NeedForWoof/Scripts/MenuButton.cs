@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts.Menu
+namespace NeedForWoof.Scripts
 {
     public class MenuButton : TextureButton
     {
