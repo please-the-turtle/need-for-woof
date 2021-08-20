@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts
+namespace NeedForWoof.Scripts.Level
 {
 	/// <summary>
 	/// <para>The base class of the player's person</para>

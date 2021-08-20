@@ -1,12 +1,13 @@
 using Godot;
-using System;
-using NeedForWoof.Scripts;
 
-public class SettingsButton : TextureButton
+namespace NeedForWoof.Scripts.Menu
 {
-    public void OnSettingsButton_pressed()
+    public class SettingsButton : TextureButton
     {
-        var global = GetNode<Global>("/root/Global");
-        global.GotoScene("res://Scenes/Menu/SettingsScreen.tscn");
+        public void OnSettingsButton_pressed()
+        {
+            var global = GetNode<Global>("/root/Global");
+            global.GotoScene("res://Scenes/Menu/SettingsScreen.tscn");
+        }
     }
 }

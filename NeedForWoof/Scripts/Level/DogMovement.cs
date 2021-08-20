@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts
+namespace NeedForWoof.Scripts.Level
 {
     public class DogMovement : Node
     {

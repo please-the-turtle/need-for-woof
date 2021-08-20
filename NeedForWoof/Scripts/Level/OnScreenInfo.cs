@@ -1,33 +1,34 @@
 using Godot;
-using System;
-using NeedForWoof.Scripts;
 
-public class OnScreenInfo : CanvasLayer
+namespace NeedForWoof.Scripts.Level
 {
-    [Export] public NodePath Dog;
-
-    private Dog _dog;
-
-    private TextureProgress _staminaBar;
-
-    public override void _Ready()
+    public class OnScreenInfo : CanvasLayer
     {
-        _dog = GetNode<Dog>(Dog);
+        [Export] public NodePath Dog;
 
-        _staminaBar = GetNode<TextureProgress>("StaminaBar");
-        _staminaBar.MaxValue = _dog.MaxStamina;
-    }
+        private Dog _dog;
 
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
+        private TextureProgress _staminaBar;
 
-        UpdateStaminaBar();
-    }
+        public override void _Ready()
+        {
+            _dog = GetNode<Dog>(Dog);
 
-    private void UpdateStaminaBar()
-    {
-        _staminaBar.Value = _dog.Stamina;
-    }
+            _staminaBar = GetNode<TextureProgress>("StaminaBar");
+            _staminaBar.MaxValue = _dog.MaxStamina;
+        }
+
+        public override void _Process(float delta)
+        {
+            base._Process(delta);
+
+            UpdateStaminaBar();
+        }
+
+        private void UpdateStaminaBar()
+        {
+            _staminaBar.Value = _dog.Stamina;
+        }
     
+    }
 }
