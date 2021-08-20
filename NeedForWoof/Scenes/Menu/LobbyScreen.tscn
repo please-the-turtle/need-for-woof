@@ -6,21 +6,25 @@
 [ext_resource path="res://Scenes/Menu/MenuBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Menu/MenuButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/MenuFont.tres" type="DynamicFont" id=6]
-[ext_resource path="res://Scripts/IpAdressLabel.cs" type="Script" id=7]
-[ext_resource path="res://Scenes/Menu/DialogWinwowFrame.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Menu/DialogWindowFrame.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 82, 47, 15, 18 )
 margin = Rect2( 4, 2, 10, 5 )
 
-[sub_resource type="DynamicFontData" id=2]
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 71, 84, 11, 3 )
+margin = Rect2( 4, 2, 10, 5 )
+
+[sub_resource type="DynamicFontData" id=3]
 font_path = "res://Fonts/PressStart2P-Regular.ttf"
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 outline_color = Color( 0, 0, 0, 1 )
-font_data = SubResource( 2 )
+font_data = SubResource( 3 )
 
 [node name="LobbyScreen" type="Control"]
 anchor_right = 1.0
@@ -42,15 +46,30 @@ margin_left = 5.0
 margin_top = -150.0
 margin_right = 170.0
 margin_bottom = -35.0
+toggle_mode = true
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 1 )
 expand = true
 stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Icon" type="TextureRect" parent="StartButton"]
+[node name="IconPlay" type="TextureRect" parent="StartButton"]
+visible = false
 margin_right = 166.0
 margin_bottom = 114.0
 texture = SubResource( 1 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconPlay2" type="TextureRect" parent="StartButton"]
+margin_right = 166.0
+margin_bottom = 114.0
+texture = SubResource( 2 )
 expand = true
 stretch_mode = 6
 __meta__ = {
@@ -75,21 +94,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="IpAdress" type="Label" parent="."]
+[node name="Status" type="Label" parent="."]
 anchor_right = 1.0
-margin_left = 40.0
 margin_top = 80.0
-margin_right = -40.0
 margin_bottom = 104.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 0.568627 )
-text = "191.168.1.322"
+text = "Wait for other players"
 align = 1
 valign = 1
-script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DialogWinwowFrame" parent="." instance=ExtResource( 8 )]
+[node name="DialogWindowFrame" parent="." instance=ExtResource( 8 )]
 anchor_top = 0.4
+rect_scale = Vector2( 1, 1 )

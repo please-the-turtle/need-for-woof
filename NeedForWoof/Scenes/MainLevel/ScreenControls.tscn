@@ -6,7 +6,7 @@
 [ext_resource path="res://Textures/MainLevel/Buttons/jump.png" type="Texture" id=4]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_left_pressed.png" type="Texture" id=5]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_right_pressed.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/MoveButtons.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/Menu/MoveButtons.cs" type="Script" id=8]
 
 [node name="ScreenControls" type="CanvasLayer"]
 

@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/Menu/MainMenu.tscn"
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Scripts/Global.cs"
+
 [display]
 
 window/size/width=480
