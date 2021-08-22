@@ -8,13 +8,13 @@
 [ext_resource path="res://Scenes/Menu/MenuBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/MainMenu/HostButton.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/MainMenu/SettingsButton.cs" type="Script" id=8]
-[ext_resource path="res://Scripts/MainMenu/ServerCreator.cs" type="Script" id=9]
+[ext_resource path="res://Scripts/MainMenu/Logo.cs" type="Script" id=9]
 [ext_resource path="res://Scripts/MainMenu/ConnectButton.cs" type="Script" id=10]
 [ext_resource path="res://Scenes/Menu/ErrorLabel.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 80, 44 )
+region = Rect2( 0, 0, 80, 42 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -43,7 +43,6 @@ margin_right = -480.0
 margin_bottom = -800.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -52,7 +51,7 @@ __meta__ = {
 margin_right = 480.0
 margin_bottom = 800.0
 
-[node name="Logo" type="TextureRect" parent="."]
+[node name="Logo" type="TextureButton" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 60.0
@@ -60,8 +59,11 @@ margin_right = 480.0
 margin_bottom = 328.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
-texture = SubResource( 1 )
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 1 )
+expand = true
 stretch_mode = 6
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -188,6 +190,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="HostButton" to="." method="CreateServer"]
+[connection signal="pressed" from="HostButton" to="HostButton" method="OnHostButton_pressed"]
 [connection signal="pressed" from="ConnectButton" to="ConnectButton" method="OnConnectButton_pressed"]
 [connection signal="pressed" from="SettingsButton" to="SettingsButton" method="OnSettingsButton_pressed"]

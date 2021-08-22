@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Textures/MainLevel/Buttons/run_left.png" type="Texture" id=1]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_right.png" type="Texture" id=2]
@@ -6,7 +6,10 @@
 [ext_resource path="res://Textures/MainLevel/Buttons/jump.png" type="Texture" id=4]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_left_pressed.png" type="Texture" id=5]
 [ext_resource path="res://Textures/MainLevel/Buttons/run_right_pressed.png" type="Texture" id=6]
+[ext_resource path="res://Textures/MainLevel/Buttons/menu.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Level/MoveButtons.cs" type="Script" id=8]
+[ext_resource path="res://Textures/MainLevel/Buttons/menu_pressed.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/Level/MenuTouchButton.cs" type="Script" id=10]
 
 [node name="ScreenControls" type="CanvasLayer"]
 
@@ -33,3 +36,12 @@ scale = Vector2( 6, 6 )
 normal = ExtResource( 2 )
 pressed = ExtResource( 6 )
 action = "ui_right"
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2( 396, 20 )
+scale = Vector2( 4, 4 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 9 )
+script = ExtResource( 10 )
+
+[connection signal="pressed" from="TouchScreenButton" to="TouchScreenButton" method="GotoMenu"]

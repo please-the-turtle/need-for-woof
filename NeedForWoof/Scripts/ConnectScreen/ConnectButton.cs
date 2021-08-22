@@ -1,13 +1,15 @@
 using Godot;
 
-namespace NeedForWoof.Scripts.MainMenu
+namespace NeedForWoof.Scripts.ConnectScreen
 {
-    public class HostButton : TextureButton
+    public class ConnectButton : TextureButton
     {
-        public void OnHostButton_pressed()
+        public void OnConnectButton_pressed()
         {
+            string ip = GetParent().GetNode<LineEdit>("DialogWindowFrame/IpAddressLine").Text;
+            
             Network server = GetNode<Network>("/root/Network");
-            var error = server.CreateServer();
+            var error = server.ConnectToServer(ip);
 
             if (error == Error.Ok)
             {
@@ -19,7 +21,7 @@ namespace NeedForWoof.Scripts.MainMenu
                 ErrorLabel errorLabel = GetParent().GetNode<ErrorLabel>("ErrorLabel");
                 errorLabel.DisplayError(error.ToString());
             }
-            
+
         }
     }
 }

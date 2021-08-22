@@ -1,10 +1,10 @@
 using Godot;
 
-namespace NeedForWoof.Scripts
+namespace NeedForWoof.Scripts.Level
 {
-    public class MenuButton : TextureButton
+    public class MenuTouchButton : TouchScreenButton
     {
-        public void OnMenuButton_pressed()
+        public void GotoMenu()
         {
             if (GetTree().HasNetworkPeer())
             {
@@ -19,10 +19,8 @@ namespace NeedForWoof.Scripts
                 }
             }
             
-            
-            Global global = GetNode<Global>("/root/Global");
+            var global = GetNode<Global>("/root/Global");
             global.GotoScene("res://Scenes/Menu/MainMenu.tscn");
         }
-    
     }
 }

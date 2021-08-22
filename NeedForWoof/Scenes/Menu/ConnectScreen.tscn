@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes/Menu/MenuBackground.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Menu/DialogWindowFrame.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/ConnectScreen/IpAdressLine.cs" type="Script" id=7]
-[ext_resource path="res://Scripts/ConnectScreen/ServerConnector.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/ConnectScreen/ConnectButton.cs" type="Script" id=8]
 [ext_resource path="res://Scenes/Menu/ErrorLabel.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFontData" id=1]
@@ -40,7 +40,6 @@ margin = Rect2( 6, 3, 12, 14 )
 [node name="ConnectScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -54,17 +53,20 @@ margin_top = -100.0
 margin_bottom = 100.0
 rect_scale = Vector2( 1, 1 )
 
-[node name="IpAdressLabel" type="Label" parent="DialogWindowFrame"]
+[node name="IpAddressLabel" type="Label" parent="DialogWindowFrame"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -140.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.27451, 0.286275, 0.411765, 1 )
-text = "IP Adress:"
+text = "IP Address:"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="IpAdressLine" type="LineEdit" parent="DialogWindowFrame"]
+[node name="IpAddressLine" type="LineEdit" parent="DialogWindowFrame"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 40.0
@@ -103,6 +105,7 @@ texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 1 )
 expand = true
 stretch_mode = 5
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,6 +121,6 @@ __meta__ = {
 
 [node name="ErrorLabel" parent="." instance=ExtResource( 9 )]
 
-[connection signal="focus_entered" from="DialogWindowFrame/IpAdressLine" to="DialogWindowFrame/IpAdressLine" method="OnIpAdressLine_focus_entered"]
-[connection signal="text_entered" from="DialogWindowFrame/IpAdressLine" to="." method="ConnectToServer"]
-[connection signal="pressed" from="ConnectButton" to="." method="ConnectToServer"]
+[connection signal="focus_entered" from="DialogWindowFrame/IpAddressLine" to="DialogWindowFrame/IpAddressLine" method="OnIpAdressLine_focus_entered"]
+[connection signal="text_entered" from="DialogWindowFrame/IpAddressLine" to="." method="ConnectToServer"]
+[connection signal="pressed" from="ConnectButton" to="ConnectButton" method="OnConnectButton_pressed"]
