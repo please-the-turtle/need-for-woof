@@ -62,7 +62,7 @@ size_flags_vertical = 5
 texture_normal = SubResource( 1 )
 texture_pressed = SubResource( 1 )
 expand = true
-stretch_mode = 6
+stretch_mode = 5
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false

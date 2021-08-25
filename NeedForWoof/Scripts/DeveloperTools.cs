@@ -21,7 +21,7 @@ namespace NeedForWoof.Scripts
                 string sceneName = SceneNameLine.Text;
                 if (!sceneName.EndsWith(".tscn"))
                 {
-                    sceneName = "Scenes/" + sceneName + ".tscn";
+                    sceneName = "res://Scenes/" + sceneName + ".tscn";
                 }
                 File scene = new File();
                 if (scene.FileExists(sceneName))
