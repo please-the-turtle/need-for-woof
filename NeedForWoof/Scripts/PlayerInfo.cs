@@ -1,6 +1,8 @@
+using Godot;
+
 namespace NeedForWoof.Scripts
 {
-    public struct PlayerInfo
+    public class PlayerInfo : Object
     {
         public string Nickname;
         public PlayerStatus Status;

@@ -179,6 +179,9 @@ button_mask = 3
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Icon" type="TextureRect" parent="UserButton"]
 margin_right = 332.0

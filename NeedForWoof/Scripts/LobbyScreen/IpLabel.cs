@@ -19,10 +19,16 @@ namespace NeedForWoof.Scripts.LobbyScreen
 
         private string GetLocalIpString()
         {
+            string ip = IP.GetLocalAddresses().ToString();
+
             RegEx regex = new RegEx();
             regex.Compile(@"192.168.\d+.\d+");
-            string ip = IP.GetLocalAddresses().ToString();
+            
             var regexSearchResult = regex.Search(ip);
+            if (regexSearchResult is null)
+            {
+                return "Local network not found.";
+            }
 
             return regexSearchResult.GetString();
         }
