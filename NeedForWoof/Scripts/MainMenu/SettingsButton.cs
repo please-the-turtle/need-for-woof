@@ -2,7 +2,7 @@ using Godot;
 
 namespace NeedForWoof.Scripts.MainMenu
 {
-    public class SettingsButton : TextureButton
+    public class SettingsButton : Button
     {
         public void OnSettingsButton_pressed()
         {

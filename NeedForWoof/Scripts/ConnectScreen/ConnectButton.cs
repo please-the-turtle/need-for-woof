@@ -2,7 +2,7 @@ using Godot;
 
 namespace NeedForWoof.Scripts.ConnectScreen
 {
-    public class ConnectButton : TextureButton
+    public class ConnectButton : Button
     {
         public void OnConnectButton_pressed()
         {
