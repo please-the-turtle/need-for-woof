@@ -34,6 +34,7 @@ margin_right = -26.0
 margin_bottom = -50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+follow_focus = true
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -48,9 +49,9 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="NickName" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
-margin_top = 134.0
+margin_top = 18.0
 margin_right = 354.0
-margin_bottom = 222.0
+margin_bottom = 106.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 alignment = 1
@@ -83,9 +84,9 @@ __meta__ = {
 }
 
 [node name="Port" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
-margin_top = 262.0
+margin_top = 146.0
 margin_right = 354.0
-margin_bottom = 350.0
+margin_bottom = 234.0
 custom_constants/separation = 20
 alignment = 1
 
@@ -114,6 +115,62 @@ placeholder_text = "Enter port"
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="SoundLevel" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
+margin_top = 274.0
+margin_right = 354.0
+margin_bottom = 350.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="SoundLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel"]
+margin_right = 354.0
+margin_bottom = 24.0
+theme = ExtResource( 7 )
+text = "Sounds:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="SoundSlider" type="HSlider" parent="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel"]
+margin_top = 44.0
+margin_right = 354.0
+margin_bottom = 76.0
+theme = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="MusicLevel" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
+margin_top = 390.0
+margin_right = 354.0
+margin_bottom = 466.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="MusicLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel"]
+margin_right = 354.0
+margin_bottom = 24.0
+theme = ExtResource( 7 )
+text = "Music:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="MusicSlider" type="HSlider" parent="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel"]
+margin_top = 44.0
+margin_right = 354.0
+margin_bottom = 76.0
+theme = ExtResource( 7 )
+__meta__ = {
 "_editor_description_": ""
 }
 
