@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/main_game_theme.theme" type="Theme" id=1]
 [ext_resource path="res://Textures/Menu/main_menu.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/MenuButton.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/CommonControls/MenuButton.cs" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )

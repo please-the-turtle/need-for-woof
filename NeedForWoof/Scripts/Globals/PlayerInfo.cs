@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts
+namespace NeedForWoof.Scripts.Globals
 {
     public class PlayerInfo : Object
     {

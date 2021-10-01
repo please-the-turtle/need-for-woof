@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts
+namespace NeedForWoof.Scripts.CommonControls
 {
     public class ErrorLabel : Label
     {
