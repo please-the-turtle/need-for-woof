@@ -4,16 +4,20 @@ namespace NeedForWoof.Scripts.SettingsScreen
 {
     public class NickNameLine : LineEdit
     {
+        private Global global;
+
         public override void _Ready()
         {
             base._Ready();
 
-            Text = Global.Nickname;
+            global = GetNode<Global>("/root/Global");
+
+            Text = global.GameSettings.Nickname;
         }
 
         public void OnNickNameLine_text_changed(string newText)
         {
-            Global.Nickname = newText;
+            global.GameSettings.Nickname = newText;
         }
     }
 }

@@ -5,11 +5,14 @@ namespace NeedForWoof.Scripts.SettingsScreen
 {
 	public class PortLine : LineEdit
 	{
+		private Global _global;
+
 		public override void _Ready()
 		{
 			base._Ready();
 
-			Text = Global.NetworkPort.ToString();
+			_global = GetNode<Global>("/root/Global");
+			Text = _global.GameSettings.NetworkPort.ToString();
 		}
 
 		public void OnPortLine_text_changed(string newText)
@@ -17,7 +20,7 @@ namespace NeedForWoof.Scripts.SettingsScreen
 			int newPort;
 			if (Int32.TryParse(newText, out newPort))
 			{
-				Global.NetworkPort = newPort;
+				_global.GameSettings.NetworkPort = newPort;
 			}
 		}
 	}

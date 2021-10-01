@@ -8,15 +8,15 @@ namespace NeedForWoof.Scripts
         {
             if (GetTree().HasNetworkPeer())
             {
-                var network = GetNode<Network>("/root/Network");
-                if (GetTree().IsNetworkServer())
-                {
-                    network.RemoveServer();
-                }
-                else
-                {
-                    network.LeaveServer();
-                }
+                // var network = GetNode<Network>("/root/Network");
+                // if (GetTree().IsNetworkServer())
+                // {
+                //     network.RemoveServer();
+                // }
+                // else
+                // {
+                //     network.LeaveServer();
+                // }
             }
             
             

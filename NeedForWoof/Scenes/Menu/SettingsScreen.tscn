@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Menu/MenuBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Menu/MenuButton.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Scripts/SettingsScreen/Settings.cs" type="Script" id=5]
 [ext_resource path="res://Scripts/SettingsScreen/PortLine.cs" type="Script" id=6]
 [ext_resource path="res://Assets/main_game_theme.theme" type="Theme" id=7]
+[ext_resource path="res://Scripts/SettingsScreen/MusicSlider.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/SettingsScreen/SoundSlider.cs" type="Script" id=9]
 
 [node name="SettingsScreen" type="Control"]
 anchor_right = 1.0
@@ -142,6 +144,7 @@ margin_top = 44.0
 margin_right = 354.0
 margin_bottom = 76.0
 theme = ExtResource( 7 )
+script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -170,6 +173,7 @@ margin_top = 44.0
 margin_right = 354.0
 margin_bottom = 76.0
 theme = ExtResource( 7 )
+script = ExtResource( 8 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -177,3 +181,5 @@ __meta__ = {
 [connection signal="pressed" from="MenuButton" to="." method="SaveSettings"]
 [connection signal="text_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/NickName/NickNameLine" to="DialogWindowFrame/ScrollContainer/SettingsList/NickName/NickNameLine" method="OnNickNameLine_text_changed"]
 [connection signal="text_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/Port/PortLine" to="DialogWindowFrame/ScrollContainer/SettingsList/Port/PortLine" method="OnPortLine_text_changed"]
+[connection signal="value_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel/SoundSlider" to="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel/SoundSlider" method="OnSoundSlider_value_changed"]
+[connection signal="value_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel/MusicSlider" to="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel/MusicSlider" method="OnMusicSlider_value_changed"]
