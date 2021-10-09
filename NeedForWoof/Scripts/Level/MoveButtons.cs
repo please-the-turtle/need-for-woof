@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts.Menu
+namespace NeedForWoof.Scripts.Level
 {
     public class MoveButtons : Node2D
     {

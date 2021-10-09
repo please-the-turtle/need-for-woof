@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/main_game_theme.theme" type="Theme" id=1]
 [ext_resource path="res://Textures/Menu/main_menu.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Menu/MenuBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Menu/MenuButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/MenuFont.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Scripts/LobbyScreen/NickNameLabel.cs" type="Script" id=7]
 [ext_resource path="res://Scenes/Menu/DialogWindowFrame.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -84,6 +85,7 @@ custom_constants/shadow_offset_y = 3
 text = "GoodBoy"
 align = 1
 valign = 1
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
