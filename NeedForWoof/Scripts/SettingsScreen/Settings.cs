@@ -1,5 +1,4 @@
 using Godot;
-using NeedForWoof.Scripts.Globals;
 
 namespace NeedForWoof.Scripts.SettingsScreen
 {
