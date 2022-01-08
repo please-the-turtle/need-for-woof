@@ -5,7 +5,6 @@
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/Debug/NeedForWoof.csproj.CoreCompileInputs.cache
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/Debug/NeedForWoof.dll
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/Debug/NeedForWoof.pdb
-/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/Debug/NeedForWoof.csprojAssemblyReference.cache
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/Debug/NeedForWoof.csproj.CopyComplete
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/Debug/System.Buffers.dll
@@ -16,3 +15,4 @@
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/Debug/System.Text.Json.dll
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/Debug/System.Threading.Tasks.Extensions.dll
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/Debug/System.ValueTuple.dll
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/Debug/NeedForWoof.csproj.AssemblyReference.cache
