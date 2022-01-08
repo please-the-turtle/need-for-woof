@@ -16,4 +16,3 @@
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/ExportDebug/System.Threading.Tasks.Extensions.dll
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/ExportDebug/System.ValueTuple.dll
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/ExportDebug/NeedForWoof.csproj.CopyComplete
-/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/ExportDebug/NeedForWoof.GeneratedMSBuildEditorConfig.editorconfig

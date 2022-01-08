@@ -19,7 +19,7 @@ namespace NeedForWoof.Scripts
             _filePaths = new GameFilePaths();
 
             Loader = new GameDataLoader(_filePaths);
-            Saver = new GameDataSaver(_filePaths);
+            Saver = new GameDataSaver(_filePaths);           
 
             GameSettings = Loader.LoadGameSettings();
 
