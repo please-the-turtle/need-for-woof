@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes/MainLevel/Snake.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/MainLevel/FinishLine.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/MainLevel/Obstructions/Plank.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/MainLevel/Tunnel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/MainLevel/Obstructions/Tunnel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/MainLevel/OnScreenInfo.tscn" type="PackedScene" id=9]
 
 [node name="MainLevel" type="Node2D"]

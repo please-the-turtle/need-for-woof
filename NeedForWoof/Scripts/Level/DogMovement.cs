@@ -5,15 +5,17 @@ namespace NeedForWoof.Scripts.Level
     public class DogMovement : Node
     {
         /// <summary>
-        /// <para>Constant speed of the Dog</para>
+        /// Constant speed of the Dog.
         /// </summary>
         [Export(PropertyHint.Range, "1, 1000, or_greater")]
         public float Speed = 400;
 		
         /// <summary>
-        /// <para>Angular rate of rotation. Measured in radians</para>
+        /// Angular rate of rotation. Measured in radians.
+        /// <para><u>Turning methods are not used yet.</u></para>
         /// </summary>
-        [Export(PropertyHint.Range, "0, 3")] public float TurnSpeed = 1f;
+        [Export(PropertyHint.Range, "0, 3")] 
+        public float TurnSpeed = 1f;
 
         [Export(PropertyHint.Range, "0, 500, or_greater")]
         public float JumpStaminaExpenditure
@@ -29,7 +31,7 @@ namespace NeedForWoof.Scripts.Level
         }
 
         /// <summary>
-        /// <para>BoostSpeed. Used for jumping. Controlled by the AnimationPlayer.</para>
+        /// BoostSpeed. Used for jumping. Controlled by the AnimationPlayer.
         /// </summary>
         public float SpeedBoost = 1f;
         
@@ -68,6 +70,9 @@ namespace NeedForWoof.Scripts.Level
             _velocity = Vector2.Zero;
         }
 
+        /// <summary>
+        ///     Makes the dog stop.
+        /// </summary>
         public void Stop()
         {
             SetPhysicsProcess(false);
@@ -75,47 +80,43 @@ namespace NeedForWoof.Scripts.Level
             _velocity = Vector2.Zero;
         }
 
+        /// <summary>
+        ///     Makes the dog move.
+        /// </summary>
         public void Go()
         {
             SetPhysicsProcessInternal(true);
             SetProcessInternal(true);
         }
         
+        /// <summary>
+        ///     Directs the dog forward.
+        /// </summary>
         public void RunAhead()
         {
             RunTo(_forwardDirection);
         }
 
+        /// <summary>
+        ///     Directs the dog to the right.
+        /// </summary>
         public void RunRight()
         {
             RunTo(Vector2.Right);
         }
 
+        /// <summary>
+        ///     Directs the dog to the left.
+        /// </summary>
         public void RunLeft()
         {
             RunTo(Vector2.Left);
         }
-
-        public void TurnRight()
-        {
-            Turn(false);
-        }
-
-        public void TurnLeft()
-        {
-            Turn();
-        }
 		
-        public void Jump()
-        {
-            if (_dog.Stamina >= JumpStaminaExpenditure && _dog.MoveState == MoveState.Run)
-            {
-                _dog.Stamina -= JumpStaminaExpenditure;
-                _dog.PlayAnimation("jump");
-            }
-        }
-		
-        private void RunTo(Vector2 direction)
+        /// <summary>
+        ///     Directs the dog.
+        /// </summary>
+        public void RunTo(Vector2 direction)
         {
             if (_dog.MoveState == MoveState.Jump)
             {
@@ -124,6 +125,29 @@ namespace NeedForWoof.Scripts.Level
             direction = direction.Normalized();
             direction *= Speed * SpeedBoost;
             _velocity += direction;
+        }
+		
+        /// <summary>
+        ///     Makes the dog jump.
+        /// </summary>
+        public void Jump()
+        {
+            if (_dog.Stamina >= JumpStaminaExpenditure && _dog.MoveState == MoveState.Run)
+            {
+                _dog.Stamina -= JumpStaminaExpenditure;
+                _dog.PlayAnimation("jump");
+            }
+        }
+
+        // Turning methods are not used yet.
+        private void TurnRight()
+        {
+            Turn(false);
+        }
+
+        private void TurnLeft()
+        {
+            Turn();
         }
 		
         private void Turn(bool left = true)
@@ -136,6 +160,5 @@ namespace NeedForWoof.Scripts.Level
                 _dog.Rotate(phi);
             }
         }
-
     }
 }

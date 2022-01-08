@@ -3,7 +3,7 @@ using Godot;
 namespace NeedForWoof.Scripts.Level
 {
 	/// <summary>
-	/// <para>The base class of the player's person</para>
+	/// The base class of the player's person.
 	/// </summary>
 	public abstract class Dog : KinematicBody2D
 	{
