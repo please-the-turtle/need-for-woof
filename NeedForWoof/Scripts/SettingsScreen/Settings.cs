@@ -7,7 +7,7 @@ namespace NeedForWoof.Scripts.SettingsScreen
         public void SaveSettings()
         {
             var global = GetNode<Global>("/root/Global");
-            global.Saver.SaveGameSettings(global.GameSettings);
+            GameDataSaver.SaveGameSettingsAsync(global.GameSettings);
         }
     }
 }

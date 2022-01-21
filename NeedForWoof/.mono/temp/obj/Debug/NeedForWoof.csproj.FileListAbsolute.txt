@@ -16,3 +16,4 @@
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/Debug/System.Threading.Tasks.Extensions.dll
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/Debug/System.ValueTuple.dll
 /Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/obj/Debug/NeedForWoof.csproj.AssemblyReference.cache
+/Users/aleksej/Documents/need-for-woof/NeedForWoof/.mono/temp/bin/Debug/Newtonsoft.Json.dll

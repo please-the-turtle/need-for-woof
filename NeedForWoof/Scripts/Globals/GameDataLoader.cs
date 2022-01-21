@@ -1,25 +1,18 @@
-using System.Text.Json;
+using Newtonsoft.Json;
 using Godot;
 
 namespace NeedForWoof.Scripts.Globals
 {
-    public class GameDataLoader
+    public static class GameDataLoader
     {
-        private GameFilePaths _filePaths;
-
-        public GameDataLoader(GameFilePaths filePaths)
-        {
-            _filePaths = filePaths;
-        }
-
-        public GameSettings LoadGameSettings()
+        public static GameSettings LoadGameSettings()
         {
             var saveFile = new File();
-            var error = saveFile.Open(_filePaths.GameSettingsFilePath, File.ModeFlags.Read);
+            var error = saveFile.Open(GameFilePaths.GameSettingsFilePath, File.ModeFlags.Read);
             if (error == Error.Ok)
             {
                 string json = saveFile.GetAsText();
-                GameSettings settings = JsonSerializer.Deserialize<GameSettings>(json);
+                GameSettings settings = JsonConvert.DeserializeObject<GameSettings>(json);
                 saveFile.Close();
                 return settings;
             }

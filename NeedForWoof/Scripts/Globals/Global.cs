@@ -1,30 +1,19 @@
 using Godot;
-using NeedForWoof.Scripts.Globals;
 
 namespace NeedForWoof.Scripts
 {
     public class Global : Node
     {
         public GameSettings GameSettings;
-
-        public GameDataSaver Saver;
-        public GameDataLoader Loader;
-        
-        private Node _currentScene;
-
-        private GameFilePaths _filePaths;
+        public Node CurrentScene { get; set; }
 
         public override void _Ready()
         {
-            _filePaths = new GameFilePaths();
-
-            Loader = new GameDataLoader(_filePaths);
-            Saver = new GameDataSaver(_filePaths);           
-
-            GameSettings = Loader.LoadGameSettings();
+            OS.RequestPermissions();
+            GameSettings = GameDataLoader.LoadGameSettings();
 
             Viewport root = GetTree().Root;
-            _currentScene = root.GetChild(root.GetChildCount() - 1);
+            CurrentScene = root.GetChild(root.GetChildCount() - 1);
         }
         
         public void GotoScene(string path)
@@ -34,11 +23,11 @@ namespace NeedForWoof.Scripts
 
         private void DeferredGotoScene(string path)
         {
-            _currentScene.Free();
+            CurrentScene.Free();
             PackedScene nextScene = (PackedScene)GD.Load(path);
-            _currentScene = nextScene.Instance();
-            GetTree().Root.AddChild(_currentScene);
-            GetTree().CurrentScene = _currentScene;
+            CurrentScene = nextScene.Instance();
+            GetTree().Root.AddChild(CurrentScene);
+            GetTree().CurrentScene = CurrentScene;
         }
     }
     

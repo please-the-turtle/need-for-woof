@@ -1,7 +1,10 @@
 namespace NeedForWoof.Scripts.Globals
 {
-    public class GameFilePaths
+    public static class GameFilePaths
     {
-        public readonly string GameSettingsFilePath = "user://settings.json";
+        public static string GameSettingsFilePath
+        {
+            get => "user://settings.json";
+        }
     }
 }

@@ -1,28 +1,27 @@
-using System.Text.Json;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 using Godot;
 
 namespace NeedForWoof.Scripts.Globals
 {
-    public class GameDataSaver
+    public static class GameDataSaver
     {
-        private GameFilePaths _filePaths;
-
-        public GameDataSaver(GameFilePaths filePaths)
+        public static void SaveGameSettings(GameSettings settings)
         {
-            _filePaths = filePaths;
+            SaveData(GameFilePaths.GameSettingsFilePath, settings);
         }
 
-        public void SaveGameSettings(GameSettings settings)
+        public async static void SaveGameSettingsAsync(GameSettings settings)
         {
-            SaveData(_filePaths.GameSettingsFilePath, settings);
+            await Task.Run(() => SaveGameSettings(settings));
         }
 
-        private void SaveData(string saveFilePath, object data)
+        private static void SaveData(string saveFilePath, object data)
         {
             File dataFile = new File();     
             
             dataFile.Open(saveFilePath, File.ModeFlags.Write);
-            string json = JsonSerializer.Serialize(data);
+            string json = JsonConvert.SerializeObject(data);
             dataFile.StoreLine(json);
             dataFile.Close();
         }
