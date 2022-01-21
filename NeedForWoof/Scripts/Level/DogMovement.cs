@@ -71,7 +71,7 @@ namespace NeedForWoof.Level
         }
 
         /// <summary>
-        ///     Makes the dog stop.
+        /// Makes the dog stop.
         /// </summary>
         public void Stop()
         {
@@ -81,7 +81,7 @@ namespace NeedForWoof.Level
         }
 
         /// <summary>
-        ///     Makes the dog move.
+        /// Makes the dog move.
         /// </summary>
         public void Go()
         {
@@ -90,7 +90,7 @@ namespace NeedForWoof.Level
         }
         
         /// <summary>
-        ///     Directs the dog forward.
+        /// Directs the dog forward.
         /// </summary>
         public void RunAhead()
         {
@@ -98,7 +98,7 @@ namespace NeedForWoof.Level
         }
 
         /// <summary>
-        ///     Directs the dog to the right.
+        /// Directs the dog to the right.
         /// </summary>
         public void RunRight()
         {
@@ -106,7 +106,7 @@ namespace NeedForWoof.Level
         }
 
         /// <summary>
-        ///     Directs the dog to the left.
+        /// Directs the dog to the left.
         /// </summary>
         public void RunLeft()
         {
@@ -114,7 +114,7 @@ namespace NeedForWoof.Level
         }
 		
         /// <summary>
-        ///     Directs the dog.
+        /// Directs the dog.
         /// </summary>
         public void RunTo(Vector2 direction)
         {
@@ -128,7 +128,7 @@ namespace NeedForWoof.Level
         }
 		
         /// <summary>
-        ///     Makes the dog jump.
+        /// Makes the dog jump.
         /// </summary>
         public void Jump()
         {
