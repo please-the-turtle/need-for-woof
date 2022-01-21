@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts.SettingsScreen
+namespace NeedForWoof.SettingsScreen
 {
     public class Settings : Control
     {

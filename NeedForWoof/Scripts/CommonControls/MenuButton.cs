@@ -1,7 +1,6 @@
 using Godot;
-using NeedForWoof.Scripts.Globals;
 
-namespace NeedForWoof.Scripts.CommonControls
+namespace NeedForWoof
 {
     public class MenuButton : Button
     {

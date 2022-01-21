@@ -1,8 +1,6 @@
-using System.Linq;
 using Godot;
-using NeedForWoof.Scripts.Globals;
 
-namespace NeedForWoof.Scripts
+namespace NeedForWoof
 {
     public class DeveloperTools : Control
     {

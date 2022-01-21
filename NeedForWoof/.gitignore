@@ -30,6 +30,7 @@ bld/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+NeedForWoof/.vs/
 
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
@@ -39,7 +40,9 @@ Generated\ Files/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
+NeedForWoof/[Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
+NeedForWoof/[Bb]uild[Ll]og.*
 
 # NUnit
 *.VisualState.xml
@@ -363,12 +366,12 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # VS Code files for those working on multiple tools
-NeedForWoof/.vscode/*
-!NeedForWoof/.vscode/settings.json
-!NeedForWoof/.vscode/tasks.json
-!NeedForWoof/.vscode/launch.json
-!NeedForWoof/.vscode/extensions.json
-NeedForWoof/*.code-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
 
 # Local History for Visual Studio Code
 .history/
@@ -381,21 +384,23 @@ NeedForWoof/*.code-workspace
 *.msp
 
 # JetBrains Rider
-NeedForWoof/.idea/
-NeedForWoof/*.sln.iml
+.idea/
+*.sln.iml
 
 ### Godot ###
 # Godot-specific ignores
-NeedForWoof/.import/
-NeedForWoof/export.cfg
-NeedForWoof/export_presets.cfg
+.import/
+export.cfg
+export_presets.cfg
 
 # Imported translations (automatically generated from CSV files)
 *.translation
 
 # Mono-specific ignores
-NeedForWoof/.mono/
-NeedForWoof/data_*/
+.mono/
+*/.mono/
+data_*/
+*/data_*/
 
 ### Linux ###
 
@@ -442,41 +447,41 @@ Temporary Items
 
 ### MonoDevelop ###
 #User Specific
-NeedForWoof/*.usertasks
+*.usertasks
 
 #Mono Project Files
-NeedForWoof/*.resources
-NeedForWoof/test-results/
+*.resources
+test-results/
 
 ### Rider ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-NeedForWoof/.idea/**/workspace.xml
-NeedForWoof/.idea/**/tasks.xml
-NeedForWoof/.idea/**/usage.statistics.xml
-NeedForWoof/.idea/**/dictionaries
-NeedForWoof/.idea/**/shelf
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
 
 # AWS User-specific
-NeedForWoof/.idea/**/aws.xml
+.idea/**/aws.xml
 
 # Generated files
-NeedForWoof/.idea/**/contentModel.xml
+.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
-NeedForWoof/.idea/**/dataSources/
-NeedForWoof/.idea/**/dataSources.ids
-NeedForWoof/.idea/**/dataSources.local.xml
-NeedForWoof/.idea/**/sqlDataSources.xml
-NeedForWoof/.idea/**/dynamic.xml
-NeedForWoof/.idea/**/uiDesigner.xml
-NeedForWoof/.idea/**/dbnavigator.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
 
 # Gradle
-NeedForWoof/.idea/**/gradle.xml
-NeedForWoof/.idea/**/libraries
+.idea/**/gradle.xml
+.idea/**/libraries
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -554,11 +559,14 @@ $RECYCLE.BIN/
 
 ### Godot ###
 # Godot-specific ignores
-NeedForWoof/.import/
-NeedForWoof/export.cfg
-NeedForWoof/export_presets.cfg
+.import/
+export.cfg
+export_presets.cfg
 
 # Imported translations (automatically generated from CSV files)
 *.translation
 
-NeedForWoof/.mono
+# Mono-specific ignores
+.mono/
+data_*/
+

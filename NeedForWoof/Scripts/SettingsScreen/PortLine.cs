@@ -1,8 +1,7 @@
 using System;
 using Godot;
-using NeedForWoof.Scripts.Globals;
 
-namespace NeedForWoof.Scripts.SettingsScreen
+namespace NeedForWoof.SettingsScreen
 {
 	public class PortLine : LineEdit
 	{

@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts.CommonControls
+namespace NeedForWoof
 {
     public class DialogWindowFrame : NinePatchRect
     {

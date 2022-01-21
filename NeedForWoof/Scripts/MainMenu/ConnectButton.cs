@@ -1,7 +1,6 @@
 using Godot;
-using NeedForWoof.Scripts.Globals;
 
-namespace NeedForWoof.Scripts.MainMenu
+namespace NeedForWoof.MainMenu
 {
     public class ConnectButton : Button
     {

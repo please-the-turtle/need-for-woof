@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts
+namespace NeedForWoof
 {
     public class Global : Node
     {

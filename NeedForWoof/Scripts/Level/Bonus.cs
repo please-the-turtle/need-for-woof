@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts.Level
+namespace NeedForWoof.Level
 {
     public class Bonus : Area2D
     {

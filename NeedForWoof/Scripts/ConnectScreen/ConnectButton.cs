@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts.ConnectScreen
+namespace NeedForWoof.ConnectScreen
 {
     public class ConnectButton : Button
     {

@@ -1,6 +1,6 @@
 using Godot;
 
-namespace NeedForWoof.Scripts.LobbyScreen
+namespace NeedForWoof.LobbyScreen
 {
     public class NickNameLabel : Label
     {

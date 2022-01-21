@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Godot;
 
-namespace NeedForWoof.Scripts.Globals
+namespace NeedForWoof
 {
     public static class GameDataLoader
     {

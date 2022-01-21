@@ -1,4 +1,4 @@
-namespace NeedForWoof.Scripts.Globals
+namespace NeedForWoof
 {
     public static class GameFilePaths
     {
