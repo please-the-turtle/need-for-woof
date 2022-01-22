@@ -22,7 +22,9 @@ public class LevelScreenControls : CanvasLayer
         PutButtonInTheBottom(_runRightButton);
         PutButtonInTheBottom(_runLeftButton);
         PutButtonInTheBottom(_jumpButton);
-        if(OS.WindowSize.x > OS.WindowSize.y)
+
+        float settingsScreenRatio = GetSettingsScreenRatio();
+        if(OS.WindowSize.x / OS.WindowSize.y >= settingsScreenRatio)
         {
             PutButtonToTheRight(_runRightButton);
             PutButtonToTheRight(_menuButton);
@@ -46,7 +48,9 @@ public class LevelScreenControls : CanvasLayer
         int canvasHeight = (int)ProjectSettings.GetSetting("display/window/size/height");
         float heightScale = GetViewport().GetFinalTransform().Scale.y;
         float windowHeight = OS.WindowSize.y;
-        return windowHeight / heightScale - canvasHeight;
+        float offset = windowHeight / heightScale - canvasHeight;
+
+        return offset;
     }
 
     private float GetWidthOffset()
@@ -54,6 +58,18 @@ public class LevelScreenControls : CanvasLayer
         int canvasWidth = (int)ProjectSettings.GetSetting("display/window/size/width");
         float widthScale = GetViewport().GetFinalTransform().Scale.x;
         float windowWidth = OS.WindowSize.x;
-        return windowWidth / widthScale - canvasWidth;
+        float offset = windowWidth / widthScale - canvasWidth;
+
+        return offset;
+    }
+
+    ///<summary>Returns screen ratio from the project settings.</summary>
+    private float GetSettingsScreenRatio()
+    {
+        float width = (int)ProjectSettings.GetSetting("display/window/size/width");
+        float height = (int)ProjectSettings.GetSetting("display/window/size/height");
+        float ratio = width / height;
+
+        return ratio;
     }
 }
