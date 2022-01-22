@@ -5,6 +5,10 @@ namespace NeedForWoof
 {
     public static class GameDataLoader
     {
+        /// <summary>
+        /// Loads game settings from local storage. <br/>
+        /// If settings file not found returns standart settings.
+        /// </summary>
         public static GameSettings LoadGameSettings()
         {
             var saveFile = new File();

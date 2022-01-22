@@ -16,12 +16,10 @@ region = Rect2( 0, 0, 80, 42 )
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 2, 50, 11, 12 )
-margin = Rect2( 0, 3.25, 2, 8.038 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 19, 48, 10, 19 )
-margin = Rect2( 0, 1, 0, 3 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
@@ -83,17 +81,33 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource( 2 )
 button_mask = 3
+expand_icon = true
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="TextureRect" parent="HostButton"]
-margin_right = 681.0
-margin_bottom = 228.0
+margin_left = 28.4541
+margin_top = 22.1566
+margin_right = 145.454
+margin_bottom = 156.157
 rect_scale = Vector2( 0.5, 0.5 )
 texture = SubResource( 2 )
-stretch_mode = 6
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HostButton"]
+margin_left = 114.0
+margin_top = 4.0
+margin_right = 316.0
+margin_bottom = 103.0
+text = "HOST"
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -112,17 +126,33 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
 button_mask = 3
+expand_icon = true
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon" type="TextureRect" parent="ConnectButton"]
-margin_right = 681.0
-margin_bottom = 228.0
+margin_left = 32.0
+margin_top = 4.0
+margin_right = 137.0
+margin_bottom = 203.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = SubResource( 3 )
-stretch_mode = 6
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ConnectButton"]
+margin_left = 114.0
+margin_top = 4.0
+margin_right = 316.0
+margin_bottom = 103.0
+text = "CONNECT"
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

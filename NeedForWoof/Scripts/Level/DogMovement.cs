@@ -2,6 +2,10 @@ using Godot;
 
 namespace NeedForWoof.Level
 {
+    /// <summary>
+    /// Controls the dog movement.<br/>
+    /// Must be the Dog node child.
+    /// </summary>
     public class DogMovement : Node
     {
         /// <summary>

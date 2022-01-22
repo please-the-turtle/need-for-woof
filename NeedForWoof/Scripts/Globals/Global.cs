@@ -5,7 +5,7 @@ namespace NeedForWoof
     public class Global : Node
     {
         public GameSettings GameSettings;
-        public Node CurrentScene { get; set; }
+        public Node CurrentScene { get; private set; }
 
         public override void _Ready()
         {
@@ -30,6 +30,4 @@ namespace NeedForWoof
             GetTree().CurrentScene = CurrentScene;
         }
     }
-    
-    
 }

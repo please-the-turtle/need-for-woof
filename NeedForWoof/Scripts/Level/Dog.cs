@@ -97,8 +97,8 @@ namespace NeedForWoof.Level
 
 		public void Finish()
 		{
-			MoveState = MoveState.Finished;
-			_animationPlayer.CurrentAnimation = "finish";
+			MoveState = MoveState.Idle;
+			_animationPlayer.CurrentAnimation = "idle";
 			_movement.Stop();
 			EmitSignal(nameof(Finished));
 		}
@@ -109,6 +109,6 @@ namespace NeedForWoof.Level
 	{
 		Run = 0, 
 		Jump = 1,
-		Finished = 2
+		Idle = 2
 	}
 }

@@ -6,20 +6,8 @@ namespace NeedForWoof.MainMenu
     {
         public void OnHostButton_pressed()
         {
-            // Network server = GetNode<Network>("/root/Network");
-            // var error = server.CreateServer();
-
-            // if (error == Error.Ok)
-            // {
-                Global global = GetNode<Global>("/root/Global");
-                global.GotoScene("res://Scenes/Menu/LobbyScreen.tscn");
-            // }
-            // else
-            // {
-            //     ErrorLabel errorLabel = GetParent().GetNode<ErrorLabel>("ErrorLabel");
-            //     errorLabel.DisplayError(error.ToString());
-            // }
-            
+            Global global = GetNode<Global>("/root/Global");
+            global.GotoScene("res://Scenes/Menu/LobbyScreen.tscn");
         }
     }
 }
