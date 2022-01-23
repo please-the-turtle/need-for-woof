@@ -552,12 +552,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-### Godot ###
-# Godot-specific ignores
-NeedForWoof/.import/
-NeedForWoof/export.cfg
-NeedForWoof/export_presets.cfg
-
 # Imported translations (automatically generated from CSV files)
 *.translation
 
