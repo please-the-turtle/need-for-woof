@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/siba.png-dc0a6867620cb0c62272959c00d547ff.stex"
+path="res://.import/siba_body.png-ada4a673ad595d974f2ee5b6fe934bed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/siba.png"
-dest_files=[ "res://.import/siba.png-dc0a6867620cb0c62272959c00d547ff.stex" ]
+source_file="res://Textures/Menu/siba_body.png"
+dest_files=[ "res://.import/siba_body.png-ada4a673ad595d974f2ee5b6fe934bed.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
