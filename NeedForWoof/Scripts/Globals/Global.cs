@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace NeedForWoof
@@ -5,7 +6,28 @@ namespace NeedForWoof
     public class Global : Node
     {
         public GameSettings GameSettings;
+
         public Node CurrentScene { get; private set; }
+
+        public Network Network 
+        {
+            get => _network; 
+            set
+            {
+                if(value == null)
+                {
+                    throw new NullReferenceException("Network must not be null. For closing network use Global.CloseNetworkConnection().");
+                }
+                if(_network != null)
+                {
+                    CloseNetworkConnection();
+                }
+                _network = value;
+                AddChild(_network);
+            } 
+        }
+
+        private Network _network = null;
 
         public override void _Ready()
         {
@@ -28,6 +50,13 @@ namespace NeedForWoof
             CurrentScene = nextScene.Instance();
             GetTree().Root.AddChild(CurrentScene);
             GetTree().CurrentScene = CurrentScene;
+        }
+
+        public void CloseNetworkConnection()
+        {
+            Network.Close();
+            RemoveChild(_network);
+            _network = null;
         }
     }
 }
