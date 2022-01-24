@@ -7,7 +7,6 @@
 [ext_resource path="res://Textures/MainLevel/siba_idle.png" type="Texture" id=5]
 [ext_resource path="res://Textures/MainLevel/siba_shadow.png" type="Texture" id=6]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 0.3
@@ -47,6 +46,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -226,6 +237,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("AnimatedSprite:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
@@ -275,6 +298,7 @@ MaxStamina = 300.0
 [node name="DogMovement" parent="." instance=ExtResource( 4 )]
 
 [node name="Shadow" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, 40 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 6 )
@@ -290,7 +314,7 @@ anims/run = SubResource( 3 )
 scale = Vector2( 5, 5 )
 z_index = 1
 frames = SubResource( 8 )
-animation = "run"
+animation = "idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
