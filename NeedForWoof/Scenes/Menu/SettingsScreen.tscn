@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Menu/DialogWindowFrame.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/SettingsScreen/NickNameLine.cs" type="Script" id=4]
 [ext_resource path="res://Scripts/SettingsScreen/Settings.cs" type="Script" id=5]
-[ext_resource path="res://Scripts/SettingsScreen/PortLine.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/SettingsScreen/PortSpinBox.cs" type="Script" id=6]
 [ext_resource path="res://Assets/main_game_theme.theme" type="Theme" id=7]
 [ext_resource path="res://Scripts/SettingsScreen/MusicSlider.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/SettingsScreen/SoundSlider.cs" type="Script" id=9]
@@ -13,6 +13,7 @@
 [node name="SettingsScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 7 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -23,6 +24,7 @@ __meta__ = {
 [node name="MenuButton" parent="." instance=ExtResource( 2 )]
 margin_left = -82.0
 margin_right = 83.0
+theme = null
 
 [node name="DialogWindowFrame" parent="." instance=ExtResource( 3 )]
 rect_scale = Vector2( 1, 1 )
@@ -43,7 +45,7 @@ __meta__ = {
 }
 
 [node name="SettingsList" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer"]
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 485.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -52,16 +54,15 @@ alignment = 1
 
 [node name="NickName" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
 margin_top = 18.0
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 106.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 alignment = 1
 
 [node name="NickNameLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/NickName"]
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 24.0
-theme = ExtResource( 7 )
 text = "Your nickname:"
 align = 1
 valign = 1
@@ -72,12 +73,11 @@ __meta__ = {
 
 [node name="NickNameLine" type="LineEdit" parent="DialogWindowFrame/ScrollContainer/SettingsList/NickName"]
 margin_top = 44.0
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 88.0
-theme = ExtResource( 7 )
 text = "GoodBoy"
 align = 1
-max_length = 15
+max_length = 10
 context_menu_enabled = false
 placeholder_text = "Enter your nickname"
 script = ExtResource( 4 )
@@ -87,15 +87,14 @@ __meta__ = {
 
 [node name="Port" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
 margin_top = 146.0
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 234.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="PortLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/Port"]
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 24.0
-theme = ExtResource( 7 )
 text = "Port:"
 align = 1
 valign = 1
@@ -104,33 +103,25 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="PortLine" type="LineEdit" parent="DialogWindowFrame/ScrollContainer/SettingsList/Port"]
+[node name="PortSpinBox" type="SpinBox" parent="DialogWindowFrame/ScrollContainer/SettingsList/Port"]
 margin_top = 44.0
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 88.0
-theme = ExtResource( 7 )
-text = "1502"
+max_value = 65535.0
+value = 1502.0
 align = 1
-max_length = 5
-context_menu_enabled = false
-placeholder_text = "Enter port"
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [node name="SoundLevel" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
 margin_top = 274.0
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 350.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="SoundLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel"]
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 24.0
-theme = ExtResource( 7 )
 text = "Sounds:"
 align = 1
 valign = 1
@@ -141,9 +132,8 @@ __meta__ = {
 
 [node name="SoundSlider" type="HSlider" parent="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel"]
 margin_top = 44.0
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 76.0
-theme = ExtResource( 7 )
 script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": ""
@@ -151,15 +141,14 @@ __meta__ = {
 
 [node name="MusicLevel" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
 margin_top = 390.0
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 466.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="MusicLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel"]
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 24.0
-theme = ExtResource( 7 )
 text = "Music:"
 align = 1
 valign = 1
@@ -170,9 +159,8 @@ __meta__ = {
 
 [node name="MusicSlider" type="HSlider" parent="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel"]
 margin_top = 44.0
-margin_right = 354.0
+margin_right = 360.0
 margin_bottom = 76.0
-theme = ExtResource( 7 )
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_description_": ""
@@ -180,6 +168,6 @@ __meta__ = {
 
 [connection signal="pressed" from="MenuButton" to="." method="SaveSettings"]
 [connection signal="text_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/NickName/NickNameLine" to="DialogWindowFrame/ScrollContainer/SettingsList/NickName/NickNameLine" method="OnNickNameLine_text_changed"]
-[connection signal="text_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/Port/PortLine" to="DialogWindowFrame/ScrollContainer/SettingsList/Port/PortLine" method="OnPortLine_text_changed"]
+[connection signal="value_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/Port/PortSpinBox" to="DialogWindowFrame/ScrollContainer/SettingsList/Port/PortSpinBox" method="OnPortSpinBox_value_changed"]
 [connection signal="value_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel/SoundSlider" to="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel/SoundSlider" method="OnSoundSlider_value_changed"]
 [connection signal="value_changed" from="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel/MusicSlider" to="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel/MusicSlider" method="OnMusicSlider_value_changed"]
