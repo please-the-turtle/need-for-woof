@@ -4,14 +4,19 @@ namespace NeedForWoof.LobbyScreen
 {
     public class StatusIconTextureRect : TextureRect
     {
-        private Texture _atlas = new ImageTexture();
-        private AtlasTexture _readyTexture = new AtlasTexture();
-        private AtlasTexture _notReadyTexture = new AtlasTexture();
-        private AtlasTexture _hostTexture = new AtlasTexture();
+        [Export]
+        private Texture _readyTexture;
+
+        [Export]
+        private Texture _notReadyTexture;
+
+        [Export]
+        private Texture _hostTexture;
 
         public override void _Ready()
         {
-            SetIconsTextures();
+            base._Ready();
+
             SetStatusIcon(PlayerStatus.NotReady);
         }
 
@@ -29,20 +34,6 @@ namespace NeedForWoof.LobbyScreen
                     Texture = _hostTexture;
                     break;
             }
-        }
-
-        private void SetIconsTextures()
-        {
-            _atlas = (Texture)GD.Load("res://Textures/Menu/main_menu.png");
-
-            _readyTexture.Atlas = _atlas;
-            _readyTexture.Region = new Rect2(89, 89, 7, 7);
-
-            _notReadyTexture.Atlas = _atlas;
-            _notReadyTexture.Region = new Rect2(80, 89, 7, 7);
-
-            _hostTexture.Atlas = _atlas;
-            _hostTexture.Region = new Rect2(71, 89, 7, 7);
         }
     }
 
