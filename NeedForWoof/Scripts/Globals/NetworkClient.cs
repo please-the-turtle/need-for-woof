@@ -11,10 +11,8 @@ namespace NeedForWoof
             _ip = ip;
         }
 
-        public override void _Ready()
+        protected override void SetNetworkPeer()
         {
-            base._Ready();
-
             NetworkedMultiplayerENet peer = new NetworkedMultiplayerENet();
             Global global = GetNode<Global>("/root/Global");
             int port = global.GameSettings.NetworkPort;
@@ -22,27 +20,29 @@ namespace NeedForWoof
             GetTree().NetworkPeer = peer;
         }
 
-        internal override void PlayerConnected(int id)
+        protected override void PlayerConnected(int id)
         {
+            base.PlayerConnected(id);
             GD.Print($"Connected: {id}.");
         }
 
-        internal override void PlayerDisconnected(int id)
+        protected override void PlayerDisconnected(int id)
         {
             GD.Print($"Disonnected: {id}.");
         }
 
-        internal override void ConnectedOk()
-        {
-            GD.Print($"Connected OK.");
-        }
+        // protected override void ConnectedOk()
+        // {
+        //     base.ConnectedOk();
+        //     GD.Print($"Connected OK.");
+        // }
 
-        internal override void ConnectedFail()
+        protected override void ConnectedFail()
         {
             GD.Print($"Connected fail.");
         }
 
-        internal override void ServerDisconnected()
+        protected override void ServerDisconnected()
         {
             GD.Print($"Server disconnected.");
         }

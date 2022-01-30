@@ -4,7 +4,7 @@ namespace NeedForWoof
 {
     public class PlayerInfo : Object
     {
-        public string Nickname;
-        public PlayerStatus Status;
+        public string Nickname { get; set; }
+        public PlayerStatus Status { get; set; }
     }
 }

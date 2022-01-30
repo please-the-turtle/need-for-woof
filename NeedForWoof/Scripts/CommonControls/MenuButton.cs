@@ -8,7 +8,7 @@ namespace NeedForWoof
         {
             Global global = GetNode<Global>("/root/Global");
 
-            if (GetTree().HasNetworkPeer())
+            if (global.Network != null)
             {
                 global.CloseNetworkConnection();
             }

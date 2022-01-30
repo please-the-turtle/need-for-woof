@@ -8,6 +8,8 @@ namespace NeedForWoof
     
         public override void _Ready()
         {
+            base._Ready();
+
             _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
             _animationPlayer.CurrentAnimation = "open";
         }

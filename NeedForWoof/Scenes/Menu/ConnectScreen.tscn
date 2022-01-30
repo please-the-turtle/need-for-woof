@@ -16,15 +16,15 @@ font_path = "res://Fonts/PressStart2P-Regular.ttf"
 size = 24
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFontData" id=4]
+[sub_resource type="DynamicFontData" id=3]
 font_path = "res://Fonts/PressStart2P-Regular.ttf"
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 outline_color = Color( 0, 0, 0, 1 )
-font_data = SubResource( 4 )
+font_data = SubResource( 3 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 71, 67, 16, 13 )
 margin = Rect2( 6, 4, 12, 14 )
@@ -66,7 +66,7 @@ margin_top = 80.0
 margin_right = -46.0
 margin_bottom = -60.0
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/selection_color = Color( 0.396078, 0.552941, 0.470588, 1 )
 custom_colors/cursor_color = Color( 0.27451, 0.286275, 0.411765, 1 )
 custom_colors/font_color = Color( 0.27451, 0.286275, 0.411765, 1 )
@@ -97,7 +97,7 @@ script = ExtResource( 8 )
 [node name="TextureRect" type="TextureRect" parent="ConnectButton"]
 margin_right = 165.0
 margin_bottom = 144.0
-texture = SubResource( 6 )
+texture = SubResource( 5 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
