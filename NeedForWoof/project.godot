@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://Scripts/Globals/Global.cs"
+Network="*res://Scripts/Globals/Network.cs"
 
 [display]
 

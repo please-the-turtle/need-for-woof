@@ -3,10 +3,18 @@ using Godot;
 
 namespace NeedForWoof
 {
-    public abstract class Network : Node
+    public class Network : Node
     {
-        [Signal]
-        public delegate void onConnectedPlayersUpdated(int changedPlayerId, PlayerInfo newPlayerInfo);
+        [Signal] public delegate void NewPlayerLogged(int loggedPlayerId, string nickname);
+        [Signal] public delegate void PlayerChangedStatus(int changedPlayerId, PlayerStatus status);
+        [Signal] public delegate void PlayerLeft(int leftPlayerId);
+        [Signal] public delegate void ConnectionClosed();
+
+        private Network(){}
+
+        public int MaxPlayers { get; private set; } = 3;
+
+        private Global _global;
 
         /// <value> Dictionary with info about connected players. </value>
         public Dictionary<int, PlayerInfo> ConnectedPlayers
@@ -21,8 +29,7 @@ namespace NeedForWoof
 
         public override void _Ready()
         {
-            SetNetworkPeer();
-
+            _global = GetNode<Global>("/root/Global");
             _connectedPlayers = new Dictionary<int, PlayerInfo>();
             
             GetTree().Connect("network_peer_connected", this, nameof(PlayerConnected));
@@ -32,53 +39,132 @@ namespace NeedForWoof
             GetTree().Connect("server_disconnected", this, nameof(ServerDisconnected));
         }
 
+        public Error CreateServer()
+        {
+            // Create new network peer
+            NetworkedMultiplayerENet peer = new NetworkedMultiplayerENet();
+            int port = _global.GameSettings.NetworkPort;
+            Error error = peer.CreateServer(port, MaxPlayers);
+            if (error == Error.Ok)
+            {
+                GetTree().NetworkPeer = peer;
+            }
+            // Add player info
+            int selfId = GetTree().GetNetworkUniqueId();
+            string nickname = _global.GameSettings.Nickname;
+            AddPlayer(selfId, nickname);
+            UpdatePlayerStatus(selfId, PlayerStatus.Host);
+
+            return error;
+        }
+
+        public Error CreateClient(string ip)
+        {
+            if (GetTree().NetworkPeer != null)
+            {
+                Close();
+            }
+
+            // Create new network peer
+            NetworkedMultiplayerENet peer = new NetworkedMultiplayerENet();
+            int port = _global.GameSettings.NetworkPort;
+            Error error = peer.CreateClient(ip, port);
+            if (error == Error.Ok)
+            {
+                GetTree().NetworkPeer = peer;
+            }
+
+            // Add player info
+            int selfId = GetTree().GetNetworkUniqueId();
+            string nickname = _global.GameSettings.Nickname;
+            AddPlayer(selfId, nickname);
+
+            return error;
+        }
+
         public virtual void Close()
         {
+            int selfId = GetTree().GetNetworkUniqueId();
+            Rpc(nameof(DeletePlayer), selfId);
+
             if(GetTree().IsNetworkServer())
             {
                 NetworkedMultiplayerENet eNet = GetTree().NetworkPeer as NetworkedMultiplayerENet;
                 eNet.CloseConnection();
             }
             GetTree().NetworkPeer = null;
+
+            _connectedPlayers.Clear();
+            EmitSignal(nameof(ConnectionClosed));
         }
 
-        /// <summary>Sets new network peer. Calls then Network node is "ready".</summary>
-        protected abstract void SetNetworkPeer();
-
-        /// <summary>For server and clients event.</summary>
+        // For server and clients event.
         protected virtual void PlayerConnected(int playerId)
         {
-            int id = GetTree().GetNetworkUniqueId();
-            PlayerInfo info = new PlayerInfo();
-            Global global = GetNode<Global>("/root/Global");
-            string nickname = global.GameSettings.Nickname;
-            info.Nickname = nickname;
+            int selfId = GetTree().GetNetworkUniqueId();
+            PlayerInfo selfInfo =  _connectedPlayers[selfId];
 
-            RpcId(playerId, nameof(global.Network.UpdateConnectedPlayers), id, info);
+            RpcId(playerId, nameof(AddPlayer), selfId, selfInfo.Nickname);
+            RpcId(playerId, nameof(UpdatePlayerStatus), selfId, selfInfo.Status);
+
+            GD.Print($"Player connected: {playerId}.");
         }
         
-        /// <summary>For server and clients event.</summary>
-        protected abstract void PlayerDisconnected(int id);
-
-        /// <summary>For clients event.</summary>
-        protected virtual void ConnectedOk()
+        // For server and clients event.
+        protected void PlayerDisconnected(int playerId)
         {
+            GD.Print($"Player disconnected: {playerId}.");
         }
 
-        /// <summary>For clients event.</summary>
-        protected abstract void ConnectedFail();
-
-        /// <summary>For clients event.</summary>
-        protected abstract void ServerDisconnected();
-
-        [Remote]
-        public void UpdateConnectedPlayers(int playerId, PlayerInfo newInfo)
+        protected void ConnectedOk()
         {
-            // Network network = GetNode<Network>("/root/Global/_network");
-            // network._connectedPlayers.Add(playerId, newInfo);
-            GD.Print("pizda");
-            // EmitSignal(nameof(onConnectedPlayersUpdated), playerId, newInfo);
+            GD.Print("Client connected OK.");
         }
 
+        protected void ConnectedFail()
+        {
+            GD.Print("Client connected Fail.");
+        }
+
+        protected void ServerDisconnected()
+        {
+            _connectedPlayers.Remove(1);
+            Close();
+            _global.GotoScene("res://Scenes/Menu/MainMenu.tscn");
+        }
+
+        [RemoteSync]
+        private void AddPlayer(int playerId, string nickname)
+        {
+            PlayerInfo info = new PlayerInfo();
+            info.Nickname = nickname;
+            _connectedPlayers.Add(playerId, info);
+
+            Network network = GetNode<Network>("/root/Network");
+            EmitSignal(nameof(NewPlayerLogged), playerId, nickname);
+        }
+
+        [RemoteSync]
+        public void UpdatePlayerStatus(int playerId, PlayerStatus status)
+        {
+            _connectedPlayers[playerId].Status = status;
+            EmitSignal(nameof(PlayerChangedStatus), playerId, status);
+        }
+
+        [RemoteSync]
+        public void DeletePlayer(int playerId)
+        {
+            _connectedPlayers.Remove(playerId);
+            EmitSignal(nameof(PlayerLeft), playerId);
+        }
+
+        public override void _Notification(int what)
+        {
+            if (what == MainLoop.NotificationWmQuitRequest)
+            {
+                Close();
+                GetTree().Quit();
+            }
+        }
     }
 }

@@ -70,7 +70,7 @@ custom_fonts/font = SubResource( 4 )
 custom_colors/selection_color = Color( 0.396078, 0.552941, 0.470588, 1 )
 custom_colors/cursor_color = Color( 0.27451, 0.286275, 0.411765, 1 )
 custom_colors/font_color = Color( 0.27451, 0.286275, 0.411765, 1 )
-text = "192.168.1.322"
+text = "192.168.1.68"
 align = 1
 max_length = 15
 context_menu_enabled = false
@@ -104,7 +104,9 @@ __meta__ = {
 }
 
 [node name="ErrorLabel" parent="." instance=ExtResource( 9 )]
+margin_top = 557.983
+margin_bottom = -202.017
 
 [connection signal="focus_entered" from="DialogWindowFrame/IpAddressLine" to="DialogWindowFrame/IpAddressLine" method="OnIpAdressLine_focus_entered"]
-[connection signal="text_entered" from="DialogWindowFrame/IpAddressLine" to="." method="ConnectToServer"]
+[connection signal="text_entered" from="DialogWindowFrame/IpAddressLine" to="ConnectButton" method="ConnectToHost"]
 [connection signal="pressed" from="ConnectButton" to="ConnectButton" method="OnConnectButton_pressed"]

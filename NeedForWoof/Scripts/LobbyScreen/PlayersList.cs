@@ -10,35 +10,50 @@ namespace NeedForWoof.LobbyScreen
         public override void _Ready()
         {
             _playersInfo = new Dictionary<int, LobbyPlayerInfo>();
-            Global global = GetNode<Global>("/root/Global");
+            Network network = GetNode<Network>("/root/Network");
 
-            foreach (var connectedPlayer in global.Network.ConnectedPlayers)
+            network.Connect(nameof(Network.NewPlayerLogged), this, nameof(AddPlayerInfo));
+            network.Connect(nameof(Network.PlayerChangedStatus), this, nameof(ChangePlayerStatusInfo));
+            network.Connect(nameof(Network.PlayerLeft), this, nameof(DeletePlayerInfo));
+            network.Connect(nameof(Network.ConnectionClosed), this, nameof(ClearList));
+
+            foreach(var player in network.ConnectedPlayers)
             {
-                int id = connectedPlayer.Key;
-                PlayerInfo info = connectedPlayer.Value;
-                PackedScene lobbyInfo = ResourceLoader.Load<PackedScene>("res://Scenes/Menu/LobbyPlayerInfo.tscn");
-                LobbyPlayerInfo newLobbyInfo = (LobbyPlayerInfo)lobbyInfo.Instance();
-
-                AddChild(newLobbyInfo);
-                newLobbyInfo.UpdateInfo(info);
-                _playersInfo.Add(id, newLobbyInfo);
+                int id = player.Key;
+                string nickname = player.Value.Nickname;
+                PlayerStatus status = player.Value.Status;
+                AddPlayerInfo(id, nickname);
+                ChangePlayerStatusInfo(id, status);
             }
-
-            global.Network.Connect(nameof(Network.onConnectedPlayersUpdated), this, nameof(UpdateList));
         }
 
-        public void UpdateList(int id, PlayerInfo playerInfo)
+        private void AddPlayerInfo(int playerId, string nickname)
         {
-            if(!_playersInfo.ContainsKey(id))
+            PackedScene lobbyInfo = ResourceLoader.Load<PackedScene>("res://Scenes/Menu/LobbyPlayerInfo.tscn");
+            LobbyPlayerInfo newLobbyInfo = (LobbyPlayerInfo)lobbyInfo.Instance();
+            AddChild(newLobbyInfo);
+            _playersInfo.Add(playerId, newLobbyInfo);
+
+            _playersInfo[playerId].SetNickname(nickname);
+        }
+
+        private void ChangePlayerStatusInfo(int playerId, PlayerStatus status)
+        {
+            _playersInfo[playerId].SetStatusIcon(status);
+        }
+
+        private void DeletePlayerInfo(int playerId)
+        {
+            RemoveChild(_playersInfo[playerId]);
+            _playersInfo.Remove(playerId);
+        }
+
+        private void ClearList()
+        {
+            foreach(Node child in GetChildren())
             {
-                PackedScene lobbyInfo = ResourceLoader.Load<PackedScene>("res://Scenes/Menu/LobbyPlayerInfo.tscn");
-                LobbyPlayerInfo newLobbyInfo = (LobbyPlayerInfo)lobbyInfo.Instance();
-
-                AddChild(newLobbyInfo);
-                _playersInfo.Add(id, newLobbyInfo);
+                RemoveChild(child);
             }
-
-            _playersInfo[id].UpdateInfo(playerInfo);
         }
     }
 }

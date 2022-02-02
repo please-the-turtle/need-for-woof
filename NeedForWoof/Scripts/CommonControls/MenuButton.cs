@@ -7,10 +7,11 @@ namespace NeedForWoof
         public void OnMenuButton_pressed()
         {
             Global global = GetNode<Global>("/root/Global");
+            Network network = GetNode<Network>("/root/Network");
 
-            if (global.Network != null)
+            if (network != null)
             {
-                global.CloseNetworkConnection();
+                network.Close();
             }
             
             global.GotoScene("res://Scenes/Menu/MainMenu.tscn");

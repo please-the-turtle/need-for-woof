@@ -16,11 +16,14 @@ namespace NeedForWoof.LobbyScreen
             _statusIcon = GetNode<StatusIconTextureRect>("StatusIcon");
         }
 
-        public void UpdateInfo(PlayerInfo playerInfo)
+        public void SetNickname(string nickname)
         {
-            _nicknameLabel.Text = playerInfo.Nickname;
-            // TODO _dogIcon = ...
-            _statusIcon.SetStatusIcon(playerInfo.Status);
+            _nicknameLabel.Text = nickname;
+        }
+
+        public void SetStatusIcon(PlayerStatus playerStatus)
+        {
+            _statusIcon.SetStatusIcon(playerStatus);
         }
     }
 }
