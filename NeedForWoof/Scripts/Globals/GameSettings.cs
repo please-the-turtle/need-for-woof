@@ -9,5 +9,7 @@ namespace NeedForWoof
         public float SoundsVolume { get; set; } = 50f;
         
         public float MusicVolume { get; set; } = 50f;
+
+        public string LastIpAddress { get; set; } = "192.168.1.68";
     }
 }
