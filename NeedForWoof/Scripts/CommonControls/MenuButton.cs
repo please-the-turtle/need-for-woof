@@ -9,7 +9,7 @@ namespace NeedForWoof
             Global global = GetNode<Global>("/root/Global");
             Network network = GetNode<Network>("/root/Network");
 
-            if (network != null)
+            if (GetTree().NetworkPeer != null)
             {
                 network.Close();
             }

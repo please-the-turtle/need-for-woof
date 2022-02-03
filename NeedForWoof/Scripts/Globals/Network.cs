@@ -9,6 +9,7 @@ namespace NeedForWoof
         [Signal] public delegate void PlayerChangedStatus(int changedPlayerId, PlayerStatus status);
         [Signal] public delegate void PlayerLeft(int leftPlayerId);
         [Signal] public delegate void ConnectionClosed();
+        [Signal] public delegate void PeerChanged();
 
         private Network(){}
 
@@ -41,6 +42,11 @@ namespace NeedForWoof
 
         public Error CreateServer()
         {
+            if (GetTree().NetworkPeer != null)
+            {
+                Close();
+            }
+
             // Create new network peer
             NetworkedMultiplayerENet peer = new NetworkedMultiplayerENet();
             int port = _global.GameSettings.NetworkPort;
@@ -48,12 +54,13 @@ namespace NeedForWoof
             if (error == Error.Ok)
             {
                 GetTree().NetworkPeer = peer;
+                EmitSignal(nameof(PeerChanged));
+
+                int selfId = GetTree().GetNetworkUniqueId();
+                string nickname = _global.GameSettings.Nickname;
+                AddPlayer(selfId, nickname);
+                UpdatePlayerStatus(selfId, PlayerStatus.Host);
             }
-            // Add player info
-            int selfId = GetTree().GetNetworkUniqueId();
-            string nickname = _global.GameSettings.Nickname;
-            AddPlayer(selfId, nickname);
-            UpdatePlayerStatus(selfId, PlayerStatus.Host);
 
             return error;
         }
@@ -72,30 +79,33 @@ namespace NeedForWoof
             if (error == Error.Ok)
             {
                 GetTree().NetworkPeer = peer;
+                EmitSignal(nameof(PeerChanged));
+                
+                int selfId = GetTree().GetNetworkUniqueId();
+                string nickname = _global.GameSettings.Nickname;
+                AddPlayer(selfId, nickname);
             }
-
-            // Add player info
-            int selfId = GetTree().GetNetworkUniqueId();
-            string nickname = _global.GameSettings.Nickname;
-            AddPlayer(selfId, nickname);
 
             return error;
         }
 
         public virtual void Close()
         {
-            int selfId = GetTree().GetNetworkUniqueId();
-            Rpc(nameof(DeletePlayer), selfId);
-
-            if(GetTree().IsNetworkServer())
+            if (GetTree().NetworkPeer != null)
             {
-                NetworkedMultiplayerENet eNet = GetTree().NetworkPeer as NetworkedMultiplayerENet;
-                eNet.CloseConnection();
-            }
-            GetTree().NetworkPeer = null;
+                int selfId = GetTree().GetNetworkUniqueId();
+                Rpc(nameof(DeletePlayer), selfId);
 
-            _connectedPlayers.Clear();
-            EmitSignal(nameof(ConnectionClosed));
+                if(GetTree().IsNetworkServer())
+                {
+                    NetworkedMultiplayerENet eNet = GetTree().NetworkPeer as NetworkedMultiplayerENet;
+                    eNet.CloseConnection();
+                }
+                GetTree().NetworkPeer = null;
+
+                _connectedPlayers.Clear();
+                EmitSignal(nameof(ConnectionClosed));
+            }
         }
 
         // For server and clients event.
@@ -113,6 +123,11 @@ namespace NeedForWoof
         // For server and clients event.
         protected void PlayerDisconnected(int playerId)
         {
+            if (_connectedPlayers.ContainsKey(playerId))
+            {
+                DeletePlayer(playerId);
+            }
+
             GD.Print($"Player disconnected: {playerId}.");
         }
 
@@ -128,12 +143,11 @@ namespace NeedForWoof
 
         protected void ServerDisconnected()
         {
-            _connectedPlayers.Remove(1);
             Close();
             _global.GotoScene("res://Scenes/Menu/MainMenu.tscn");
         }
 
-        [RemoteSync]
+        [Remote]
         private void AddPlayer(int playerId, string nickname)
         {
             PlayerInfo info = new PlayerInfo();
@@ -144,14 +158,14 @@ namespace NeedForWoof
             EmitSignal(nameof(NewPlayerLogged), playerId, nickname);
         }
 
-        [RemoteSync]
+        [Remote]
         public void UpdatePlayerStatus(int playerId, PlayerStatus status)
         {
             _connectedPlayers[playerId].Status = status;
             EmitSignal(nameof(PlayerChangedStatus), playerId, status);
         }
 
-        [RemoteSync]
+        [Remote]
         public void DeletePlayer(int playerId)
         {
             _connectedPlayers.Remove(playerId);
@@ -160,7 +174,8 @@ namespace NeedForWoof
 
         public override void _Notification(int what)
         {
-            if (what == MainLoop.NotificationWmQuitRequest)
+            if (what == MainLoop.NotificationCrash ||
+                what == MainLoop.NotificationWmQuitRequest)
             {
                 Close();
                 GetTree().Quit();
