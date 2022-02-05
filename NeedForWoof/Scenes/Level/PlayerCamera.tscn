@@ -4,3 +4,4 @@
 position = Vector2( 0, -150 )
 rotating = true
 current = true
+smoothing_enabled = true

@@ -45,22 +45,23 @@ __meta__ = {
 }
 
 [node name="SettingsList" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer"]
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 485.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 40
 alignment = 1
 
 [node name="NickName" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
 margin_top = 18.0
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 106.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 alignment = 1
 
 [node name="NickNameLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/NickName"]
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Your nickname:"
@@ -73,7 +74,7 @@ __meta__ = {
 
 [node name="NickNameLine" type="LineEdit" parent="DialogWindowFrame/ScrollContainer/SettingsList/NickName"]
 margin_top = 44.0
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
 text = "GoodBoy"
@@ -88,13 +89,13 @@ __meta__ = {
 
 [node name="Port" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
 margin_top = 146.0
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 234.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="PortLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/Port"]
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Port:"
@@ -107,7 +108,7 @@ __meta__ = {
 
 [node name="PortSpinBox" type="SpinBox" parent="DialogWindowFrame/ScrollContainer/SettingsList/Port"]
 margin_top = 44.0
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
 max_value = 65535.0
@@ -117,13 +118,13 @@ script = ExtResource( 6 )
 
 [node name="SoundLevel" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
 margin_top = 274.0
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 350.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="SoundLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel"]
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Sounds:"
@@ -136,7 +137,7 @@ __meta__ = {
 
 [node name="SoundSlider" type="HSlider" parent="DialogWindowFrame/ScrollContainer/SettingsList/SoundLevel"]
 margin_top = 44.0
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 76.0
 size_flags_horizontal = 3
 script = ExtResource( 9 )
@@ -146,13 +147,13 @@ __meta__ = {
 
 [node name="MusicLevel" type="VBoxContainer" parent="DialogWindowFrame/ScrollContainer/SettingsList"]
 margin_top = 390.0
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 466.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="MusicLabel" type="Label" parent="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel"]
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Music:"
@@ -165,7 +166,7 @@ __meta__ = {
 
 [node name="MusicSlider" type="HSlider" parent="DialogWindowFrame/ScrollContainer/SettingsList/MusicLevel"]
 margin_top = 44.0
-margin_right = 360.0
+margin_right = 372.0
 margin_bottom = 76.0
 size_flags_horizontal = 3
 script = ExtResource( 8 )

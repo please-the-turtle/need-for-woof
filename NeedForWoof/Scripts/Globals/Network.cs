@@ -79,6 +79,8 @@ namespace NeedForWoof
             if (error == Error.Ok)
             {
                 GetTree().NetworkPeer = peer;
+                EmitSignal(nameof(PeerChanged));
+
                 int selfId = GetTree().GetNetworkUniqueId();
                 string nickname = _global.GameSettings.Nickname;
                 AddPlayer(selfId, nickname);
@@ -104,6 +106,17 @@ namespace NeedForWoof
                 _connectedPlayers.Clear();
                 EmitSignal(nameof(ConnectionClosed));
             }
+        }
+
+        public PlayerInfo GetPlayerInfoById(int id)
+        {
+            if (_connectedPlayers.ContainsKey(id))
+            {
+                return _connectedPlayers[id].Copy();
+            }
+
+            GD.PrintErr($"Faled to get PlayerInfo by index: {id}. ({nameof(GetPlayerInfoById)})");
+            return null;
         }
 
         [RemoteSync]
@@ -134,8 +147,12 @@ namespace NeedForWoof
         [RemoteSync]
         public void StartLevel()
         {
-            GetTree().RefuseNewNetworkConnections = false;
-            _global.GotoScene("res://Scenes/MainLevel/MainLevel.tscn");
+            GetTree().RefuseNewNetworkConnections = true;
+            foreach(var player in _connectedPlayers)
+            {
+                player.Value.Status = PlayerStatus.NotReady;
+            }
+            _global.GotoScene("res://Scenes/Level/MainLevel.tscn");
         }
 
         public override void _Notification(int what)

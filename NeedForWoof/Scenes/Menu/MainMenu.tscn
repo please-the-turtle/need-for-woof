@@ -11,7 +11,7 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 80, 42 )
+region = Rect2( 6, 2, 67, 38 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -47,11 +47,13 @@ margin_right = 480.0
 margin_bottom = 800.0
 
 [node name="Logo" type="TextureButton" parent="."]
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = 60.0
-margin_right = 480.0
-margin_bottom = 328.0
+margin_left = 64.0
+margin_top = 80.0
+margin_right = 404.0
+margin_bottom = 307.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 texture_normal = SubResource( 1 )

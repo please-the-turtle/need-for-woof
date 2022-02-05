@@ -15,8 +15,8 @@ namespace NeedForWoof.MainMenu
             
             AddChild(_timer);
 
-            _timer.Connect("timeout", this, nameof(ResetTouchCount));
-            Connect("pressed", this, nameof(OnLogo_click));
+            // _timer.Connect("timeout", this, nameof(ResetTouchCount));
+            // Connect("pressed", this, nameof(OnLogo_click));
         }
 
         private void OnLogo_click()

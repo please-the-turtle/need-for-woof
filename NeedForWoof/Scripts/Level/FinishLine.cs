@@ -6,9 +6,8 @@ namespace NeedForWoof.Level
     {
         public void OnFinishLine_body_exited(Node body)
         {
-            if (body.GetType() == typeof(Dog))
+            if (body is Dog dog)
             {
-                Dog dog = (Dog)body;
                 dog.Finish();
             }
         }

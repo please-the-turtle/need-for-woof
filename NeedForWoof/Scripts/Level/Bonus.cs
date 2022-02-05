@@ -23,9 +23,8 @@ namespace NeedForWoof.Level
 
         public void OnCookie_body_entered(Node body)
         {
-            if (body.GetType() == typeof(Dog))
+            if (body is Dog dog)
             {
-                Dog dog = (Dog)body;
                 dog.Score += BonusSize;
                 Taken();
             }

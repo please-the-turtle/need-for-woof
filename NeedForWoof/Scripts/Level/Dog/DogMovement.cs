@@ -73,6 +73,37 @@ namespace NeedForWoof.Level
             _dog.MoveAndSlide(_velocity);
             _velocity = Vector2.Zero;
         }
+        
+        /// <summary>
+        /// Directs the dog to the right.
+        /// </summary>
+        [RemoteSync]
+        public void RunRight()
+        {
+            RunTo(Vector2.Right);
+        }
+
+        /// <summary>
+        /// Directs the dog to the left.
+        /// </summary>
+        [RemoteSync]
+        public void RunLeft()
+        {
+            RunTo(Vector2.Left);
+        }
+
+        /// <summary>
+        /// Makes the dog jump.
+        /// </summary>
+        [RemoteSync]
+        public void Jump()
+        {
+            if (_dog.Stamina >= JumpStaminaExpenditure && _dog.MoveState == MoveState.Run)
+            {
+                _dog.Stamina -= JumpStaminaExpenditure;
+                _dog.PlayAnimation("jump");
+            }
+        }
 
         /// <summary>
         /// Makes the dog stop.
@@ -92,35 +123,11 @@ namespace NeedForWoof.Level
             SetPhysicsProcessInternal(true);
             SetProcessInternal(true);
         }
-        
-        /// <summary>
-        /// Directs the dog forward.
-        /// </summary>
-        public void RunAhead()
-        {
-            RunTo(_forwardDirection);
-        }
 
-        /// <summary>
-        /// Directs the dog to the right.
-        /// </summary>
-        public void RunRight()
-        {
-            RunTo(Vector2.Right);
-        }
-
-        /// <summary>
-        /// Directs the dog to the left.
-        /// </summary>
-        public void RunLeft()
-        {
-            RunTo(Vector2.Left);
-        }
-		
         /// <summary>
         /// Directs the dog.
         /// </summary>
-        public void RunTo(Vector2 direction)
+        private void RunTo(Vector2 direction)
         {
             if (_dog.MoveState == MoveState.Jump)
             {
@@ -132,15 +139,11 @@ namespace NeedForWoof.Level
         }
 		
         /// <summary>
-        /// Makes the dog jump.
+        /// Directs the dog forward.
         /// </summary>
-        public void Jump()
+        private void RunAhead()
         {
-            if (_dog.Stamina >= JumpStaminaExpenditure && _dog.MoveState == MoveState.Run)
-            {
-                _dog.Stamina -= JumpStaminaExpenditure;
-                _dog.PlayAnimation("jump");
-            }
+            RunTo(_forwardDirection);
         }
 
         // Turning methods are not used yet.

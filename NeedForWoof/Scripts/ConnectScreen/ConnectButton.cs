@@ -37,6 +37,7 @@ namespace NeedForWoof.ConnectScreen
         {
             Error error = _network.CreateClient(_ip);
 
+            // TODO Connecting refused case.
             if (error != Error.Ok)
             {
                 _errorLabel.DisplayError(error.ToString());
