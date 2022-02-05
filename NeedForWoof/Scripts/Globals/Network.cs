@@ -79,8 +79,6 @@ namespace NeedForWoof
             if (error == Error.Ok)
             {
                 GetTree().NetworkPeer = peer;
-                EmitSignal(nameof(PeerChanged));
-                
                 int selfId = GetTree().GetNetworkUniqueId();
                 string nickname = _global.GameSettings.Nickname;
                 AddPlayer(selfId, nickname);
@@ -105,6 +103,48 @@ namespace NeedForWoof
 
                 _connectedPlayers.Clear();
                 EmitSignal(nameof(ConnectionClosed));
+            }
+        }
+
+        [RemoteSync]
+        public void UpdatePlayerStatus(int playerId, PlayerStatus status)
+        {
+            _connectedPlayers[playerId].Status = status;
+            EmitSignal(nameof(PlayerChangedStatus), playerId, status);
+        }
+
+        [RemoteSync]
+        public void DeletePlayer(int playerId)
+        {
+            _connectedPlayers.Remove(playerId);
+            EmitSignal(nameof(PlayerLeft), playerId);
+        }
+
+        public bool AllPlayersAreReady()
+        {
+            foreach(var player in _connectedPlayers)
+            {
+                if (player.Value.Status == PlayerStatus.NotReady)
+                return false;
+            }
+
+            return true;
+        }
+
+        [RemoteSync]
+        public void StartLevel()
+        {
+            GetTree().RefuseNewNetworkConnections = false;
+            _global.GotoScene("res://Scenes/MainLevel/MainLevel.tscn");
+        }
+
+        public override void _Notification(int what)
+        {
+            if (what == MainLoop.NotificationCrash ||
+                what == MainLoop.NotificationWmQuitRequest)
+            {
+                Close();
+                GetTree().Quit();
             }
         }
 
@@ -147,7 +187,7 @@ namespace NeedForWoof
             _global.GotoScene("res://Scenes/Menu/MainMenu.tscn");
         }
 
-        [Remote]
+        [RemoteSync]
         private void AddPlayer(int playerId, string nickname)
         {
             PlayerInfo info = new PlayerInfo();
@@ -156,30 +196,6 @@ namespace NeedForWoof
 
             Network network = GetNode<Network>("/root/Network");
             EmitSignal(nameof(NewPlayerLogged), playerId, nickname);
-        }
-
-        [Remote]
-        public void UpdatePlayerStatus(int playerId, PlayerStatus status)
-        {
-            _connectedPlayers[playerId].Status = status;
-            EmitSignal(nameof(PlayerChangedStatus), playerId, status);
-        }
-
-        [Remote]
-        public void DeletePlayer(int playerId)
-        {
-            _connectedPlayers.Remove(playerId);
-            EmitSignal(nameof(PlayerLeft), playerId);
-        }
-
-        public override void _Notification(int what)
-        {
-            if (what == MainLoop.NotificationCrash ||
-                what == MainLoop.NotificationWmQuitRequest)
-            {
-                Close();
-                GetTree().Quit();
-            }
         }
     }
 }

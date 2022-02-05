@@ -6,7 +6,14 @@ namespace NeedForWoof.LobbyScreen
     {
         public override void _Ready()
         {
-            Text = GetLocalIpString();
+            if (GetTree().IsNetworkServer())
+            {
+                Text = GetLocalIpString();
+            }
+            else
+            {
+                Visible = false;
+            }
         }
         
         private string GetLocalIpString()
@@ -19,7 +26,7 @@ namespace NeedForWoof.LobbyScreen
             var regexSearchResult = regex.Search(ip);
             if (regexSearchResult is null)
             {
-                return "Local network not found.";
+                return "Network not found.";
             }
 
             return regexSearchResult.GetString();

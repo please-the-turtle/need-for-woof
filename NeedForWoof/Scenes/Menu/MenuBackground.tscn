@@ -1,6 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/menu_bg_shader.tres" type="Material" id=1]
 
 [node name="Background" type="ColorRect"]
+material = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.7663, 0.898387, 0.97, 1 )

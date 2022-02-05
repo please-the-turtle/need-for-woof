@@ -8,15 +8,7 @@ namespace NeedForWoof.Level
         {
             if (GetTree().HasNetworkPeer())
             {
-                // var network = GetNode<Network>("/root/Network");
-                // if (GetTree().IsNetworkServer())
-                // {
-                //     network.RemoveServer();
-                // }
-                // else
-                // {
-                //     network.LeaveServer();
-                // }
+                GetNode<Network>("/root/Network").Close();
             }
             
             var global = GetNode<Global>("/root/Global");

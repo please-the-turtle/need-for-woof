@@ -49,7 +49,7 @@ namespace NeedForWoof.ConnectScreen
             Global global = GetNode<Global>("/root/Global");
 
             global.GameSettings.LastIpAddress = _ip;
-            GameDataSaver.SaveGameSettings(global.GameSettings);
+            GameDataSaver.SaveGameSettingsAsync(global.GameSettings);
 
             global.GotoScene("res://Scenes/Menu/LobbyScreen.tscn");
         }

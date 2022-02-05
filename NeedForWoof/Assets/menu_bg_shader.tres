@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+// render_mode blend_add; //Comment this if you want another render mode.
+uniform vec2 center = vec2(0.5);
+uniform float size: hint_range(0.0,5.0) = 1.0; //change size to well, change the size of your gradient
+uniform vec2 squishness = vec2(1.0); // how squashed your gradient is
+
+//choose colors in the inspector
+uniform vec4 color1 : hint_color;
+uniform vec4 color2 : hint_color;
+
+//choose how far the colors are from each other in the inspector
+uniform float step1 : hint_range(0.0,1.0) = 0.159;
+uniform float step2 : hint_range(0.0,1.0) = 0.182;
+
+void fragment() {
+	float dist = distance(center*squishness,UV*squishness);
+	vec4 color = mix(color1, color2, smoothstep(step1*size, step2*size, dist));
+	COLOR = color;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/size = 1.365
+shader_param/squishness = Vector2( 1, 1 )
+shader_param/color1 = Color( 0.87, 0.956667, 1, 1 )
+shader_param/color2 = Color( 0.5076, 0.716593, 0.94, 1 )
+shader_param/step1 = 0.0
+shader_param/step2 = 0.5
