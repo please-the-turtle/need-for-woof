@@ -81,7 +81,6 @@ text = "GoodBoy"
 align = 1
 max_length = 10
 context_menu_enabled = false
-placeholder_text = "Enter your nickname"
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_description_": ""

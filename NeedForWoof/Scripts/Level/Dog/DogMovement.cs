@@ -54,21 +54,6 @@ namespace NeedForWoof.Level
         {
             base._PhysicsProcess(delta);
             
-            if (Input.IsActionPressed("ui_right"))
-            {
-                RunRight();
-            }
-			
-            if (Input.IsActionPressed("ui_left"))
-            {
-                RunLeft();
-            }
-
-            if (Input.IsActionPressed("ui_up"))
-            {
-                Jump();
-            }
-            
             RunAhead();
             _dog.MoveAndSlide(_velocity);
             _velocity = Vector2.Zero;
@@ -77,7 +62,6 @@ namespace NeedForWoof.Level
         /// <summary>
         /// Directs the dog to the right.
         /// </summary>
-        [RemoteSync]
         public void RunRight()
         {
             RunTo(Vector2.Right);
@@ -86,7 +70,6 @@ namespace NeedForWoof.Level
         /// <summary>
         /// Directs the dog to the left.
         /// </summary>
-        [RemoteSync]
         public void RunLeft()
         {
             RunTo(Vector2.Left);

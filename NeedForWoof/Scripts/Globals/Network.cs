@@ -140,7 +140,7 @@ namespace NeedForWoof
                 if (player.Value.Status == PlayerStatus.NotReady)
                 return false;
             }
-
+            
             return true;
         }
 

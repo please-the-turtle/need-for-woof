@@ -24,6 +24,7 @@ scale = Vector2( 4, 4 )
 collision_layer = 16
 
 [node name="YSort" type="YSort" parent="."]
+position = Vector2( 0, -1 )
 
 [node name="Dogs" type="YSort" parent="YSort"]
 script = ExtResource( 4 )

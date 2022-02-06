@@ -28,6 +28,8 @@ namespace NeedForWoof.LobbyScreen
                 }
                 else
                 {
+                    StatusLabel statusLabel = GetNode<StatusLabel>("../Status");
+                    statusLabel.Jump();
                     Pressed = false;
                 }
             }

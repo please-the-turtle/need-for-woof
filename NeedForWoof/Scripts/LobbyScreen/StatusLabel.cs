@@ -17,6 +17,16 @@ namespace NeedForWoof.LobbyScreen
             ChangeStatusLine();
         }
 
+        public void Jump()
+        {
+            AnimationPlayer animation = GetNode<AnimationPlayer>("AnimationPlayer");
+            if (animation.CurrentAnimation == string.Empty)
+            {
+                animation.CurrentAnimation = "jump";
+                animation.Play();
+            }
+        }
+
         private void ChangeStatusLine(int playerId = 0, PlayerStatus status = PlayerStatus.NotReady)
         {
             if (_network.AllPlayersAreReady())
@@ -28,6 +38,7 @@ namespace NeedForWoof.LobbyScreen
                 Text = _notReadyString;
             }
         }
+
     }
 }
 

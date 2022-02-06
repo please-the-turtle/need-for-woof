@@ -1,8 +1,10 @@
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NeedForWoof.Level
 {
+    // TODO Чисти гавно
     /// <summary>
     /// Creates, deletes and manages dogs on the level.
     /// </summary>
@@ -48,30 +50,42 @@ namespace NeedForWoof.Level
             return _dogs[id];
         }
 
+        public Dog GetDogById(int id)
+        {
+            return _dogs[id];
+        }
+
         private void CreateDogs()
         {
-            int dogNumber = 1;
-
-            foreach(var player in _playersInfo)
+            foreach (var player in _playersInfo.OrderBy(x => x.Key))
             {
                 DogType dogType = player.Value.Dog;
                 Dog dog = DogCreator.CreateDog(dogType);
                 _dogs.Add(player.Key, dog);
-
-                float x = StartRoadWidthOffset + StartRoadWidth / (_playersInfo.Count + 1) * dogNumber;
-                dog.Position = new Vector2(x, DogsStartYPosition);
                 dog.Id = player.Key;
+            }
+
+            int dogNumber = 1;
+            foreach (var dog in _dogs)
+            {
+                float x = StartRoadWidthOffset + StartRoadWidth / (_playersInfo.Count + 1) * dogNumber;
+                dog.Value.Position = new Vector2(x, DogsStartYPosition);
+
+                DogMovementController controller = new DogMovementController();
+                controller.Name = "MovementController";
+                dog.Value.AddChild(controller, true);
+
                 dogNumber++;
             }
 
             PackedScene playerCameraScene = GD.Load<PackedScene>("res://Scenes/Level/PlayerCamera.tscn");
             Camera2D playerCamera = playerCameraScene.Instance<Camera2D>();
-            Dog localDog = _dogs[GetTree().GetNetworkUniqueId()];
-            localDog.AddChild(playerCamera);
+            Dog selfDog = GetSelfDog();
+            selfDog.AddChild(playerCamera, true);
 
-            foreach(var dog in _dogs)
+            foreach (var dog in _dogs)
             {
-                AddChild(dog.Value);
+                AddChild(dog.Value, true);
             }
         }
 
