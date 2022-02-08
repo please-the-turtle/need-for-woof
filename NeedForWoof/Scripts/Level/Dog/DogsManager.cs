@@ -5,6 +5,7 @@ using System.Linq;
 namespace NeedForWoof.Level
 {
     // TODO Чисти гавно
+
     /// <summary>
     /// Creates, deletes and manages dogs on the level.
     /// </summary>
@@ -59,29 +60,12 @@ namespace NeedForWoof.Level
         {
             foreach (var player in _playersInfo.OrderBy(x => x.Key))
             {
-                DogType dogType = player.Value.Dog;
-                Dog dog = DogCreator.CreateDog(dogType);
-                _dogs.Add(player.Key, dog);
-                dog.Id = player.Key;
+                Dog dog = CreateNewDog(player.Key, player.Value);
+                AddDogMovementController(dog);
             }
 
-            int dogNumber = 1;
-            foreach (var dog in _dogs)
-            {
-                float x = StartRoadWidthOffset + StartRoadWidth / (_playersInfo.Count + 1) * dogNumber;
-                dog.Value.Position = new Vector2(x, DogsStartYPosition);
-
-                DogMovementController controller = new DogMovementController();
-                controller.Name = "MovementController";
-                dog.Value.AddChild(controller, true);
-
-                dogNumber++;
-            }
-
-            PackedScene playerCameraScene = GD.Load<PackedScene>("res://Scenes/Level/PlayerCamera.tscn");
-            Camera2D playerCamera = playerCameraScene.Instance<Camera2D>();
-            Dog selfDog = GetSelfDog();
-            selfDog.AddChild(playerCamera, true);
+            SetDogsStartPosotions();
+            AttachPlayerCamera(GetSelfDog());
 
             foreach (var dog in _dogs)
             {
@@ -89,6 +73,49 @@ namespace NeedForWoof.Level
             }
         }
 
+        private Dog CreateNewDog(int playerKey, PlayerInfo playerInfo)
+        {
+            DogType dogType = playerInfo.Dog;
+            Dog dog = DogCreator.CreateDog(dogType);
+            _dogs.Add(playerKey, dog);
+            dog.Name = playerKey.ToString();
+            dog.SetNetworkMaster(playerKey);
+
+            return dog;
+        }
+
+        // TODO Create factory method inside DogMvmntCtrl and refactor this
+        private void AddDogMovementController(Dog dog)
+        {
+            DogMovement movement = dog.GetNode<DogMovement>("DogMovement");
+            movement.SetNetworkMaster(dog.GetNetworkMaster());
+            DogMovementController controller = new DogMovementController(movement);
+            controller.Name = dog.Name;
+            controller.SetNetworkMaster(dog.GetNetworkMaster());
+            dog.AddChild(controller);
+        }
+
+        // TODO Create DogPositioner class and refactor it
+        private void SetDogsStartPosotions()
+        {
+            int dogNumber = 1;
+            foreach (var dog in _dogs)
+            {
+                float x = StartRoadWidthOffset + StartRoadWidth / (_dogs.Count + 1) * dogNumber;
+                dog.Value.Position = new Vector2(x, DogsStartYPosition);
+
+                dogNumber++;
+            }
+        }
+        
+        // TODO Create special PlayerCamera class and refactor it
+        private void AttachPlayerCamera(Node2D target)
+        {
+            PackedScene playerCameraScene = GD.Load<PackedScene>("res://Scenes/Level/PlayerCamera.tscn");
+            Camera2D playerCamera = playerCameraScene.Instance<Camera2D>();
+            target.AddChild(playerCamera, true);
+        }
+        
         private void DeleteDog(int id)
         {
             if (_dogs.ContainsKey(id))

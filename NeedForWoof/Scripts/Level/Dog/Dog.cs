@@ -10,13 +10,6 @@ namespace NeedForWoof.Level
         [Signal]
         public delegate void Finished();
 
-        // TODO Dog id property
-        ///<value>
-        ///Multiplayer identificator.<br/> 
-        ///Used for setting and searching info about dog.
-        ///</value>
-        public int Id { get; set; }
-
         [Export(PropertyHint.Range, "0, 500, or_greater")]
         public float MaxStamina
         {
