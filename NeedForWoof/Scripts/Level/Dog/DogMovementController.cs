@@ -23,12 +23,12 @@ namespace NeedForWoof.Level
 
             if (Input.IsActionPressed("ui_right"))
             {
-                _dogMovement.RunRight();
+                _dogMovement.Rpc(nameof(_dogMovement.RunRight));
             }
 
             if (Input.IsActionPressed("ui_left"))
             {
-                _dogMovement.RunLeft();
+                _dogMovement.Rpc(nameof(_dogMovement.RunLeft));
             }
 
             if (Input.IsActionPressed("ui_up"))

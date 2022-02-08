@@ -6,8 +6,10 @@ namespace NeedForWoof.Level
     {
         public override void _Ready()
         {
-            Global global = GetNode<Global>("/root/Global");
-            Text = global.GameSettings.Nickname;
+            // TODO rewrite
+            Network network = GetNode<Network>("/root/Network");
+            Dog dog = GetNode<Dog>("../..");
+            Text = network.GetPlayerInfoById(dog.GetNetworkMaster()).Nickname;
         }
     }
 }

@@ -61,11 +61,11 @@ namespace NeedForWoof.Level
             foreach (var player in _playersInfo.OrderBy(x => x.Key))
             {
                 Dog dog = CreateNewDog(player.Key, player.Value);
-                AddDogMovementController(dog);
             }
 
             SetDogsStartPosotions();
             AttachPlayerCamera(GetSelfDog());
+            AddDogMovementController(GetSelfDog());
 
             foreach (var dog in _dogs)
             {

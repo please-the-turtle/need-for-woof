@@ -62,6 +62,7 @@ namespace NeedForWoof.Level
         /// <summary>
         /// Directs the dog to the right.
         /// </summary>
+        [Sync]
         public void RunRight()
         {
             RunTo(Vector2.Right);
@@ -70,6 +71,7 @@ namespace NeedForWoof.Level
         /// <summary>
         /// Directs the dog to the left.
         /// </summary>
+        [Sync]
         public void RunLeft()
         {
             RunTo(Vector2.Left);
@@ -78,7 +80,7 @@ namespace NeedForWoof.Level
         /// <summary>
         /// Makes the dog jump.
         /// </summary>
-        [RemoteSync]
+        [Sync]
         public void Jump()
         {
             if (_dog.Stamina >= JumpStaminaExpenditure && _dog.MoveState == MoveState.Run)
