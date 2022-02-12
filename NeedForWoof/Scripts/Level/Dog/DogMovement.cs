@@ -38,6 +38,11 @@ namespace NeedForWoof.Level
         /// BoostSpeed. Used for jumping. Controlled by the AnimationPlayer.
         /// </summary>
         public float SpeedBoost = 1f;
+
+        /// <summary>
+        /// Last info about position dog from network.
+        /// </summary>
+        private Vector2 _remotePosition;
         
         private Dog _dog;
         
@@ -48,6 +53,7 @@ namespace NeedForWoof.Level
         public override void _Ready()
         {
             _dog = GetParent<Dog>();
+            _remotePosition = _dog.Position;
         }
 
         public override void _PhysicsProcess(float delta)
@@ -62,7 +68,6 @@ namespace NeedForWoof.Level
         /// <summary>
         /// Directs the dog to the right.
         /// </summary>
-        [Sync]
         public void RunRight()
         {
             RunTo(Vector2.Right);
@@ -71,16 +76,25 @@ namespace NeedForWoof.Level
         /// <summary>
         /// Directs the dog to the left.
         /// </summary>
-        [Sync]
         public void RunLeft()
         {
             RunTo(Vector2.Left);
         }
 
         /// <summary>
+        /// Updates position from master peer of dog.
+        /// </summary>
+        [Remote]
+        public void UpdateRemotePosition(Vector2 position)
+        {
+            _dog.Position = position;
+            // _remotePosition = position;
+        }
+
+        /// <summary>
         /// Makes the dog jump.
         /// </summary>
-        [Sync]
+        [RemoteSync]
         public void Jump()
         {
             if (_dog.Stamina >= JumpStaminaExpenditure && _dog.MoveState == MoveState.Run)

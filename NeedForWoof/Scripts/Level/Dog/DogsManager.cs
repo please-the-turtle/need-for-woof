@@ -63,9 +63,9 @@ namespace NeedForWoof.Level
                 Dog dog = CreateNewDog(player.Key, player.Value);
             }
 
+                AddDogMovementController(GetSelfDog());
             SetDogsStartPosotions();
             AttachPlayerCamera(GetSelfDog());
-            AddDogMovementController(GetSelfDog());
 
             foreach (var dog in _dogs)
             {
