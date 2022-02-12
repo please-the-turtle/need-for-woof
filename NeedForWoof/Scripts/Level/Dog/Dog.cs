@@ -64,7 +64,30 @@ namespace NeedForWoof.Level
 
         public int Score = 0;
 
-        public MoveState MoveState = MoveState.Run;
+        public MoveState MoveState
+        {
+            get => _moveState;
+            set
+            {
+                switch (value)
+                {
+                    case MoveState.Idle:
+                        _animationPlayer.CurrentAnimation = "idle";
+                        _movement.Stop();
+                        _moveState = MoveState.Idle;
+                        break;
+                    case MoveState.Run:
+                        _animationPlayer.CurrentAnimation = "run";
+                        _movement.Go();
+                        _moveState = MoveState.Run;
+                        break;
+                    case MoveState.Jump:
+                        _animationPlayer.CurrentAnimation = "jump";
+                        _moveState = MoveState.Jump;
+                        break;
+                }
+            }
+        }
 
         private AnimationPlayer _animationPlayer;
         private DogMovement _movement;
@@ -72,15 +95,26 @@ namespace NeedForWoof.Level
         private float _stamina;
         private float _maxStamina = 500f;
         private float _staminaRefill = 25f;
+        private MoveState _moveState;
 
         public override void _Ready()
         {
             Stamina = MaxStamina;
 
             _animationPlayer = GetNode<AnimationPlayer>("Visualization/AnimationPlayer");
-            _animationPlayer.CurrentAnimation = "run";
             _movement = GetNode<DogMovement>("DogMovement");
-            _movement.Go();
+            MoveState = MoveState.Idle;
+
+            Countdown countdown = GetNode<Countdown>("../../../Countdown");
+            countdown.Connect(nameof(Countdown.CountdownIsOver), this, nameof(Run));
+
+            if (GetTree().HasNetworkPeer())
+            {
+                Network network = GetNode<Network>("/root/Network");
+                int networkId = GetTree().GetNetworkUniqueId();
+                network.Rpc(nameof(network.UpdatePlayerStatus), networkId, PlayerStatus.Ready);
+            }
+
         }
 
         public override void _Process(float delta)
@@ -90,15 +124,10 @@ namespace NeedForWoof.Level
             Stamina += StaminaRefill * delta;
         }
 
-        public void SetMoveState(MoveState moveState)
+        // Used inside animation player.
+        private void Run()
         {
-            MoveState = moveState;
-        }
-
-        public void PlayAnimation(string animation)
-        {
-            _animationPlayer.CurrentAnimation = animation;
-            _animationPlayer.Queue("run");
+            MoveState = MoveState.Run;
         }
 
         public void Finish()
@@ -111,17 +140,7 @@ namespace NeedForWoof.Level
             }
 
             MoveState = MoveState.Idle;
-            _animationPlayer.CurrentAnimation = "idle";
-            _movement.Stop();
             EmitSignal(nameof(Finished));
         }
-
-    }
-
-    public enum MoveState
-    {
-        Run = 0,
-        Jump = 1,
-        Idle = 2
     }
 }

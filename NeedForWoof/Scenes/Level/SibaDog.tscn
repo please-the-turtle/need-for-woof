@@ -8,6 +8,48 @@
 [ext_resource path="res://Scripts/Level/Dog/Dog.cs" type="Script" id=6]
 [ext_resource path="res://Textures/MainLevel/siba_idle.png" type="Texture" id=7]
 
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 14, 28 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 14, 0, 14, 28 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 28, 0, 14, 28 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 42, 0, 14, 28 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "jump",
+"speed": 7.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "run",
+"speed": 7.0
+} ]
+
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 0.3
@@ -59,6 +101,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("..:collision_mask")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -139,34 +193,31 @@ tracks/6/keys = {
 "update": 1,
 "values": [ 1, 0 ]
 }
-tracks/7/type = "method"
-tracks/7/path = NodePath("..")
+tracks/7/type = "value"
+tracks/7/path = NodePath("../Shadow:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ 1 ],
-"method": "SetMoveState"
-}, {
-"args": [ 0 ],
-"method": "SetMoveState"
-} ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
-tracks/8/type = "value"
-tracks/8/path = NodePath("../Shadow:visible")
+tracks/8/type = "method"
+tracks/8/path = NodePath("..")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"values": [ {
+"args": [ 1 ],
+"method": "set_MoveState"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -251,51 +302,9 @@ tracks/6/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 7 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 14, 28 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 5 )
-region = Rect2( 14, 0, 14, 28 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 5 )
-region = Rect2( 28, 0, 14, 28 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 5 )
-region = Rect2( 42, 0, 14, 28 )
-
-[sub_resource type="SpriteFrames" id=10]
-animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "idle",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "jump",
-"speed": 7.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "run",
-"speed": 7.0
-} ]
-
 [sub_resource type="CapsuleShape2D" id=11]
 radius = 38.0413
-height = 67.3273
+height = 12.9864
 
 [sub_resource type="DynamicFontData" id=12]
 antialiased = false
@@ -310,33 +319,34 @@ font_data = SubResource( 12 )
 [node name="SibaDog" type="KinematicBody2D"]
 position = Vector2( 240, 600 )
 scale = Vector2( 0.75, 0.75 )
-collision_mask = 15
+collision_mask = 11
 script = ExtResource( 6 )
 MaxStamina = 300.0
 
 [node name="DogMovement" parent="." instance=ExtResource( 1 )]
 
 [node name="Shadow" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, 40 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
 
 [node name="Visualization" type="Node2D" parent="."]
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Visualization"]
+scale = Vector2( 5, 5 )
+frames = SubResource( 10 )
+animation = "run"
+frame = 3
+playing = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visualization"]
 anims/idle = SubResource( 1 )
 anims/jump = SubResource( 2 )
 anims/run = SubResource( 3 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Visualization"]
-scale = Vector2( 5, 5 )
-frames = SubResource( 10 )
-animation = "run"
-frame = 2
-playing = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.4375 )
+position = Vector2( 0, 24.0536 )
 shape = SubResource( 11 )
 
 [node name="Nickname" type="Node2D" parent="."]

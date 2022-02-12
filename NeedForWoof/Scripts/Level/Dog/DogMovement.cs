@@ -100,7 +100,7 @@ namespace NeedForWoof.Level
             if (_dog.Stamina >= JumpStaminaExpenditure && _dog.MoveState == MoveState.Run)
             {
                 _dog.Stamina -= JumpStaminaExpenditure;
-                _dog.PlayAnimation("jump");
+                _dog.MoveState = MoveState.Jump;
             }
         }
 
@@ -109,6 +109,8 @@ namespace NeedForWoof.Level
         /// </summary>
         public void Stop()
         {
+            SetPhysicsProcessInternal(false);
+            SetProcessInternal(false);
             SetPhysicsProcess(false);
             SetProcess(false);
             _velocity = Vector2.Zero;
@@ -119,8 +121,8 @@ namespace NeedForWoof.Level
         /// </summary>
         public void Go()
         {
-            SetPhysicsProcessInternal(true);
-            SetProcessInternal(true);
+            SetPhysicsProcess(true);
+            SetProcess(true);
         }
 
         /// <summary>
@@ -128,7 +130,7 @@ namespace NeedForWoof.Level
         /// </summary>
         private void RunTo(Vector2 direction)
         {
-            if (_dog.MoveState == MoveState.Jump)
+            if (_dog.MoveState != MoveState.Run)
             {
                 direction.x = 0;
             }
