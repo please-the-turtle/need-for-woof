@@ -63,7 +63,10 @@ public class LevelScreenControls : CanvasLayer
         return offset;
     }
 
-    ///<summary>Returns screen ratio from the project settings.</summary>
+    /// <summary>
+    /// Returns screen ratio from the project settings 
+    /// (width / heigth).
+    /// </summary>
     private float GetSettingsScreenRatio()
     {
         float width = (int)ProjectSettings.GetSetting("display/window/size/width");

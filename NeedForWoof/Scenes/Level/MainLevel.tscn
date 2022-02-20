@@ -59,6 +59,31 @@ position = Vector2( 239.097, -14210.4 )
 scale = Vector2( 4, 4 )
 collision_layer = 16
 
+[node name="Countdown" type="CanvasLayer" parent="."]
+script = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Countdown"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 120.0
+margin_top = 200.0
+margin_right = -120.0
+margin_bottom = -360.0
+rect_pivot_offset = Vector2( 120, 120 )
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_colors/font_color = Color( 0.270588, 0.282353, 0.407843, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "GO!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Countdown"]
+anims/tick = SubResource( 1 )
+
 [node name="YSort" type="YSort" parent="."]
 position = Vector2( 0, -1 )
 
@@ -165,40 +190,6 @@ position = Vector2( 245.513, -9927.1 )
 [node name="Tunnel4" parent="YSort/Tunnels" instance=ExtResource( 2 )]
 position = Vector2( 159.062, -1288.76 )
 
-[node name="OnScreenInfo" parent="." instance=ExtResource( 3 )]
-
 [node name="ScreenControls" parent="." instance=ExtResource( 8 )]
 
-[node name="Countdown" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 480.0
-margin_bottom = 800.0
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-TickTimeInterval = 0.857
-StartDelay = 3.428
-
-[node name="Label" type="Label" parent="Countdown"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 120.0
-margin_top = 200.0
-margin_right = -120.0
-margin_bottom = -360.0
-rect_pivot_offset = Vector2( 120, 120 )
-size_flags_horizontal = 3
-size_flags_vertical = 7
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0.270588, 0.282353, 0.407843, 1 )
-text = "GO!"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Countdown"]
-anims/tick = SubResource( 1 )
+[node name="OnScreenInfo" parent="." instance=ExtResource( 3 )]
