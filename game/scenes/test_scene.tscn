@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rw8lnjgfcg1e"]
+
+[ext_resource type="PackedScene" uid="uid://ot6xv36mhi2t" path="res://scenes/siba.tscn" id="1_01kqc"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Siba" parent="." instance=ExtResource("1_01kqc")]
+position = Vector2(240, 690)
