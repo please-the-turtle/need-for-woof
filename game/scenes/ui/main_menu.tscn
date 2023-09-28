@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqujvgoiq4slr"]
+[gd_scene load_steps=11 format=3 uid="uid://dqujvgoiq4slr"]
 
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_6n4j4"]
 [ext_resource type="Texture2D" uid="uid://dkqopvucgfqtw" path="res://assets/textures/ui/main_menu.png" id="1_47dsx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ji3d4"]
@@ -47,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6n4j4")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -87,6 +89,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="CreateButton" type="Button" parent="ButtonsContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "create"
@@ -95,6 +98,7 @@ alignment = 2
 expand_icon = true
 
 [node name="ConnectButton" type="Button" parent="ButtonsContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "connect"
@@ -107,6 +111,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="SettingsButton" type="Button" parent="ButtonsContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 100)
 layout_mode = 2
 icon = SubResource("AtlasTexture_cxq6x")
@@ -115,9 +120,12 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="InfoButton" type="Button" parent="ButtonsContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 100)
 layout_mode = 2
 icon = SubResource("AtlasTexture_wl1js")
 alignment = 2
 icon_alignment = 1
 expand_icon = true
+
+[connection signal="pressed" from="ButtonsContainer/CreateButton" to="." method="_on_create_button_pressed"]

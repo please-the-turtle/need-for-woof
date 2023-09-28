@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3ateal751p46"]
+[gd_scene load_steps=11 format=3 uid="uid://c3ateal751p46"]
 
 [ext_resource type="Texture2D" uid="uid://tb0g6kq5ut5b" path="res://assets/textures/ui/level_buttons/stamina_progress.png" id="1_cat32"]
 [ext_resource type="Script" path="res://scripts/ui/level_gui.gd" id="1_pug4g"]
@@ -8,9 +8,27 @@
 [ext_resource type="Texture2D" uid="uid://duapwvobn6im" path="res://assets/textures/ui/level_buttons/jump_pressed.png" id="4_gfejk"]
 [ext_resource type="Texture2D" uid="uid://ckmuknykwrpfh" path="res://assets/textures/ui/level_buttons/run_right.png" id="5_74104"]
 [ext_resource type="Texture2D" uid="uid://ckjhcgrchvc26" path="res://assets/textures/ui/level_buttons/run_right_pressed.png" id="6_q8bcj"]
+[ext_resource type="Texture2D" uid="uid://kubsm8ahci2a" path="res://assets/textures/ui/level_buttons/menu.png" id="9_n4a08"]
+[ext_resource type="Texture2D" uid="uid://ce3faunvpahjo" path="res://assets/textures/ui/level_buttons/menu_pressed.png" id="10_5yqnu"]
 
 [node name="LevelGUI" type="CanvasLayer"]
 script = ExtResource("1_pug4g")
+
+[node name="HomeButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -75.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 75.0
+grow_horizontal = 0
+texture_normal = ExtResource("9_n4a08")
+texture_pressed = ExtResource("10_5yqnu")
+texture_hover = ExtResource("9_n4a08")
+texture_disabled = ExtResource("10_5yqnu")
+texture_focused = ExtResource("9_n4a08")
+stretch_mode = 5
 
 [node name="DogControls" type="Control" parent="."]
 layout_mode = 3
@@ -56,3 +74,5 @@ scale = Vector2(6, 6)
 texture_normal = ExtResource("5_74104")
 texture_pressed = ExtResource("6_q8bcj")
 action = "ui_right"
+
+[connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
