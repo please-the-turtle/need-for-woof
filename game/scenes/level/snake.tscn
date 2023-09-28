@@ -7,19 +7,19 @@
 y_sort_enabled = true
 
 [node name="Plank" parent="." instance=ExtResource("1_xke2f")]
-position = Vector2(-50, 339)
+position = Vector2(-45, 395)
 
 [node name="Plank2" parent="." instance=ExtResource("1_xke2f")]
-position = Vector2(-39, -319)
+position = Vector2(-34, -351)
 
 [node name="Plank3" parent="." instance=ExtResource("1_xke2f")]
-position = Vector2(53, -135)
+position = Vector2(48, -167)
 
 [node name="Plank4" parent="." instance=ExtResource("1_xke2f")]
-position = Vector2(-54, 0)
+position = Vector2(-49, 0)
 
 [node name="Plank5" parent="." instance=ExtResource("1_xke2f")]
-position = Vector2(61, 170)
+position = Vector2(56, 194)
 
 [node name="Bone" parent="." instance=ExtResource("2_anjag")]
 position = Vector2(-39, 182)

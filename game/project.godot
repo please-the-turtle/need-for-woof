@@ -11,11 +11,15 @@ config_version=5
 [application]
 
 config/name="Need for woof"
-run/main_scene="res://scenes/level/test_scene.tscn"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/bg_color=Color(0.27451, 0.286275, 0.411765, 1)
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneChanger="*res://scripts/global/scene_changer.gd"
 
 [display]
 
@@ -77,4 +81,4 @@ pointing/emulate_touch_from_mouse=true
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.45098, 0.709804, 0.8, 1)
+environment/defaults/default_clear_color=Color(0.27451, 0.286275, 0.411765, 1)
