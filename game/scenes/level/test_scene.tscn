@@ -14,6 +14,12 @@ y_sort_enabled = true
 
 [node name="LevelField" parent="." instance=ExtResource("1_52rug")]
 
+[node name="Siba2" parent="." instance=ExtResource("1_01kqc")]
+position = Vector2(217, -392)
+
+[node name="DogStateMachine" parent="Siba2" index="5" node_paths=PackedStringArray("state")]
+state = NodePath("DogStateIdle")
+
 [node name="Siba" parent="." instance=ExtResource("1_01kqc")]
 position = Vector2(241, 413)
 
@@ -38,16 +44,16 @@ position = Vector2(362, -2516)
 position = Vector2(79, -4311)
 
 [node name="Tunnel5" parent="." instance=ExtResource("6_ai4sc")]
-position = Vector2(387, -5879)
+position = Vector2(351, -6427)
 
 [node name="Tunnel6" parent="." instance=ExtResource("6_ai4sc")]
 position = Vector2(378, -5058)
 
 [node name="Snake" parent="." instance=ExtResource("5_mx6oj")]
-position = Vector2(246, -343)
+position = Vector2(267, -904)
 
 [node name="Snake2" parent="." instance=ExtResource("5_mx6oj")]
-position = Vector2(179, -1271)
+position = Vector2(115, -1559)
 
 [node name="Snake3" parent="." instance=ExtResource("5_mx6oj")]
 position = Vector2(108, -2417)
@@ -57,3 +63,5 @@ position = Vector2(118, -6574)
 
 [node name="FinishLine" parent="." instance=ExtResource("8_14nq3")]
 position = Vector2(241, -8099)
+
+[editable path="Siba2"]

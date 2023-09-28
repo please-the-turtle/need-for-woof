@@ -19,9 +19,32 @@ func on_enter(_msg := {}) -> void:
 func physics_update(_delta) -> void:
 	target.velocity = Vector2.UP * target.speed * target.speed_multiplier
 	target.move_and_slide()
+	
+	_push_another_dogs()
 
 
 func on_exit() -> void:
 	target.collision_mask = ON_GROUND_COLLISIONS
 	target.speed_multiplier /= target.jumping_speed_boost
 	target.z_index = _initial_z_index
+
+
+func _push_another_dogs() -> void:
+	var coll_count = target.get_slide_collision_count()
+	if coll_count < 1:
+		return
+	
+	for i in coll_count:
+		var collision = target.get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if not collider is Dog:
+			continue
+		
+		var bounce_impulse = collision.get_normal()
+		bounce_impulse *= -1
+		bounce_impulse *= target.speed * target.speed_multiplier
+		collider.fsm.transition_to("DogStateBounce", {
+			"impulse": bounce_impulse
+		})
+		target.fsm.transition_to("DogStateRun")

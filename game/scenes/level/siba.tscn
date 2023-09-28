@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ot6xv36mhi2t"]
+[gd_scene load_steps=16 format=3 uid="uid://ot6xv36mhi2t"]
 
 [ext_resource type="Script" path="res://scripts/dog/dog.gd" id="1_k3ryg"]
 [ext_resource type="Texture2D" uid="uid://ccpg47u3cq08e" path="res://assets/textures/level/siba/siba.png" id="1_ol7om"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_jump.gd" id="5_0cnbw"]
 [ext_resource type="Script" path="res://scripts/dog/dog_movement_controller.gd" id="7_w20pl"]
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_tunnel.gd" id="8_tv3u4"]
+[ext_resource type="Script" path="res://scripts/dog/states/dog_state_bounce.gd" id="9_xaq3x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nqbn"]
 atlas = ExtResource("1_ol7om")
@@ -240,13 +241,12 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wll3j"]
-radius = 28.0
-height = 70.0
+radius = 23.0
+height = 64.0
 
 [node name="Siba" type="CharacterBody2D"]
 collision_mask = 5
 motion_mode = 1
-wall_min_slide_angle = 3.14159
 platform_wall_layers = 7
 script = ExtResource("1_k3ryg")
 speed = 601.0
@@ -292,3 +292,6 @@ script = ExtResource("5_0cnbw")
 
 [node name="DogStateTunnel" type="Node" parent="DogStateMachine"]
 script = ExtResource("8_tv3u4")
+
+[node name="DogStateBounce" type="Node" parent="DogStateMachine"]
+script = ExtResource("9_xaq3x")
