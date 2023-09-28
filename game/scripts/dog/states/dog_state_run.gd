@@ -12,7 +12,6 @@ func on_enter(_msg := {}) -> void:
 func physics_update(_delta) -> void:
 	_direction = _direction.normalized()
 	target.velocity = _direction * target.speed * target.speed_multiplier
-	print(target.velocity)
 	target.move_and_slide()
 	_direction = Vector2.UP
 

@@ -12,17 +12,13 @@ extends CharacterBody2D
 ## The value by which the speed is multiplied when jumping.
 @export_range(1, 10, 0.5, "or_greater") var jumping_speed_boost: float = 1.5
 
-## Multiplies the speed of movement in various situations. 
-## For example, when jumping.
-var speed_multiplier: float = 1
-
-var can_jump: bool = true
-var can_run_side: bool = true
-
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var fsm: DogStateMachine = $DogStateMachine
 
+## Multiplies the speed of movement in various situations. 
+## For example, when jumping.
+var speed_multiplier: float = 1
 
 var stamina: float:
 	get:
@@ -45,15 +41,12 @@ func _physics_process(delta):
 
 
 func jump() -> void:
-	if can_jump:
-		fsm.jump()
+	fsm.jump()
 
 
 func run_left() -> void:
-	if can_run_side:
-		fsm.run_left()
+	fsm.run_left()
 
 
 func run_right() -> void:
-	if can_run_side:
-		fsm.run_right()
+	fsm.run_right()
