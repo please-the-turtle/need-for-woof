@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://rw8lnjgfcg1e"]
+
+[ext_resource type="PackedScene" uid="uid://ot6xv36mhi2t" path="res://scenes/level/siba.tscn" id="1_01kqc"]
+[ext_resource type="PackedScene" uid="uid://ui2ttf2eo3ca" path="res://scenes/level/level_field.tscn" id="1_52rug"]
+[ext_resource type="PackedScene" uid="uid://cgrxb11i0dexh" path="res://scenes/level/player_camera.tscn" id="3_s484a"]
+[ext_resource type="PackedScene" uid="uid://c3ateal751p46" path="res://scenes/ui/level_gui.tscn" id="3_xm2jc"]
+[ext_resource type="PackedScene" uid="uid://srjwnl15xg28" path="res://scenes/level/pillar.tscn" id="4_6jxga"]
+[ext_resource type="PackedScene" uid="uid://dk62ckcd5rhhm" path="res://scenes/level/snake.tscn" id="5_mx6oj"]
+[ext_resource type="PackedScene" uid="uid://ma31pgg1pu4x" path="res://scenes/level/tunnel.tscn" id="6_ai4sc"]
+[ext_resource type="PackedScene" uid="uid://das6fmm2gj4my" path="res://scenes/level/finish_line.tscn" id="8_14nq3"]
+
+[node name="Node2D" type="Node2D"]
+y_sort_enabled = true
+
+[node name="LevelField" parent="." instance=ExtResource("1_52rug")]
+
+[node name="Siba" parent="." instance=ExtResource("1_01kqc")]
+position = Vector2(241, 413)
+
+[node name="PlayerCamera" parent="Siba" instance=ExtResource("3_s484a")]
+
+[node name="Pillar7" parent="." instance=ExtResource("4_6jxga")]
+position = Vector2(137, -3194)
+
+[node name="LevelGUI" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xm2jc")]
+target = NodePath("../Siba")
+
+[node name="Tunnel" parent="." instance=ExtResource("6_ai4sc")]
+position = Vector2(376, -2125)
+
+[node name="Tunnel3" parent="." instance=ExtResource("6_ai4sc")]
+position = Vector2(370, -1786)
+
+[node name="Tunnel2" parent="." instance=ExtResource("6_ai4sc")]
+position = Vector2(362, -2516)
+
+[node name="Tunnel4" parent="." instance=ExtResource("6_ai4sc")]
+position = Vector2(79, -4311)
+
+[node name="Tunnel5" parent="." instance=ExtResource("6_ai4sc")]
+position = Vector2(387, -5879)
+
+[node name="Tunnel6" parent="." instance=ExtResource("6_ai4sc")]
+position = Vector2(378, -5058)
+
+[node name="Snake" parent="." instance=ExtResource("5_mx6oj")]
+position = Vector2(246, -343)
+
+[node name="Snake2" parent="." instance=ExtResource("5_mx6oj")]
+position = Vector2(179, -1271)
+
+[node name="Snake3" parent="." instance=ExtResource("5_mx6oj")]
+position = Vector2(108, -2417)
+
+[node name="Snake4" parent="." instance=ExtResource("5_mx6oj")]
+position = Vector2(118, -6574)
+
+[node name="FinishLine" parent="." instance=ExtResource("8_14nq3")]
+position = Vector2(241, -8099)

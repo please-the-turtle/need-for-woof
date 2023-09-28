@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://ma31pgg1pu4x"]
+
+[ext_resource type="Script" path="res://scripts/level/tunnel.gd" id="1_g5tf7"]
+[ext_resource type="Texture2D" uid="uid://ctuio2gxiqxf6" path="res://assets/textures/level/map_tiles.png" id="1_i63v0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_einhk"]
+atlas = ExtResource("1_i63v0")
+region = Rect2(23, 164, 35, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccrm7"]
+atlas = ExtResource("1_i63v0")
+region = Rect2(22, 207, 36, 50)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_plkbr"]
+radius = 1.8
+height = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhele"]
+size = Vector2(21, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo3q3"]
+size = Vector2(24.4, 28.2)
+
+[node name="Tunnel" type="StaticBody2D"]
+scale = Vector2(5, 5)
+collision_layer = 2
+script = ExtResource("1_g5tf7")
+
+[node name="Bottom" type="Sprite2D" parent="."]
+position = Vector2(0.5, 25.5)
+texture = SubResource("AtlasTexture_einhk")
+
+[node name="Top" type="Sprite2D" parent="."]
+z_index = 10
+texture = SubResource("AtlasTexture_ccrm7")
+
+[node name="RightWall" type="CollisionShape2D" parent="."]
+position = Vector2(14.8, 10)
+shape = SubResource("CapsuleShape2D_plkbr")
+
+[node name="LeftWall" type="CollisionShape2D" parent="."]
+position = Vector2(-14, 10)
+shape = SubResource("CapsuleShape2D_plkbr")
+
+[node name="InsideTunnel" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InsideTunnel"]
+position = Vector2(0.500001, 9.9)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_xhele")
+
+[node name="Roof" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roof"]
+position = Vector2(0.399999, 1.5)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_vo3q3")
+
+[connection signal="body_entered" from="InsideTunnel" to="." method="_on_bonus_zone_body_entered"]
+[connection signal="body_exited" from="InsideTunnel" to="." method="_on_bonus_zone_body_exited"]

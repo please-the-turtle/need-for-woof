@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk62ckcd5rhhm"]
+
+[ext_resource type="PackedScene" uid="uid://b56jrtplvlg48" path="res://scenes/level/plank.tscn" id="1_xke2f"]
+[ext_resource type="PackedScene" uid="uid://f67548w6mysp" path="res://scenes/level/bone.tscn" id="2_anjag"]
+
+[node name="Snake" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Plank" parent="." instance=ExtResource("1_xke2f")]
+position = Vector2(-50, 339)
+
+[node name="Plank2" parent="." instance=ExtResource("1_xke2f")]
+position = Vector2(-39, -319)
+
+[node name="Plank3" parent="." instance=ExtResource("1_xke2f")]
+position = Vector2(53, -135)
+
+[node name="Plank4" parent="." instance=ExtResource("1_xke2f")]
+position = Vector2(-54, 0)
+
+[node name="Plank5" parent="." instance=ExtResource("1_xke2f")]
+position = Vector2(61, 170)
+
+[node name="Bone" parent="." instance=ExtResource("2_anjag")]
+position = Vector2(-39, 182)
+
+[node name="Bone2" parent="." instance=ExtResource("2_anjag")]
+position = Vector2(52, 10)
+
+[node name="Bone3" parent="." instance=ExtResource("2_anjag")]
+position = Vector2(-50, -143)

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cgrxb11i0dexh"]
+
+[node name="PlayerCamera" type="Camera2D"]
+offset = Vector2(0, -200)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0

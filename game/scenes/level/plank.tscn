@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b56jrtplvlg48"]
+
+[ext_resource type="Script" path="res://scripts/level/obstrustion.gd" id="1_brkq4"]
+[ext_resource type="Texture2D" uid="uid://ctuio2gxiqxf6" path="res://assets/textures/level/map_tiles.png" id="1_q61t8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8to8n"]
+friction = 0.0
+bounce = 1.0
+absorbent = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2qd2"]
+atlas = ExtResource("1_q61t8")
+region = Rect2(66, 180, 11, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exhdj"]
+size = Vector2(4, 24)
+
+[node name="Plank" type="StaticBody2D"]
+scale = Vector2(5, 5)
+collision_layer = 6
+physics_material_override = SubResource("PhysicsMaterial_8to8n")
+script = ExtResource("1_brkq4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_n2qd2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_exhdj")

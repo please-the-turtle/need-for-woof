@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://das6fmm2gj4my"]
+
+[ext_resource type="Script" path="res://scripts/level/finish_line.gd" id="1_kk08x"]
+[ext_resource type="Texture2D" uid="uid://ctuio2gxiqxf6" path="res://assets/textures/level/map_tiles.png" id="2_keng4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgwnl"]
+atlas = ExtResource("2_keng4")
+region = Rect2(15, 259, 98, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bc5on"]
+size = Vector2(96, 12)
+
+[node name="FinishLine" type="Area2D"]
+scale = Vector2(4, 4)
+collision_layer = 0
+script = ExtResource("1_kk08x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_rgwnl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bc5on")
+
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
