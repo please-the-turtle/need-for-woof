@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3ateal751p46"]
+
+[ext_resource type="Texture2D" uid="uid://tb0g6kq5ut5b" path="res://assets/textures/ui/level_buttons/stamina_progress.png" id="1_cat32"]
+[ext_resource type="Script" path="res://scripts/ui/level_gui.gd" id="1_pug4g"]
+[ext_resource type="Texture2D" uid="uid://c3e4v8tba53cy" path="res://assets/textures/ui/level_buttons/run_left.png" id="1_uybwv"]
+[ext_resource type="Texture2D" uid="uid://cjwqde75pxefy" path="res://assets/textures/ui/level_buttons/run_left_pressed.png" id="2_enuj4"]
+[ext_resource type="Texture2D" uid="uid://ce3g8nm55fimw" path="res://assets/textures/ui/level_buttons/jump.png" id="3_neuki"]
+[ext_resource type="Texture2D" uid="uid://duapwvobn6im" path="res://assets/textures/ui/level_buttons/jump_pressed.png" id="4_gfejk"]
+[ext_resource type="Texture2D" uid="uid://ckmuknykwrpfh" path="res://assets/textures/ui/level_buttons/run_right.png" id="5_74104"]
+[ext_resource type="Texture2D" uid="uid://ckjhcgrchvc26" path="res://assets/textures/ui/level_buttons/run_right_pressed.png" id="6_q8bcj"]
+
+[node name="LevelGUI" type="CanvasLayer"]
+script = ExtResource("1_pug4g")
+
+[node name="DogControls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StaminaBar" type="TextureProgressBar" parent="DogControls"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.313726)
+layout_mode = 0
+offset_left = -66.0
+offset_top = -104.0
+offset_right = -44.0
+offset_bottom = -90.0
+scale = Vector2(6, 6)
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("1_cat32")
+
+[node name="RunLeftButton" type="TouchScreenButton" parent="DogControls"]
+position = Vector2(-230, -110)
+scale = Vector2(6, 6)
+texture_normal = ExtResource("1_uybwv")
+texture_pressed = ExtResource("2_enuj4")
+action = "ui_left"
+
+[node name="JumpButton" type="TouchScreenButton" parent="DogControls"]
+position = Vector2(-72, -110)
+scale = Vector2(6, 6)
+texture_normal = ExtResource("3_neuki")
+texture_pressed = ExtResource("4_gfejk")
+action = "ui_jump"
+
+[node name="RunRightButton" type="TouchScreenButton" parent="DogControls"]
+position = Vector2(86, -110)
+scale = Vector2(6, 6)
+texture_normal = ExtResource("5_74104")
+texture_pressed = ExtResource("6_q8bcj")
+action = "ui_right"

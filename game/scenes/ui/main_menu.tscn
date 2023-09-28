@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqujvgoiq4slr"]
+
+[ext_resource type="Texture2D" uid="uid://dkqopvucgfqtw" path="res://assets/textures/ui/main_menu.png" id="1_47dsx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ji3d4"]
+
+[sub_resource type="Gradient" id="Gradient_8ub4r"]
+offsets = PackedFloat32Array(0, 0.594366, 1)
+colors = PackedColorArray(0.64, 0.904, 1, 1, 0.6603, 0.85808, 0.93, 1, 0.45098, 0.709804, 0.8, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_svdca"]
+gradient = SubResource("Gradient_8ub4r")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.487179, 0.15812)
+fill_to = Vector2(0.495726, 0.837607)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jynik"]
+atlas = ExtResource("1_47dsx")
+region = Rect2(5, 1, 69, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy10l"]
+atlas = ExtResource("1_47dsx")
+region = Rect2(1, 49, 13, 14)
+margin = Rect2(-0.45, -1.5, 0, -3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_231ur"]
+atlas = ExtResource("1_47dsx")
+region = Rect2(18, 47, 12, 21)
+margin = Rect2(0, -5, 0, -9.53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxq6x"]
+atlas = ExtResource("1_47dsx")
+region = Rect2(34, 50, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl1js"]
+atlas = ExtResource("1_47dsx")
+region = Rect2(50, 49, 12, 15)
+margin = Rect2(-0.5, -0.5, 0, -3.93)
+
+[node name="MainMenu" type="Control"]
+material = SubResource("CanvasItemMaterial_ji3d4")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_svdca")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.502
+anchor_right = 0.502
+anchor_bottom = 1.0
+offset_left = -211.04
+offset_top = 40.0
+offset_right = 211.04
+offset_bottom = -481.739
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_jynik")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.444
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -0.200043
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CreateButton" type="Button" parent="ButtonsContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "create"
+icon = SubResource("AtlasTexture_fy10l")
+alignment = 2
+expand_icon = true
+
+[node name="ConnectButton" type="Button" parent="ButtonsContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "connect"
+icon = SubResource("AtlasTexture_231ur")
+alignment = 2
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ButtonsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SettingsButton" type="Button" parent="ButtonsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(170, 100)
+layout_mode = 2
+icon = SubResource("AtlasTexture_cxq6x")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
+
+[node name="InfoButton" type="Button" parent="ButtonsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(170, 100)
+layout_mode = 2
+icon = SubResource("AtlasTexture_wl1js")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
