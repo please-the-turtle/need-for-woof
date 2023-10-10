@@ -1,21 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqujvgoiq4slr"]
+[gd_scene load_steps=10 format=3 uid="uid://dqujvgoiq4slr"]
 
-[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_6n4j4"]
 [ext_resource type="Texture2D" uid="uid://dkqopvucgfqtw" path="res://assets/textures/ui/main_menu.png" id="1_47dsx"]
+[ext_resource type="PackedScene" uid="uid://nh3cp22bbbym" path="res://scenes/ui/background.tscn" id="2_ptbie"]
+[ext_resource type="Script" path="res://scripts/ui/change_scene_button.gd" id="3_5t4nr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ji3d4"]
-
-[sub_resource type="Gradient" id="Gradient_8ub4r"]
-offsets = PackedFloat32Array(0, 0.594366, 1)
-colors = PackedColorArray(0.64, 0.904, 1, 1, 0.6603, 0.85808, 0.93, 1, 0.45098, 0.709804, 0.8, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_svdca"]
-gradient = SubResource("Gradient_8ub4r")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.487179, 0.15812)
-fill_to = Vector2(0.495726, 0.837607)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jynik"]
 atlas = ExtResource("1_47dsx")
@@ -35,10 +24,10 @@ margin = Rect2(0, -5, 0, -9.53)
 atlas = ExtResource("1_47dsx")
 region = Rect2(34, 50, 12, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wl1js"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeivj"]
 atlas = ExtResource("1_47dsx")
-region = Rect2(50, 49, 12, 15)
-margin = Rect2(-0.5, -0.5, 0, -3.93)
+region = Rect2(80, 32, 16, 16)
+margin = Rect2(-0.89, -0.25, 0, -0.5)
 
 [node name="MainMenu" type="Control"]
 material = SubResource("CanvasItemMaterial_ji3d4")
@@ -48,16 +37,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6n4j4")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" parent="." instance=ExtResource("2_ptbie")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_svdca")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -96,6 +78,8 @@ text = "create"
 icon = SubResource("AtlasTexture_fy10l")
 alignment = 2
 expand_icon = true
+script = ExtResource("3_5t4nr")
+scene_path = "res://scenes/level/test_scene.tscn"
 
 [node name="ConnectButton" type="Button" parent="ButtonsContainer"]
 unique_name_in_owner = true
@@ -105,6 +89,7 @@ text = "connect"
 icon = SubResource("AtlasTexture_231ur")
 alignment = 2
 expand_icon = true
+script = ExtResource("3_5t4nr")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ButtonsContainer"]
 layout_mode = 2
@@ -118,14 +103,15 @@ icon = SubResource("AtlasTexture_cxq6x")
 alignment = 2
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("3_5t4nr")
+scene_path = "res://scenes/ui/settings_menu.tscn"
 
 [node name="InfoButton" type="Button" parent="ButtonsContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(170, 100)
 layout_mode = 2
-icon = SubResource("AtlasTexture_wl1js")
+icon = SubResource("AtlasTexture_aeivj")
 alignment = 2
 icon_alignment = 1
 expand_icon = true
-
-[connection signal="pressed" from="ButtonsContainer/CreateButton" to="." method="_on_create_button_pressed"]
+script = ExtResource("3_5t4nr")
