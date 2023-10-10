@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://dt27a7hxn4aso"]
+[gd_resource type="Theme" load_steps=24 format=3 uid="uid://dt27a7hxn4aso"]
 
 [ext_resource type="FontFile" uid="uid://bkcppcj57s6fi" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_1cdg5"]
 [ext_resource type="Texture2D" uid="uid://csn1w0bgv3bwu" path="res://assets/textures/ui/main_theme.png" id="1_1tjb5"]
@@ -41,13 +41,90 @@ texture_margin_bottom = 32.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip572"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w24b"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.27451, 0.286275, 0.411765, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxxqc"]
+atlas = ExtResource("1_1tjb5")
+region = Rect2(96, 100, 84, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lswr"]
+atlas = ExtResource("1_1tjb5")
+region = Rect2(0, 100, 84, 56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uv4vn"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.27451, 0.286275, 0.411765, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2w10v"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0giex"]
+color = Color(0.27451, 0.286275, 0.411765, 1)
+thickness = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23db0"]
+atlas = ExtResource("1_1tjb5")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8h55"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.4, 0.545098, 0.470588, 1)
+border_color = Color(0.4, 0.545098, 0.470588, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn3o7"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.305882, 0.4, 0.47451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngs00"]
 bg_color = Color(1, 1, 0.882353, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 10
 border_color = Color(0.27451, 0.286275, 0.411765, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip572"]
+bg_color = Color(1, 1, 0.882353, 0.54902)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 10
+border_color = Color(0.27451, 0.286275, 0.411765, 0.54902)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -101,7 +178,6 @@ corner_radius_bottom_left = 8
 [resource]
 default_font = ExtResource("1_1cdg5")
 default_font_size = 16
-BoxContainer/constants/separation = 12
 Button/colors/font_color = Color(0.27451, 0.286275, 0.411765, 1)
 Button/colors/font_disabled_color = Color(0.27451, 0.286275, 0.411765, 0.54902)
 Button/colors/font_focus_color = Color(0.27451, 0.286275, 0.411765, 1)
@@ -114,19 +190,59 @@ Button/styles/focus = SubResource("StyleBoxEmpty_o2wec")
 Button/styles/hover = SubResource("StyleBoxTexture_h0lcj")
 Button/styles/normal = SubResource("StyleBoxTexture_h0lcj")
 Button/styles/pressed = SubResource("StyleBoxTexture_t7b5e")
+CheckBox/constants/h_separation = 20
+CheckBox/font_sizes/font_size = 24
+CheckBox/styles/disabled = SubResource("StyleBoxFlat_2w24b")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_2w24b")
+CheckBox/styles/hover = SubResource("StyleBoxFlat_2w24b")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_2w24b")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_2w24b")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_2w24b")
+CheckButton/icons/checked = SubResource("AtlasTexture_kxxqc")
+CheckButton/icons/checked_disabled = SubResource("AtlasTexture_kxxqc")
+CheckButton/icons/checked_disabled_mirrored = SubResource("AtlasTexture_kxxqc")
+CheckButton/icons/checked_mirrored = SubResource("AtlasTexture_kxxqc")
+CheckButton/icons/unchecked = SubResource("AtlasTexture_3lswr")
+CheckButton/icons/unchecked_disabled = SubResource("AtlasTexture_3lswr")
+CheckButton/icons/unchecked_disabled_mirrored = SubResource("AtlasTexture_3lswr")
+CheckButton/icons/unchecked_mirrored = SubResource("AtlasTexture_3lswr")
+CheckButton/styles/disabled = SubResource("StyleBoxFlat_uv4vn")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_uv4vn")
+CheckButton/styles/hover = SubResource("StyleBoxFlat_uv4vn")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_uv4vn")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_uv4vn")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_uv4vn")
+HBoxContainer/constants/separation = 10
+HScrollBar/styles/grabber = SubResource("StyleBoxEmpty_2w10v")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_2w10v")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_2w10v")
+HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_2w10v")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_2w10v")
+HSeparator/styles/separator = SubResource("StyleBoxLine_0giex")
+HSlider/icons/grabber = SubResource("AtlasTexture_23db0")
+HSlider/icons/grabber_disabled = SubResource("AtlasTexture_23db0")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_23db0")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_r8h55")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_r8h55")
+HSlider/styles/slider = SubResource("StyleBoxFlat_sn3o7")
+HeaderLarge/font_sizes/font_size = 42
+HeaderMedium/font_sizes/font_size = 32
+HeaderSmall/font_sizes/font_size = 28
 Label/colors/font_color = Color(0.27451, 0.286275, 0.411765, 1)
 Label/colors/font_outline_color = Color(1, 1, 1, 1)
 LineEdit/colors/caret_color = Color(0.27451, 0.286275, 0.411765, 1)
 LineEdit/colors/clear_button_color_pressed = Color(0.27451, 0.286275, 0.411765, 1)
 LineEdit/colors/font_color = Color(0.27451, 0.286275, 0.411765, 1)
+LineEdit/colors/font_placeholder_color = Color(0.713726, 0.698039, 0.694118, 1)
 LineEdit/colors/font_selected_color = Color(0.4, 0.545098, 0.470588, 1)
 LineEdit/colors/font_uneditable_color = Color(0.27451, 0.286275, 0.411765, 0.705882)
 LineEdit/colors/selection_color = Color(0.690196, 0.823529, 0.521569, 1)
 LineEdit/constants/caret_width = 3
-LineEdit/styles/focus = SubResource("StyleBoxFlat_ip572")
-LineEdit/styles/normal = SubResource("StyleBoxFlat_ip572")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_ngs00")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_ngs00")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_ip572")
 Panel/styles/panel = SubResource("StyleBoxTexture_l37k2")
 ProgressBar/colors/font_color = Color(1, 1, 1, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_q1dng")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_4yq7a")
+VBoxContainer/constants/separation = 10
