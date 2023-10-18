@@ -141,27 +141,13 @@ tracks/4/keys = {
 "update": 1,
 "values": [5]
 }
-tracks/5/type = "method"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("DogStateMachine")
-tracks/5/interp = 1
+tracks/5/path = NodePath("Shadow:scale")
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["DogStateRun", {}],
-"method": &"transition_to"
-}]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Shadow:scale")
-tracks/6/interp = 2
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
@@ -242,7 +228,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wll3j"]
 radius = 23.0
-height = 64.0
+height = 50.0
 
 [node name="Siba" type="CharacterBody2D"]
 collision_mask = 5
@@ -295,3 +281,5 @@ script = ExtResource("8_tv3u4")
 
 [node name="DogStateBounce" type="Node" parent="DogStateMachine"]
 script = ExtResource("9_xaq3x")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="DogStateMachine/DogStateJump" method="_on_animation_finished"]

@@ -48,3 +48,11 @@ func _push_another_dogs() -> void:
 			"impulse": bounce_impulse
 		})
 		target.fsm.transition_to("DogStateRun")
+
+
+func _on_animation_finished(anim_name: String):
+	if anim_name != "jump":
+		return
+	target.fsm.transition_to("DogStateRun")
+
+

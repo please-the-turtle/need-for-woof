@@ -10,7 +10,7 @@ extends DogState
 @export_range(1, 20, 0.5) var impulse_attenuation: float = 5
 
 ## Multiplies initial bouncing impulse 
-@export_range(0, 10, 0.5) var bounce_power: float = 2
+@export_range(0, 10, 0.5) var bounce_power: float = 1.5
 
 
 var _bounce_velocity = null
