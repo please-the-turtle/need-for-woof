@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 ApplicationPermissions="*res://scripts/global/application_permissions.gd"
 SceneChanger="*res://scripts/global/scene_changer.gd"
 GameSettings="*res://scripts/global/game_settings.gd"
+ServerClient="*res://scripts/global/server_client.gd"
 
 [display]
 
