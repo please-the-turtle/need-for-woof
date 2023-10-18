@@ -8,4 +8,6 @@ extends Button
 
 
 func _pressed() -> void:
+	if scene_path.is_empty():
+		return
 	SceneChanger.go_to_scene(scene_path)
