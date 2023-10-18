@@ -21,7 +21,6 @@ var _settings_dict: Dictionary
 
 func _ready():
 	_settings_dict = _load_game_settings()
-	print(_settings_dict)
 
 
 ## Sets new value to the game setting. 
