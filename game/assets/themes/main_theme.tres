@@ -21,12 +21,12 @@ modulate_color = Color(1, 1, 1, 0.54902)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h0lcj"]
 texture = SubResource("AtlasTexture_wnvio")
-texture_margin_left = 24.0
+texture_margin_left = 28.0
 texture_margin_top = 24.0
-texture_margin_right = 32.0
+texture_margin_right = 28.0
 texture_margin_bottom = 32.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tovte"]
 atlas = ExtResource("1_1tjb5")
@@ -34,12 +34,12 @@ region = Rect2(64, 0, 58, 57)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t7b5e"]
 texture = SubResource("AtlasTexture_tovte")
-texture_margin_left = 24.0
+texture_margin_left = 28.0
 texture_margin_top = 24.0
-texture_margin_right = 32.0
+texture_margin_right = 28.0
 texture_margin_bottom = 32.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w24b"]
 content_margin_left = 10.0
