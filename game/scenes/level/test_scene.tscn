@@ -15,10 +15,7 @@ y_sort_enabled = true
 [node name="LevelField" parent="." instance=ExtResource("1_52rug")]
 
 [node name="Siba2" parent="." instance=ExtResource("1_01kqc")]
-position = Vector2(141, -392)
-
-[node name="DogStateMachine" parent="Siba2" index="5" node_paths=PackedStringArray("state")]
-state = NodePath("DogStateIdle")
+position = Vector2(211, -205)
 
 [node name="Siba" parent="." instance=ExtResource("1_01kqc")]
 position = Vector2(241, 413)

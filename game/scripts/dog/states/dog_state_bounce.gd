@@ -1,6 +1,7 @@
 ## The state in which the dog bounces according 
 ## to the impulse transmitted to it. 
-## The pulse value is transmitted as a message when switching 
+## If the dog collides during the bounce, then it gets slowed down.
+## The impulse value is transmitted as a message when switching 
 ## from another state in a pair "impulse":Vector2
 class_name DogStateBounce
 extends DogState
@@ -11,6 +12,12 @@ extends DogState
 
 ## Multiplies initial bouncing impulse 
 @export_range(0, 10, 0.5) var bounce_power: float = 1.5
+
+## The degree of slowing down of the character when colliding with obstractions.
+@export_range(1, 10, 0.25) var collide_slowing_down: float = 2
+
+## Slowing down time in seconds
+@export_range(0.1, 10, 0.1) var slowing_down_time: float = 2
 
 
 var _bounce_velocity = null
@@ -35,10 +42,21 @@ func physics_update(_delta) -> void:
 		return
 	
 	target.velocity = _bounce_velocity
-	target.move_and_slide()
+	var collided = target.move_and_slide()
+	if collided:
+		_slow_down()
+		target.fsm.transition_to("DogStateRun")
+		return
 	var t = impulse_attenuation * _delta
 	_bounce_velocity = _bounce_velocity.lerp(Vector2.ZERO, t)
 
 
 func on_exit() -> void:
 	_bounce_velocity = null
+
+
+func _slow_down():
+	target.speed_multiplier /= collide_slowing_down
+	await get_tree().create_timer(slowing_down_time).timeout
+	target.speed_multiplier *= collide_slowing_down
+	
