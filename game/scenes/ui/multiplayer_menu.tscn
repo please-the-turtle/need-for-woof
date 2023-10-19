@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://1af0pmadvf7h"]
+
+[ext_resource type="PackedScene" uid="uid://nh3cp22bbbym" path="res://scenes/ui/background.tscn" id="1_d0bqr"]
+[ext_resource type="Script" path="res://scripts/ui/multiplayer_menu.gd" id="1_k6s8c"]
+[ext_resource type="Texture2D" uid="uid://dkqopvucgfqtw" path="res://assets/textures/ui/main_menu.png" id="2_fsyyf"]
+[ext_resource type="PackedScene" uid="uid://b5mr86awcmjcl" path="res://scenes/ui/loading.tscn" id="2_tvof8"]
+[ext_resource type="Script" path="res://scripts/ui/change_scene_button.gd" id="3_7n626"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqmc2"]
+atlas = ExtResource("2_fsyyf")
+region = Rect2(18, 47, 12, 21)
+margin = Rect2(0, -5, 0, -9.53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lno2t"]
+atlas = ExtResource("2_fsyyf")
+region = Rect2(1, 49, 13, 14)
+margin = Rect2(-0.45, -1.5, 0, -3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s53qx"]
+atlas = ExtResource("2_fsyyf")
+region = Rect2(64, 49, 17, 15)
+margin = Rect2(-1.025, 0.84, 0, -3)
+
+[node name="MultiplayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k6s8c")
+
+[node name="Background" parent="." instance=ExtResource("1_d0bqr")]
+layout_mode = 1
+
+[node name="Loading" parent="." instance=ExtResource("2_tvof8")]
+visible = false
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -366.0
+offset_right = 202.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="HeaderLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Multiplayer
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoomIdLine" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "ROOM ID"
+alignment = 1
+max_length = 6
+
+[node name="ConnectButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "connect
+existing"
+icon = SubResource("AtlasTexture_vqmc2")
+alignment = 2
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OrLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "OR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "create
+new room"
+icon = SubResource("AtlasTexture_lno2t")
+alignment = 2
+expand_icon = true
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -130.0
+offset_right = 75.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = SubResource("AtlasTexture_s53qx")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_7n626")
+scene_path = "res://scenes/ui/main_menu.tscn"

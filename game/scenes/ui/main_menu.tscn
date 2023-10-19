@@ -12,13 +12,13 @@ region = Rect2(5, 1, 69, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fy10l"]
 atlas = ExtResource("1_47dsx")
-region = Rect2(1, 49, 13, 14)
-margin = Rect2(-0.45, -1.5, 0, -3)
+region = Rect2(96, 0, 16, 16)
+margin = Rect2(0, -2, 0, -6.065)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_231ur"]
 atlas = ExtResource("1_47dsx")
-region = Rect2(18, 47, 12, 21)
-margin = Rect2(0, -5, 0, -9.53)
+region = Rect2(96, 16, 16, 16)
+margin = Rect2(0, -1.83, 0, -5.125)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxq6x"]
 atlas = ExtResource("1_47dsx")
@@ -26,7 +26,7 @@ region = Rect2(34, 50, 12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aeivj"]
 atlas = ExtResource("1_47dsx")
-region = Rect2(80, 32, 16, 16)
+region = Rect2(48, 48, 16, 16)
 margin = Rect2(-0.89, -0.25, 0, -0.5)
 
 [node name="MainMenu" type="Control"]
@@ -70,26 +70,27 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="CreateButton" type="Button" parent="ButtonsContainer"]
+[node name="SingleplayerButton" type="Button" parent="ButtonsContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "create"
+text = "Single"
 icon = SubResource("AtlasTexture_fy10l")
 alignment = 2
 expand_icon = true
 script = ExtResource("3_5t4nr")
 scene_path = "res://scenes/level/test_scene.tscn"
 
-[node name="ConnectButton" type="Button" parent="ButtonsContainer"]
+[node name="MultiplayerButton" type="Button" parent="ButtonsContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "connect"
+text = "Online"
 icon = SubResource("AtlasTexture_231ur")
 alignment = 2
 expand_icon = true
 script = ExtResource("3_5t4nr")
+scene_path = "res://scenes/ui/multiplayer_menu.tscn"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ButtonsContainer"]
 layout_mode = 2
