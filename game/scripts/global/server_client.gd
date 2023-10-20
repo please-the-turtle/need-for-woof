@@ -3,7 +3,7 @@ extends Node
 
 signal connected
 signal disconnected
-signal error_thrown(int)
+signal error_thrown(Error)
 signal message_received(String)
 
 
@@ -23,40 +23,46 @@ var is_connected: bool:
 		return !client_id.is_empty()
 
 
-func connect_to_server(addr: String):
-	disconnect_from_server()
+func connect_to_server(addr: String) -> Error:
+	tcp.poll()
+	if tcp.get_status() == tcp.STATUS_CONNECTED:
+		return OK
 	
+	disconnect_from_server()
 	var host = addr.get_slice(":", 0)
 	var port = addr.get_slice(":", 1).to_int()
 	var error = tcp.connect_to_host(host, port)
 	if error != OK:
-		emit_signal("error_thrown", error)
-		return
+		return error
 	
 	while tcp.get_status() == tcp.STATUS_CONNECTING:
 		error = tcp.poll()
 		if error != OK:
-			emit_signal("error_thrown", error)
-			return
+			return error
 	
 	if tcp.get_status() != tcp.STATUS_CONNECTED:
-		return
+		return ERR_CONNECTION_ERROR
 	
 	while client_id.is_empty():
-		client_id = _get_string_from_tcp()
+		var response = _get_string_from_tcp()
+		if response.begins_with("ERR"):
+			return ERR_CONNECTION_ERROR
+		client_id = response
 	
 	emit_signal("connected")
 	
 	error = udp.connect_to_host(host, port)
 	if error != OK:
-		emit_signal("error_thrown", error)
-		return
+		return error
+	
+	return OK
 
 
 func disconnect_from_server():
 	tcp.disconnect_from_host()
 	udp.close()
 	client_id = ""
+	room_id = ""
 	emit_signal("disconnected")
 
 
@@ -95,7 +101,7 @@ func join_room(id: String) -> Error:
 			push_warning("Joining room error: ", response)
 			return ERR_QUERY_FAILED
 	
-	room_id = response
+	room_id = id
 	return OK
 
 
@@ -154,7 +160,7 @@ func _get_string_from_tcp() -> String:
 	var data = tcp.get_partial_data(bytes)
 	var error = data[0]
 	if error != OK:
-		emit_signal("error", error)
+		push_warning("Error: Reading from TCP: ", error)
 		return ""
 	
 	return data[1].get_string_from_utf8()

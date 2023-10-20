@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://1af0pmadvf7h"]
+[gd_scene load_steps=10 format=3 uid="uid://1af0pmadvf7h"]
 
 [ext_resource type="PackedScene" uid="uid://nh3cp22bbbym" path="res://scenes/ui/background.tscn" id="1_d0bqr"]
 [ext_resource type="Script" path="res://scripts/ui/multiplayer_menu.gd" id="1_k6s8c"]
 [ext_resource type="Texture2D" uid="uid://dkqopvucgfqtw" path="res://assets/textures/ui/main_menu.png" id="2_fsyyf"]
 [ext_resource type="PackedScene" uid="uid://b5mr86awcmjcl" path="res://scenes/ui/loading.tscn" id="2_tvof8"]
 [ext_resource type="Script" path="res://scripts/ui/change_scene_button.gd" id="3_7n626"]
+[ext_resource type="PackedScene" uid="uid://dtbyin3jp28uq" path="res://scenes/ui/message_dialog.tscn" id="6_vvj0j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqmc2"]
 atlas = ExtResource("2_fsyyf")
@@ -64,6 +65,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RoomIdLine" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 placeholder_text = "ROOM ID"
@@ -74,7 +76,7 @@ max_length = 6
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "connect
+text = "connect to
 existing"
 icon = SubResource("AtlasTexture_vqmc2")
 alignment = 2
@@ -128,3 +130,11 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_7n626")
 scene_path = "res://scenes/ui/main_menu.tscn"
+
+[node name="MessageDialog" parent="." instance=ExtResource("6_vvj0j")]
+layout_mode = 1
+
+[connection signal="text_changed" from="VBoxContainer/RoomIdLine" to="." method="_on_room_id_line_text_changed"]
+[connection signal="pressed" from="VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
