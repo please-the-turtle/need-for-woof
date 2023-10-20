@@ -6,6 +6,7 @@ const SETTINGS_PATH = "user://settings.json"
 const NICKNAME = "nickname"
 const SOUNDS_VOLUME = "sounds_volume"
 const MUSIC_VOLUME = "music_volume"
+const DEFAULT_SERVER_ADDR = "127.0.0.1:5558"
 const USE_CUSTOM_ADDR = "use_custom_address"
 const CUSTOM_SERVER_ADDR = "custom_server_address"
 
