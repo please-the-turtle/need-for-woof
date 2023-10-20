@@ -23,7 +23,6 @@ var message: String = "Something wrong":
 
 func _ready():
 	visible = false
-	open()
 
 
 func open():
