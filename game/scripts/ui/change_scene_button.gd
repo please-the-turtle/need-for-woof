@@ -8,6 +8,7 @@ extends Button
 
 
 func _pressed() -> void:
-	if scene_path.is_empty():
+	if !scene_path.is_absolute_path():
+		push_error("Scene path is not valid.")
 		return
 	SceneChanger.go_to_scene(scene_path)
