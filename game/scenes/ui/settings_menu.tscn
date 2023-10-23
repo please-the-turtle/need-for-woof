@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://nh3cp22bbbym" path="res://scenes/ui/background.tscn" id="1_8y0td"]
 [ext_resource type="Script" path="res://scripts/ui/settings_menu.gd" id="1_tvcou"]
 [ext_resource type="Texture2D" uid="uid://dkqopvucgfqtw" path="res://assets/textures/ui/main_menu.png" id="2_slmsk"]
-[ext_resource type="Script" path="res://scripts/ui/change_scene_button.gd" id="3_h008v"]
+[ext_resource type="Script" path="res://scripts/ui/back_button.gd" id="4_a3cwn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_271ed"]
 atlas = ExtResource("2_slmsk")
@@ -121,8 +121,7 @@ grow_vertical = 0
 icon = SubResource("AtlasTexture_l1w0v")
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("3_h008v")
-scene_path = "res://scenes/ui/main_menu.tscn"
+script = ExtResource("4_a3cwn")
 
 [connection signal="text_changed" from="VBoxContainer/Nickname" to="." method="_on_nickname_text_changed"]
 [connection signal="drag_ended" from="VBoxContainer/MusicContainer/MusicSlider" to="." method="_on_music_slider_drag_ended"]
