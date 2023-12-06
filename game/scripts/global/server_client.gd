@@ -18,7 +18,7 @@ var udp: PacketPeerUDP = PacketPeerUDP.new()
 var client_id: String = ""
 var room_id: String = ""
 
-var is_connected: bool:
+var is_client_connected: bool:
 	get:
 		return !client_id.is_empty()
 
