@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgoucserhky7y"]
+[gd_scene load_steps=10 format=3 uid="uid://dgoucserhky7y"]
 
 [ext_resource type="Script" path="res://scripts/ui/room.gd" id="1_lb18j"]
 [ext_resource type="PackedScene" uid="uid://nh3cp22bbbym" path="res://scenes/ui/background.tscn" id="1_plp4p"]
@@ -8,6 +8,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qnkn"]
 atlas = ExtResource("3_v1vl6")
 region = Rect2(81, 33, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sfrs"]
+atlas = ExtResource("3_v1vl6")
+region = Rect2(97, 33, 14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fp03o"]
 atlas = ExtResource("3_v1vl6")
@@ -61,7 +65,7 @@ offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_0qnkn")
-texture_pressed = SubResource("AtlasTexture_0qnkn")
+texture_pressed = SubResource("AtlasTexture_3sfrs")
 texture_hover = SubResource("AtlasTexture_0qnkn")
 texture_disabled = SubResource("AtlasTexture_0qnkn")
 texture_focused = SubResource("AtlasTexture_0qnkn")
@@ -106,7 +110,7 @@ expand_icon = true
 script = ExtResource("4_7gsyo")
 scene_path = "res://scenes/ui/multiplayer_menu.tscn"
 
-[node name="StartButton" type="Button" parent="ButtonsContainer"]
+[node name="ReadyButton" type="Button" parent="ButtonsContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 toggle_mode = true
@@ -116,3 +120,4 @@ expand_icon = true
 
 [connection signal="pressed" from="RoomIdLabel/CopyButton" to="." method="_on_copy_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="ButtonsContainer/ReadyButton" to="." method="_on_ready_button_toggled"]
