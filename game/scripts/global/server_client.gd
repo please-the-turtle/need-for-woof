@@ -115,7 +115,7 @@ func leave_room() -> Error:
 
 func send_tcp(message: String) -> Error:
 	message += '\n'
-	return tcp.put_data(message.to_ascii_buffer())
+	return tcp.put_data(message.to_utf8_buffer())
 
 
 func send_udp(message: String) -> Error:
@@ -123,7 +123,7 @@ func send_udp(message: String) -> Error:
 		return ERR_UNCONFIGURED
 	
 	message = "%s: %s\n" % [client_id, message]
-	return udp.put_packet(message.to_ascii_buffer())
+	return udp.put_packet(message.to_utf8_buffer())
 
 
 func _process(_delta):
@@ -138,18 +138,23 @@ func _listen_tcp():
 		emit_signal("disconnected")
 		return
 
-	var message = _get_string_from_tcp()
-	if not message.is_empty():
-		emit_signal("message_received", message)
+	var recieved = _get_string_from_tcp()
+	if recieved.is_empty():
+		return
+		
+	for message in recieved.split("\n", false, 0):
+		message_received.emit(message)
 
 
 func _listen_udp():
 	if not udp.is_socket_connected():
 		return
 	
-	if udp.get_available_packet_count() > 0:
-		var message = udp.get_packet().get_string_from_utf8()
-		emit_signal("message_received", message)
+	if udp.get_available_packet_count() <= 0:
+		return
+	
+	var message = udp.get_packet().get_string_from_utf8().strip_edges()
+	message_received.emit(message)
 
 
 func _get_string_from_tcp() -> String:
@@ -163,4 +168,5 @@ func _get_string_from_tcp() -> String:
 		push_warning("Error: Reading from TCP: ", error)
 		return ""
 	
-	return data[1].get_string_from_utf8()
+	var string = data[1].get_string_from_utf8().strip_edges()
+	return string
