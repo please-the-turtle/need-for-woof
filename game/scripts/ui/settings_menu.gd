@@ -13,8 +13,12 @@ func _ready():
 	addr_line.focus_mode = FOCUS_ALL if use_custom_addr else FOCUS_NONE
 
 
-func _on_nickname_text_changed(new_text):
-	GameSettings.set_setting(GameSettings.NICKNAME, new_text)
+func _on_nickname_text_changed(new_text: String):
+	var nickname_line = %Nickname
+	var cursor_position = nickname_line.caret_column
+	nickname_line.text = new_text.replace(" ", "")
+	nickname_line.caret_column = cursor_position
+	GameSettings.set_setting(GameSettings.NICKNAME, nickname_line.text)
 
 
 func _on_music_slider_drag_ended(value_changed):
