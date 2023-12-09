@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvb7kic605fh5"]
+[gd_scene load_steps=6 format=3 uid="uid://bvb7kic605fh5"]
 
+[ext_resource type="Script" path="res://scripts/ui/player_info.gd" id="1_lmeru"]
 [ext_resource type="Texture2D" uid="uid://celhlcodepjmn" path="res://assets/textures/ui/siba/siba_head.png" id="1_xfr2y"]
 [ext_resource type="Texture2D" uid="uid://dkqopvucgfqtw" path="res://assets/textures/ui/main_menu.png" id="2_1kvx6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpkg2"]
 atlas = ExtResource("2_1kvx6")
 region = Rect2(57, 73, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3wj0"]
+atlas = ExtResource("2_1kvx6")
+region = Rect2(48, 73, 7, 7)
 
 [node name="PlayerInfo" type="HBoxContainer"]
 anchors_preset = 15
@@ -14,6 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+script = ExtResource("1_lmeru")
 
 [node name="DogIcon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
@@ -29,7 +35,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ReadyIcon" type="TextureRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = SubResource("AtlasTexture_xpkg2")
+stretch_mode = 5
+
+[node name="NotReadyIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_r3wj0")
 stretch_mode = 5
