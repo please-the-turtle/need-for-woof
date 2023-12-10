@@ -103,6 +103,8 @@ corner_radius_bottom_left = 4
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngs00"]
+content_margin_top = 12.0
+content_margin_bottom = 17.0
 bg_color = Color(1, 1, 0.882353, 1)
 border_width_left = 4
 border_width_top = 4
@@ -113,10 +115,10 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip572"]
+content_margin_top = 12.0
+content_margin_bottom = 17.0
 bg_color = Color(1, 1, 0.882353, 0.54902)
 border_width_left = 4
 border_width_top = 4
@@ -127,8 +129,6 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1so6"]
 atlas = ExtResource("1_1tjb5")
