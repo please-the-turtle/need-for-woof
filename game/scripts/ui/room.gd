@@ -9,11 +9,13 @@ var players_manager: PlayersManager = PlayersManager.new()
 func _ready():
 	$RoomIdLabel.text = "ID: %s" % ServerClient.room_id
 	
+	# Adding local player on the players list
 	var local_player_info = player_info_scene.instantiate()
 	local_player_info.name = players_manager.local_player.id
 	players_list.add_child(local_player_info)
 	local_player_info.update_info.call_deferred(players_manager.local_player)
 	
+	# Connecting PlayersManager signals
 	players_manager.player_joined.connect(_on_player_joined)
 	players_manager.player_left.connect(_on_player_left)
 	players_manager.player_ready_changed.connect(_on_player_ready_changed)

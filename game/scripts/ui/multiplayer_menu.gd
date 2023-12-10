@@ -1,23 +1,41 @@
 extends Control
 
+signal connecting_done(error: Error)
+
 
 @onready var dialog: PanelContainer = $MessageDialog
 @onready var loading: Control = $Loading
 @onready var menu = $VBoxContainer
+@onready var backButton = $BackButton
+
+var thread: Thread = Thread.new()
 
 
 func _ready():
+	connecting_done.connect(_on_connecting_done)
+	
 	menu.visible = false
 	loading.label = "connecting"
 	loading.play()
+	backButton.disabled = true
 	
+	thread.start(_try_to_connect_to_server)
+
+
+func _try_to_connect_to_server():
 	var address = GameSettings.DEFAULT_SERVER_ADDR
 	if GameSettings.get_setting(GameSettings.USE_CUSTOM_ADDR):
 		address = GameSettings.get_setting(GameSettings.CUSTOM_SERVER_ADDR)
+	
 	var error = ServerClient.connect_to_server(address)
+	emit_signal.call_deferred("connecting_done", error)
+
+
+func _on_connecting_done(error):
 	loading.stop()
+	
 	if error != OK:
-		if error == ERR_CONNECTION_ERROR:
+		if error == ERR_CONNECTION_ERROR or error == ERR_TIMEOUT:
 			dialog.message = "The server is unavailable"
 		dialog.open()
 		await dialog.ok_pressed
@@ -25,6 +43,11 @@ func _ready():
 		return
 	
 	menu.visible = true
+	backButton.disabled = false
+
+
+func _exit_tree():
+	thread.wait_to_finish()
 
 
 func _on_back_button_pressed():

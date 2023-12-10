@@ -132,6 +132,7 @@ script = ExtResource("3_7n626")
 scene_path = "res://scenes/ui/main_menu.tscn"
 
 [node name="MessageDialog" parent="." instance=ExtResource("6_vvj0j")]
+visible = false
 layout_mode = 1
 
 [connection signal="text_changed" from="VBoxContainer/RoomIdLine" to="." method="_on_room_id_line_text_changed"]
