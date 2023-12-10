@@ -3,13 +3,14 @@ extends Node
 
 signal connected
 signal disconnected
-signal error_thrown(Error)
 signal message_received(String)
 
 
 const CREATE_ROOM_COMMAND = ":ROOM"
 const JOIN_ROOM_COMMAND = ":JOIN"
 const LEAVE_ROOM_COMMAND = ":LEAV"
+
+const MAX_RESPONSE_WAIT_TIME_MS = 3000
 
 
 var tcp: StreamPeerTCP = StreamPeerTCP.new()
@@ -24,6 +25,11 @@ var is_client_connected: bool:
 
 
 func connect_to_server(addr: String) -> Error:
+	var connecting_start_time = Time.get_ticks_msec()
+	var is_connection_timeout = func() -> bool:
+		return Time.get_ticks_msec() - connecting_start_time \
+				> MAX_RESPONSE_WAIT_TIME_MS
+	
 	tcp.poll()
 	if tcp.get_status() == tcp.STATUS_CONNECTED:
 		return OK
@@ -36,6 +42,8 @@ func connect_to_server(addr: String) -> Error:
 		return error
 	
 	while tcp.get_status() == tcp.STATUS_CONNECTING:
+		if is_connection_timeout.call():
+			return ERR_TIMEOUT
 		error = tcp.poll()
 		if error != OK:
 			return error
@@ -44,17 +52,18 @@ func connect_to_server(addr: String) -> Error:
 		return ERR_CONNECTION_ERROR
 	
 	while client_id.is_empty():
+		if is_connection_timeout.call():
+			return ERR_TIMEOUT
 		var response = _get_string_from_tcp()
 		if response.begins_with("ERR"):
 			return ERR_CONNECTION_ERROR
 		client_id = response
 	
-	emit_signal("connected")
-	
 	error = udp.connect_to_host(host, port)
 	if error != OK:
 		return error
 	
+	emit_signal.call_deferred("connected")
 	return OK
 
 
@@ -63,7 +72,7 @@ func disconnect_from_server():
 	udp.close()
 	client_id = ""
 	room_id = ""
-	emit_signal("disconnected")
+	emit_signal.call_deferred("disconnected")
 
 
 func create_room() -> Error:
