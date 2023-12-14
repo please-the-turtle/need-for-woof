@@ -23,6 +23,7 @@ ApplicationPermissions="*res://scripts/global/application_permissions.gd"
 SceneChanger="*res://scripts/global/scene_changer.gd"
 GameSettings="*res://scripts/global/game_settings.gd"
 ServerClient="*res://scripts/global/server_client.gd"
+SharedStorage="*res://scripts/global/shared_storage.gd"
 
 [display]
 
