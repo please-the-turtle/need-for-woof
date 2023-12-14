@@ -4,7 +4,8 @@ extends Control
 signal is_over
 
 
-const TICK_LABELS = ["3", "2", "1", "GO!"]
+const TICK_LABELS = ["3", "2", "1"]
+const START_LABEL = "GO!"
 
 
 @onready var label: Label = $Label
@@ -14,8 +15,6 @@ const TICK_LABELS = ["3", "2", "1", "GO!"]
 func _ready():
 	visible = false
 	label.text = ""
-	
-	start()
 
 
 func start():
@@ -24,8 +23,11 @@ func start():
 		label.text = i
 		animation.play("tick")
 		await animation.animation_finished
-	visible = false
 	emit_signal("is_over")
+	label.text = START_LABEL
+	animation.play("tick")
+	await animation.animation_finished
+	visible = false
 
 
 
