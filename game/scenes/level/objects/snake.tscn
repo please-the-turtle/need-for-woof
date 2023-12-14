@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk62ckcd5rhhm"]
 
-[ext_resource type="PackedScene" uid="uid://b56jrtplvlg48" path="res://scenes/level/plank.tscn" id="1_xke2f"]
-[ext_resource type="PackedScene" uid="uid://f67548w6mysp" path="res://scenes/level/bone.tscn" id="2_anjag"]
+[ext_resource type="PackedScene" uid="uid://b56jrtplvlg48" path="res://scenes/level/objects/plank.tscn" id="1_xke2f"]
+[ext_resource type="PackedScene" uid="uid://f67548w6mysp" path="res://scenes/level/objects/bone.tscn" id="2_anjag"]
 
 [node name="Snake" type="Node2D"]
 y_sort_enabled = true

@@ -277,10 +277,7 @@ _target = NodePath("..")
 [node name="DogStateMachine" type="Node" parent="." node_paths=PackedStringArray("target", "state")]
 script = ExtResource("3_uedr2")
 target = NodePath("..")
-state = NodePath("DogStateRun")
-
-[node name="DogStateIdle" type="Node" parent="DogStateMachine"]
-script = ExtResource("4_cypq3")
+state = NodePath("DogStateIdle")
 
 [node name="DogStateRun" type="Node" parent="DogStateMachine"]
 script = ExtResource("4_ympsc")
@@ -293,5 +290,8 @@ script = ExtResource("8_tv3u4")
 
 [node name="DogStateBounce" type="Node" parent="DogStateMachine"]
 script = ExtResource("9_xaq3x")
+
+[node name="DogStateIdle" type="Node" parent="DogStateMachine"]
+script = ExtResource("4_cypq3")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="DogStateMachine/DogStateJump" method="_on_animation_finished"]

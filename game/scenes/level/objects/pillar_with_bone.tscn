@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://doh7np3objgi8"]
 
-[ext_resource type="PackedScene" uid="uid://srjwnl15xg28" path="res://scenes/level/pillar.tscn" id="1_hwx7n"]
-[ext_resource type="PackedScene" uid="uid://f67548w6mysp" path="res://scenes/level/bone.tscn" id="2_ebh27"]
+[ext_resource type="PackedScene" uid="uid://srjwnl15xg28" path="res://scenes/level/objects/pillar.tscn" id="1_hwx7n"]
+[ext_resource type="PackedScene" uid="uid://f67548w6mysp" path="res://scenes/level/objects/bone.tscn" id="2_ebh27"]
 
 [node name="PillarWithBone" type="Node2D"]
 
