@@ -4,4 +4,3 @@ extends DogState
 
 func on_enter(_msg := {}) -> void:
 	target.animation.play("idle")
-	pass

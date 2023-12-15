@@ -6,6 +6,7 @@
 class_name DogStateBounce
 extends DogState
 
+
 ## The greater the impulse attenuation value, 
 ## the less time the bounce lasts.
 @export_range(1, 20, 0.5) var impulse_attenuation: float = 5
@@ -20,7 +21,7 @@ extends DogState
 @export_range(0.1, 10, 0.1) var slowing_down_time: float = 2
 
 
-var _bounce_velocity = null
+var _bounce_velocity: Vector2
 
 
 func on_enter(_msg := {}) -> void:
@@ -52,7 +53,7 @@ func physics_update(_delta) -> void:
 
 
 func on_exit() -> void:
-	_bounce_velocity = null
+	_bounce_velocity = Vector2.ZERO
 
 
 func _slow_down():

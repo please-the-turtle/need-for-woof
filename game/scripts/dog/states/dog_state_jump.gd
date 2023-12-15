@@ -2,15 +2,12 @@ class_name DogStateJump
 extends DogState
 
 
-const IN_AIR_COLLISIONS = 0b1010
-const ON_GROUND_COLLISIONS = 0b1100
-
 var _initial_z_index: int
+
 
 func on_enter(_msg := {}) -> void:
 	target.stamina -= target.jump_stamina_expenditure
 	target.speed_multiplier *= target.jumping_speed_boost
-	target.collision_mask = IN_AIR_COLLISIONS
 	_initial_z_index = target.z_index
 	target.z_index = 5
 	target.animation.play("jump")
@@ -24,7 +21,7 @@ func physics_update(_delta) -> void:
 
 
 func on_exit() -> void:
-	target.collision_mask = ON_GROUND_COLLISIONS
+	target.collision_mask = PlayerCollisionMasks.ON_GROUND_COLLISIONS
 	target.speed_multiplier /= target.jumping_speed_boost
 	target.z_index = _initial_z_index
 
@@ -41,7 +38,7 @@ func _push_another_dogs() -> void:
 		if not collider is Dog:
 			continue
 		
-		var bounce_impulse = collision.get_normal()
+		var bounce_impulse: Vector2 = collision.get_normal()
 		bounce_impulse *= -1
 		bounce_impulse *= target.speed * target.speed_multiplier
 		collider.fsm.transition_to("DogStateBounce", {
