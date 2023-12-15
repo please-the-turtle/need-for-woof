@@ -239,8 +239,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wll3j"]
-radius = 23.0
-height = 50.0
+radius = 28.0
+height = 74.0
 
 [node name="Siba" type="CharacterBody2D"]
 collision_mask = 3
