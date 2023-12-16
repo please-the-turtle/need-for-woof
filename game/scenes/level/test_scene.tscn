@@ -24,14 +24,8 @@ target = NodePath("../Siba")
 unique_name_in_owner = true
 
 [node name="Siba2" parent="." instance=ExtResource("1_01kqc")]
-position = Vector2(142, -314)
+position = Vector2(381, -314)
 collision_mask = 0
-
-[node name="Shadow" parent="Siba2" index="0"]
-visible = false
-
-[node name="Person" parent="Siba2" index="1"]
-frame = 0
 
 [node name="Siba" parent="." instance=ExtResource("1_01kqc")]
 position = Vector2(241, 413)
@@ -60,7 +54,7 @@ position = Vector2(287, -6142)
 position = Vector2(400, -5058)
 
 [node name="Snake" parent="." instance=ExtResource("5_mx6oj")]
-position = Vector2(267, -904)
+position = Vector2(267, -992)
 
 [node name="Snake2" parent="." instance=ExtResource("5_mx6oj")]
 position = Vector2(344, -3591)
@@ -73,5 +67,3 @@ position = Vector2(118, -6574)
 
 [node name="FinishLine" parent="." instance=ExtResource("8_14nq3")]
 position = Vector2(241, -8099)
-
-[editable path="Siba2"]
