@@ -15,6 +15,8 @@ extends CharacterBody2D
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var fsm: DogStateMachine = $DogStateMachine
+@onready var ray_cast: RayCast2D = %RayCast2D
+
 
 ## Multiplies the speed of movement in various situations. 
 ## For example, when jumping.

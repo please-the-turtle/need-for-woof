@@ -243,7 +243,7 @@ radius = 28.0
 height = 74.0
 
 [node name="Siba" type="CharacterBody2D"]
-collision_mask = 3
+collision_mask = 7
 motion_mode = 1
 platform_wall_layers = 7
 script = ExtResource("1_k3ryg")
@@ -269,6 +269,13 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wll3j")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+enabled = false
+target_position = Vector2(0, 0)
+collision_mask = 7
+collide_with_areas = true
 
 [node name="DogMovementController" type="Node" parent="." node_paths=PackedStringArray("_target")]
 script = ExtResource("7_w20pl")

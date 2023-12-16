@@ -22,6 +22,7 @@ extends DogState
 
 
 var _bounce_velocity: Vector2
+var _is_slowed: bool = false
 
 
 func on_enter(_msg := {}) -> void:
@@ -34,7 +35,7 @@ func on_enter(_msg := {}) -> void:
 	target.animation.pause()
 
 
-func physics_update(_delta) -> void:
+func physics_update(delta) -> void:
 	if _bounce_velocity == null:
 		return
 	
@@ -42,22 +43,33 @@ func physics_update(_delta) -> void:
 		target.fsm.transition_to("DogStateRun")
 		return
 	
+	target.ray_cast.target_position = _bounce_velocity * delta
+	target.ray_cast.force_raycast_update()
+	if target.ray_cast.is_colliding():
+		_bounce_velocity = target.ray_cast.get_collision_point() - target.position
+	
 	target.velocity = _bounce_velocity
 	var collided = target.move_and_slide()
 	if collided:
 		_slow_down()
 		target.fsm.transition_to("DogStateRun")
 		return
-	var t = impulse_attenuation * _delta
+	var t = impulse_attenuation * delta
 	_bounce_velocity = _bounce_velocity.lerp(Vector2.ZERO, t)
 
 
 func on_exit() -> void:
 	_bounce_velocity = Vector2.ZERO
+	target.ray_cast.target_position = Vector2.ZERO
 
 
 func _slow_down():
+	if _is_slowed:
+		return
+	
+	_is_slowed = true
 	target.speed_multiplier /= collide_slowing_down
 	await get_tree().create_timer(slowing_down_time).timeout
 	target.speed_multiplier *= collide_slowing_down
+	_is_slowed = false
 	
