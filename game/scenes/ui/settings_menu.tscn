@@ -75,6 +75,7 @@ layout_mode = 2
 placeholder_text = "nickname"
 alignment = 1
 max_length = 10
+context_menu_enabled = false
 select_all_on_focus = true
 
 [node name="MusicContainer" type="HBoxContainer" parent="MenuContainer/VBoxContainer"]
@@ -118,6 +119,7 @@ text = "localhost:5558"
 placeholder_text = "custom address"
 alignment = 1
 editable = false
+context_menu_enabled = false
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
