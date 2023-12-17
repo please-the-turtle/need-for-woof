@@ -4,8 +4,8 @@ extends Control
 signal is_over
 
 
-const TICK_LABELS = ["3", "2", "1"]
-const START_LABEL = "GO!"
+const TICK_LABELS = [" 3", " 2", " 1"]
+const START_LABEL = " GO!"
 
 
 @onready var label: Label = $Label

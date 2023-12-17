@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://sh7rjjt0tpu3"]
+
+[ext_resource type="PackedScene" uid="uid://ui2ttf2eo3ca" path="res://scenes/level/level_field.tscn" id="1_0unpy"]
+[ext_resource type="Script" path="res://scripts/level/multiplayer_scene.gd" id="1_vao2u"]
+[ext_resource type="PackedScene" uid="uid://c3ateal751p46" path="res://scenes/ui/level_gui.tscn" id="2_5qm5i"]
+[ext_resource type="PackedScene" uid="uid://das6fmm2gj4my" path="res://scenes/level/objects/finish_line.tscn" id="3_iapas"]
+[ext_resource type="PackedScene" uid="uid://pmrv6l428ikx" path="res://scenes/ui/countdown.tscn" id="4_0mbg7"]
+[ext_resource type="PackedScene" uid="uid://dyooh7eqh6xas" path="res://scenes/level/objects/start_line.tscn" id="4_63riu"]
+
+[node name="MultiplayerScene" type="Node2D"]
+script = ExtResource("1_vao2u")
+
+[node name="LevelField" parent="." instance=ExtResource("1_0unpy")]
+
+[node name="FinishLine" parent="." instance=ExtResource("3_iapas")]
+position = Vector2(241, -8102)
+
+[node name="StartLine" parent="." instance=ExtResource("4_63riu")]
+position = Vector2(240, 400)
+
+[node name="LevelGUI" parent="." instance=ExtResource("2_5qm5i")]
+
+[node name="Countdown" parent="LevelGUI" instance=ExtResource("4_0mbg7")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="dog_finished" from="FinishLine" to="." method="_on_finish_line_dog_finished"]
+[connection signal="home_button_pressed" from="LevelGUI" to="." method="_on_level_gui_home_button_pressed"]
+[connection signal="is_over" from="LevelGUI/Countdown" to="." method="_on_countdown_is_over"]

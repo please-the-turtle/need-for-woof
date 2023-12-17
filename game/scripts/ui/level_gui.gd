@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 
+signal home_button_pressed
+
+
 @export var target: Dog
 
 
@@ -12,5 +15,5 @@ func _process(_delta):
 
 
 func _on_home_button_pressed():
-	var scene_changer = get_node("/root/SceneChanger")
-	scene_changer.go_to_scene("res://scenes/ui/main_menu.tscn")
+	SceneChanger.go_to_scene("res://scenes/ui/main_menu.tscn")
+	home_button_pressed.emit()

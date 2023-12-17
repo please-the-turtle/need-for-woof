@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://r2hoprqainig"]
+
+[ext_resource type="Script" path="res://scripts/dog/dog_movement_controller.gd" id="1_kkoqw"]
+
+[node name="DogMovementController" type="Node"]
+script = ExtResource("1_kkoqw")

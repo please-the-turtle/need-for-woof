@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyooh7eqh6xas"]
+
+[ext_resource type="Script" path="res://scripts/level/start_line.gd" id="1_1on2t"]
+
+[node name="StartLine" type="Line2D"]
+visible = false
+points = PackedVector2Array(-190, 0, 190, 0)
+script = ExtResource("1_1on2t")

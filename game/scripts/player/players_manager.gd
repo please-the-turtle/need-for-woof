@@ -35,6 +35,7 @@ var _command_handlers: Dictionary = {
 	COMMAND_NICKNAME: _nickname_handler,
 }
 
+
 func _init():
 	local_player = Player.new()
 	local_player.id = ServerClient.client_id
@@ -85,13 +86,28 @@ func introduce_yourself():
 	ServerClient.send_tcp(intro_mess)
 
 
-func set_local_player_ready(ready: bool) -> Error:
+func set_local_player_ready_for_all(ready: bool) -> Error:
 	var ready_message = "%s=%s" % [COMMAND_READY, ready]
 	var error = ServerClient.send_tcp(ready_message)
 	if error == OK:
 		local_player.ready = ready
+		player_ready_changed.emit(local_player)
 	
 	return error
+
+
+func is_all_players_ready() -> bool:
+	if local_player and not local_player.ready:
+		return false
+	
+	for player in remote_players.values():
+		if not(player is Player):
+			return false
+		var p = player as Player
+		if not p.ready:
+			return false
+	
+	return true
 
 
 func _join_handler(caller_id: String, _params: String):
