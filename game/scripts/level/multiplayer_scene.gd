@@ -43,12 +43,20 @@ func _spawn_dogs():
 	var dogs_number = _dogs.size()
 	for i in dogs_number:
 		var dog: Dog = _dogs[i]
-		var dog_pos = Vector2(
-			start_line.rect_width / (dogs_number + 1) * (i + 1) + start_line.first_point.x,
-			start_line.rect_height / (dogs_number + 1) * (i + 1) + start_line.first_point.y
+		var dog_pos = lerp(
+			start_line.first_point, 
+			start_line.last_point, 
+			(i + 1.0)/(dogs_number + 1.0)
 		)
 		dog.position = dog_pos
 		add_child(dog)
+		
+		if dog != _local_dog:
+			dog.fsm.transition_to("DogStateRemote")
+	
+	var transmitter = load("res://scenes/level/dog/dog_state_transmitter.tscn").instantiate()
+	transmitter.target = _local_dog
+	add_child(transmitter)
 
 
 func _on_countdown_is_over():

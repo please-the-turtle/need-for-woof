@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://rw8lnjgfcg1e"]
+[gd_scene load_steps=12 format=3 uid="uid://rw8lnjgfcg1e"]
 
 [ext_resource type="PackedScene" uid="uid://ot6xv36mhi2t" path="res://scenes/level/dog/siba.tscn" id="1_01kqc"]
 [ext_resource type="PackedScene" uid="uid://ui2ttf2eo3ca" path="res://scenes/level/level_field.tscn" id="1_52rug"]
 [ext_resource type="Script" path="res://scripts/level/test_scene.gd" id="1_bycf3"]
+[ext_resource type="PackedScene" uid="uid://r2hoprqainig" path="res://scenes/level/dog/dog_movement_controller.tscn" id="2_w07tg"]
 [ext_resource type="PackedScene" uid="uid://cgrxb11i0dexh" path="res://scenes/level/player_camera.tscn" id="3_s484a"]
 [ext_resource type="PackedScene" uid="uid://c3ateal751p46" path="res://scenes/ui/level_gui.tscn" id="3_xm2jc"]
 [ext_resource type="PackedScene" uid="uid://srjwnl15xg28" path="res://scenes/level/objects/pillar.tscn" id="4_6jxga"]
@@ -14,6 +15,9 @@
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_bycf3")
+
+[node name="DogMovementController" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_w07tg")]
+target = NodePath("../Siba")
 
 [node name="LevelField" parent="." instance=ExtResource("1_52rug")]
 

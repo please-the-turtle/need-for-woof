@@ -13,8 +13,10 @@ var _loaded_dog_packed_scenes: Dictionary = {}
 func create_local_dog(local_player: Player) -> Dog:
 	var dog = create_dog(local_player)
 	dog.name = local_player.id
+	
 	var camera = load("res://scenes/level/player_camera.tscn").instantiate()
 	dog.add_child(camera)
+	
 	var controller = load("res://scenes//level/dog/dog_movement_controller.tscn").instantiate()
 	controller.target = dog
 	dog.add_child(controller)

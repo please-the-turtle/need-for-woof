@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ot6xv36mhi2t"]
+[gd_scene load_steps=16 format=3 uid="uid://ot6xv36mhi2t"]
 
 [ext_resource type="Script" path="res://scripts/dog/dog.gd" id="1_k3ryg"]
 [ext_resource type="Texture2D" uid="uid://ccpg47u3cq08e" path="res://assets/textures/level/siba/siba.png" id="1_ol7om"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_run.gd" id="4_ympsc"]
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_jump.gd" id="5_0cnbw"]
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_tunnel.gd" id="8_tv3u4"]
+[ext_resource type="Script" path="res://scripts/dog/states/dog_state_remote.gd" id="9_nnyrs"]
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_bounce.gd" id="9_xaq3x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nqbn"]
@@ -295,5 +296,8 @@ script = ExtResource("9_xaq3x")
 
 [node name="DogStateIdle" type="Node" parent="DogStateMachine"]
 script = ExtResource("4_cypq3")
+
+[node name="DogStateRemote" type="Node" parent="DogStateMachine"]
+script = ExtResource("9_nnyrs")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="DogStateMachine/DogStateJump" method="_on_animation_finished"]

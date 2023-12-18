@@ -6,6 +6,8 @@ signal player_joined(player: Player)
 signal player_left(player: Player)
 signal player_ready_changed(player: Player)
 signal player_nickname_changed(player: Player)
+signal player_position_changed(player_id: String, new_position: Vector2)
+signal player_animation_changed(player_id: String, animation_name: String)
 
 
 ## Separates the sender's ID from the message text
@@ -18,6 +20,9 @@ const COMMAND_JOINDED = "JOINED"
 const COMMAND_LEFT = "LEFT"
 const COMMAND_READY = "ready"
 const COMMAND_NICKNAME = "nickname"
+const COMMAND_DOG_TYPE = "dog"
+const COMMAND_POSITION = "pos"
+const COMMAND_ANIMATION = "anim"
 
 
 ## Data of local player
@@ -33,6 +38,8 @@ var _command_handlers: Dictionary = {
 	COMMAND_LEFT: _left_handler,
 	COMMAND_READY: _ready_handler,
 	COMMAND_NICKNAME: _nickname_handler,
+	COMMAND_POSITION: _position_handler,
+	COMMAND_ANIMATION: _animation_handler,
 }
 
 
@@ -96,6 +103,20 @@ func set_local_player_ready_for_all(ready: bool) -> Error:
 	return error
 
 
+## Sends information about the local player's position to the remote players.
+func send_local_player_position(position: Vector2) -> Error:
+	# Sample: pos=200,240
+	var position_message = "%s=%s,%s" % [COMMAND_POSITION, position.x, position.y]
+	return ServerClient.send_udp(position_message)
+
+
+## Sends information about the local player's animation to the remote players.
+func send_local_player_animation(animation_name: String) -> Error:
+	# Sample: anim=idle
+	var animation_message = "%s=%s" % [COMMAND_ANIMATION, animation_name]
+	return ServerClient.send_tcp(animation_message)
+
+
 func is_all_players_ready() -> bool:
 	if local_player and not local_player.ready:
 		return false
@@ -139,3 +160,25 @@ func _nickname_handler(caller_id: String, params: String):
 	if player != null:
 		player.nickname = params
 		player_nickname_changed.emit(player)
+
+
+func _position_handler(caller_id: String, params: String):
+	if not remote_players.has(caller_id):
+		return
+	
+	var position_dimentions = params.split_floats(",", false)
+	if position_dimentions.size() < 2:
+		return
+	
+	var new_position = Vector2(position_dimentions[0], position_dimentions[1])
+	player_position_changed.emit(caller_id, new_position)
+
+
+func _animation_handler(caller_id: String, params: String):
+	if not remote_players.has(caller_id):
+		return
+	
+	if params.is_empty():
+		return
+	
+	player_animation_changed.emit(caller_id, params)
