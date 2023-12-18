@@ -71,6 +71,7 @@ layout_mode = 2
 placeholder_text = "ROOM ID"
 alignment = 1
 max_length = 6
+context_menu_enabled = false
 
 [node name="ConnectButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
