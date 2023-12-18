@@ -70,9 +70,13 @@ func _on_ready_button_toggled(toggled_on):
 
 
 func _on_copy_button_pressed():
+	if not DisplayServer.has_feature(DisplayServer.FEATURE_CLIPBOARD):
+		return
+	
 	var id_string = $RoomIdLabel.text
 	id_string = id_string.trim_prefix("ID: ")
 	DisplayServer.clipboard_set(id_string)
+	$RoomIdLabel/CopyButton/CopiedIcon.visible = true
 
 
 func _on_back_button_pressed():
