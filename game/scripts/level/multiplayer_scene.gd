@@ -68,6 +68,8 @@ func _on_finish_line_dog_finished(_dog):
 
 
 func _on_level_gui_home_button_pressed():
+	process_mode = Node.PROCESS_MODE_DISABLED
+	
 	SharedStorage.delete(SharedStorage.PLAYERS_MANAGER)
 	_players_manager.free()
 	ServerClient.leave_room()

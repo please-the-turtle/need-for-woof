@@ -24,6 +24,10 @@ var is_client_connected: bool:
 		return !client_id.is_empty()
 
 
+func _ready():
+	set_process.call_deferred(false)
+
+
 func connect_to_server(addr: String) -> Error:
 	var connecting_start_time = Time.get_ticks_msec()
 	var is_connection_timeout = func() -> bool:
@@ -64,6 +68,7 @@ func connect_to_server(addr: String) -> Error:
 		return error
 	
 	emit_signal.call_deferred("connected")
+	set_process.call_deferred(true)
 	return OK
 
 
@@ -73,6 +78,7 @@ func disconnect_from_server():
 	client_id = ""
 	room_id = ""
 	emit_signal.call_deferred("disconnected")
+	set_process.call_deferred(false)
 
 
 func create_room() -> Error:

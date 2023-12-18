@@ -26,7 +26,6 @@ func create_local_dog(local_player: Player) -> Dog:
 
 ## Creates Dog node for remote player and set it remote controller
 func create_remote_dog(remote_player: Player) -> Dog:
-	printerr("NOT IMPLEMENTED")
 	var dog = create_dog(remote_player)
 	dog.name = remote_player.id
 	
