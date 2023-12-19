@@ -1,4 +1,4 @@
-extends PanelContainer
+extends OffsetContainer
 
 
 signal ok_pressed
@@ -6,29 +6,19 @@ signal ok_pressed
 
 var header: String = "Ooops!":
 	get:
-		return $VBoxContainer/Header.text
+		return %Header.text
 	set(value):
-		$VBoxContainer/Header.text = value
+		%Header.text = value
 
 
 var message: String = "Something wrong":
 	get:
-		return $VBoxContainer/Message.text
+		return %Message.text
 	set(value):
-		$VBoxContainer/Message.text = value
+		%Message.text = value
 
 
 var back_on_ok: bool = false
-
-
-## Used for position animation
-@export var position_offset: Vector2 = Vector2.ZERO:
-	get: 
-		return position_offset
-	set(value):
-		position -= position_offset
-		position_offset = value
-		position += position_offset
 
 
 @onready var _animation: AnimationPlayer = $AnimationPlayer

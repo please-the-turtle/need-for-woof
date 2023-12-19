@@ -3,7 +3,7 @@ extends Control
 signal connecting_done(error: Error)
 
 
-@onready var dialog: PanelContainer = $MessageDialog
+@onready var dialog: OffsetContainer = $MessageDialog
 @onready var loading: Control = $Loading
 @onready var menu = $VBoxContainer
 @onready var backButton = $BackButton
