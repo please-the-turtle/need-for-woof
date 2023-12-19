@@ -165,11 +165,9 @@ func _listen_udp():
 	if not udp.is_socket_connected():
 		return
 	
-	if udp.get_available_packet_count() <= 0:
-		return
-	
-	var message = udp.get_packet().get_string_from_utf8().strip_edges()
-	message_received.emit(message)
+	while udp.get_available_packet_count() > 0:
+		var message = udp.get_packet().get_string_from_utf8().strip_edges()
+		message_received.emit(message)
 
 
 func _get_string_from_tcp() -> String:
