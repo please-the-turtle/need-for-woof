@@ -15,6 +15,7 @@ func _ready():
 	if _players_manager.is_all_players_ready():
 		%Countdown.start()
 	_players_manager.player_ready_changed.connect(_on_player_ready_changed)
+	_players_manager.player_left.connect(_on_player_left)
 	
 	_spawn_dogs()
 	
@@ -65,6 +66,15 @@ func _on_countdown_is_over():
 
 func _on_finish_line_dog_finished(_dog):
 	_players_manager.set_local_player_ready_for_all(false)
+
+
+func _on_player_left(player: Player):
+	var dog = find_child(player.id, false, false)
+	if dog == null:
+		return
+	
+	remove_child(dog)
+	dog.queue_free()
 
 
 func _on_level_gui_home_button_pressed():
