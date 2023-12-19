@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dyooh7eqh6xas" path="res://scenes/level/objects/start_line.tscn" id="4_63riu"]
 
 [node name="MultiplayerScene" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_vao2u")
 
 [node name="LevelField" parent="." instance=ExtResource("1_0unpy")]
