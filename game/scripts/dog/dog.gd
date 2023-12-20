@@ -33,6 +33,12 @@ var stamina: float:
 		else:
 			stamina = value
 
+var nickname: String:
+	get:
+		return %NicknameLabel.text
+	set(value):
+		%NicknameLabel.text = value
+
 
 func _ready():
 	stamina = max_stamina

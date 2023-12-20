@@ -39,7 +39,15 @@ func _spawn_dogs():
 	_dogs.sort_custom(func(a, b):
 		return String(a.name) > String(b.name)
 	)
+	_put_dogs_on_start()
 	
+	for dog in _dogs:
+		add_child(dog)
+		if dog != _local_dog:
+			dog.fsm.transition_to("DogStateRemote")
+
+
+func _put_dogs_on_start():
 	var start_line = $StartLine
 	var dogs_number = _dogs.size()
 	for i in dogs_number:
@@ -50,14 +58,6 @@ func _spawn_dogs():
 			(i + 1.0)/(dogs_number + 1.0)
 		)
 		dog.position = dog_pos
-		add_child(dog)
-		
-		if dog != _local_dog:
-			dog.fsm.transition_to("DogStateRemote")
-	
-	var transmitter = load("res://scenes/level/dog/dog_state_transmitter.tscn").instantiate()
-	transmitter.target = _local_dog
-	add_child(transmitter)
 
 
 func _on_countdown_is_over():

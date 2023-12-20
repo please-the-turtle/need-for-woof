@@ -13,6 +13,7 @@ var _loaded_dog_packed_scenes: Dictionary = {}
 func create_local_dog(local_player: Player) -> Dog:
 	var dog = create_dog(local_player)
 	dog.name = local_player.id
+	dog.nickname = local_player.nickname
 	
 	var camera = load("res://scenes/level/player_camera.tscn").instantiate()
 	dog.add_child(camera)
@@ -21,6 +22,10 @@ func create_local_dog(local_player: Player) -> Dog:
 	controller.target = dog
 	dog.add_child(controller)
 	
+	var transmitter = load("res://scenes/level/dog/dog_state_transmitter.tscn").instantiate()
+	transmitter.target = dog
+	dog.add_child(transmitter)
+	
 	return dog
 
 
@@ -28,6 +33,7 @@ func create_local_dog(local_player: Player) -> Dog:
 func create_remote_dog(remote_player: Player) -> Dog:
 	var dog = create_dog(remote_player)
 	dog.name = remote_player.id
+	dog.nickname = remote_player.nickname
 	
 	return dog
 

@@ -21,6 +21,7 @@ func _ready():
 		printerr("PlayersManager instance not found.")
 		return
 	
+	await target.ready
 	target.animation.current_animation_changed.connect(_on_animation_changed)
 
 
