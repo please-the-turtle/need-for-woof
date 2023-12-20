@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3e4v8tba53cy"
-path="res://.godot/imported/run_left.png-13d03ad33458299c3d895b136253cd67.ctex"
+uid="uid://iynrlyhboigb"
+path="res://.godot/imported/level_buttons.png-a95d80a54f6ad2df99b3eb911f36815c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/level_buttons/run_left.png"
-dest_files=["res://.godot/imported/run_left.png-13d03ad33458299c3d895b136253cd67.ctex"]
+source_file="res://assets/textures/ui/level_buttons.png"
+dest_files=["res://.godot/imported/level_buttons.png-a95d80a54f6ad2df99b3eb911f36815c.ctex"]
 
 [params]
 

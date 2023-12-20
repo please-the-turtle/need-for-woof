@@ -1,15 +1,43 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3ateal751p46"]
+[gd_scene load_steps=12 format=3 uid="uid://c3ateal751p46"]
 
-[ext_resource type="Texture2D" uid="uid://tb0g6kq5ut5b" path="res://assets/textures/ui/level_buttons/stamina_progress.png" id="1_cat32"]
 [ext_resource type="Script" path="res://scripts/ui/level_gui.gd" id="1_pug4g"]
-[ext_resource type="Texture2D" uid="uid://c3e4v8tba53cy" path="res://assets/textures/ui/level_buttons/run_left.png" id="1_uybwv"]
-[ext_resource type="Texture2D" uid="uid://cjwqde75pxefy" path="res://assets/textures/ui/level_buttons/run_left_pressed.png" id="2_enuj4"]
-[ext_resource type="Texture2D" uid="uid://ce3g8nm55fimw" path="res://assets/textures/ui/level_buttons/jump.png" id="3_neuki"]
-[ext_resource type="Texture2D" uid="uid://duapwvobn6im" path="res://assets/textures/ui/level_buttons/jump_pressed.png" id="4_gfejk"]
-[ext_resource type="Texture2D" uid="uid://ckmuknykwrpfh" path="res://assets/textures/ui/level_buttons/run_right.png" id="5_74104"]
-[ext_resource type="Texture2D" uid="uid://ckjhcgrchvc26" path="res://assets/textures/ui/level_buttons/run_right_pressed.png" id="6_q8bcj"]
-[ext_resource type="Texture2D" uid="uid://kubsm8ahci2a" path="res://assets/textures/ui/level_buttons/menu.png" id="9_n4a08"]
-[ext_resource type="Texture2D" uid="uid://ce3faunvpahjo" path="res://assets/textures/ui/level_buttons/menu_pressed.png" id="10_5yqnu"]
+[ext_resource type="Texture2D" uid="uid://iynrlyhboigb" path="res://assets/textures/ui/level_buttons.png" id="4_a71wl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edj5t"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(75, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdnhq"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(75, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fgax"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(109, 1, 22, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eanbk"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv0w5"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(0, 17, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scpun"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(50, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b1n7"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(50, 17, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0tie"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(25, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk1q3"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(25, 17, 24, 16)
 
 [node name="LevelGUI" type="CanvasLayer"]
 script = ExtResource("1_pug4g")
@@ -23,11 +51,11 @@ offset_top = 15.0
 offset_right = -15.0
 offset_bottom = 75.0
 grow_horizontal = 0
-texture_normal = ExtResource("9_n4a08")
-texture_pressed = ExtResource("10_5yqnu")
-texture_hover = ExtResource("9_n4a08")
-texture_disabled = ExtResource("10_5yqnu")
-texture_focused = ExtResource("9_n4a08")
+texture_normal = SubResource("AtlasTexture_edj5t")
+texture_pressed = SubResource("AtlasTexture_kdnhq")
+texture_hover = SubResource("AtlasTexture_edj5t")
+texture_disabled = SubResource("AtlasTexture_kdnhq")
+texture_focused = SubResource("AtlasTexture_edj5t")
 stretch_mode = 5
 
 [node name="DogControls" type="Control" parent="."]
@@ -52,27 +80,27 @@ scale = Vector2(6, 6)
 value = 100.0
 fill_mode = 3
 nine_patch_stretch = true
-texture_progress = ExtResource("1_cat32")
+texture_progress = SubResource("AtlasTexture_2fgax")
 
 [node name="RunLeftButton" type="TouchScreenButton" parent="DogControls"]
 position = Vector2(-230, -110)
 scale = Vector2(6, 6)
-texture_normal = ExtResource("1_uybwv")
-texture_pressed = ExtResource("2_enuj4")
+texture_normal = SubResource("AtlasTexture_eanbk")
+texture_pressed = SubResource("AtlasTexture_nv0w5")
 action = "ui_left"
 
 [node name="JumpButton" type="TouchScreenButton" parent="DogControls"]
 position = Vector2(-72, -110)
 scale = Vector2(6, 6)
-texture_normal = ExtResource("3_neuki")
-texture_pressed = ExtResource("4_gfejk")
+texture_normal = SubResource("AtlasTexture_scpun")
+texture_pressed = SubResource("AtlasTexture_0b1n7")
 action = "ui_jump"
 
 [node name="RunRightButton" type="TouchScreenButton" parent="DogControls"]
 position = Vector2(86, -110)
 scale = Vector2(6, 6)
-texture_normal = ExtResource("5_74104")
-texture_pressed = ExtResource("6_q8bcj")
+texture_normal = SubResource("AtlasTexture_e0tie")
+texture_pressed = SubResource("AtlasTexture_dk1q3")
 action = "ui_right"
 
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
