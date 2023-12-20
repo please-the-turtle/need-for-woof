@@ -17,7 +17,7 @@ region = Rect2(97, 33, 14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0wo2"]
 atlas = ExtResource("3_v1vl6")
-region = Rect2(57, 73, 7, 7)
+region = Rect2(101, 37, 7, 7)
 
 [sub_resource type="Animation" id="Animation_i5ai7"]
 resource_name = "pop_up"
