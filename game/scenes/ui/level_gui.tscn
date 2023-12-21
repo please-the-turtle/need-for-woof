@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3ateal751p46"]
+[gd_scene load_steps=20 format=3 uid="uid://c3ateal751p46"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_gui.gd" id="1_pug4g"]
 [ext_resource type="Texture2D" uid="uid://iynrlyhboigb" path="res://assets/textures/ui/level_buttons.png" id="4_a71wl"]
@@ -39,6 +39,37 @@ region = Rect2(25, 0, 24, 16)
 atlas = ExtResource("4_a71wl")
 region = Rect2(25, 17, 24, 16)
 
+[sub_resource type="InputEventKey" id="InputEventKey_2qgb4"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_3avvu"]
+events = [SubResource("InputEventKey_2qgb4")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf0o0"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(75, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta6y0"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(75, 17, 16, 16)
+
+[sub_resource type="InputEventKey" id="InputEventKey_6ehku"]
+device = -1
+keycode = 82
+unicode = 114
+
+[sub_resource type="Shortcut" id="Shortcut_vegjr"]
+events = [SubResource("InputEventKey_6ehku")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1s5m"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(92, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_583fd"]
+atlas = ExtResource("4_a71wl")
+region = Rect2(92, 17, 16, 16)
+
 [node name="LevelGUI" type="CanvasLayer"]
 script = ExtResource("1_pug4g")
 
@@ -55,7 +86,6 @@ texture_normal = SubResource("AtlasTexture_edj5t")
 texture_pressed = SubResource("AtlasTexture_kdnhq")
 texture_hover = SubResource("AtlasTexture_edj5t")
 texture_disabled = SubResource("AtlasTexture_kdnhq")
-texture_focused = SubResource("AtlasTexture_edj5t")
 stretch_mode = 5
 
 [node name="DogControls" type="Control" parent="."]
@@ -103,4 +133,64 @@ texture_normal = SubResource("AtlasTexture_e0tie")
 texture_pressed = SubResource("AtlasTexture_dk1q3")
 action = "ui_right"
 
+[node name="FinishedButtons" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -220.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LeaveButton" type="TextureButton" parent="FinishedButtons"]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -180.0
+offset_right = 170.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+shortcut = SubResource("Shortcut_3avvu")
+shortcut_in_tooltip = false
+texture_normal = SubResource("AtlasTexture_bf0o0")
+texture_pressed = SubResource("AtlasTexture_ta6y0")
+texture_hover = SubResource("AtlasTexture_bf0o0")
+texture_disabled = SubResource("AtlasTexture_ta6y0")
+stretch_mode = 5
+
+[node name="RestartButton" type="TextureButton" parent="FinishedButtons"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -180.0
+offset_right = -30.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+toggle_mode = true
+shortcut = SubResource("Shortcut_vegjr")
+shortcut_in_tooltip = false
+texture_normal = SubResource("AtlasTexture_n1s5m")
+texture_pressed = SubResource("AtlasTexture_583fd")
+texture_hover = SubResource("AtlasTexture_n1s5m")
+texture_disabled = SubResource("AtlasTexture_n1s5m")
+stretch_mode = 5
+
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="FinishedButtons/LeaveButton" to="." method="_on_home_button_pressed"]
+[connection signal="toggled" from="FinishedButtons/RestartButton" to="." method="_on_restart_button_toggled"]

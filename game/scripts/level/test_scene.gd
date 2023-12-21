@@ -2,6 +2,12 @@ extends Node2D
 
 
 func _ready():
+	$FinishLine.dog_finished.connect(func(dog):
+		dog.fsm.transition_to("DogStateIdle")
+		
+		if dog == $Siba:
+			$LevelGUI.show_finished_buttons()
+	)
 	%Countdown.is_over.connect(func():
 		$Siba.fsm.transition_to("DogStateRun")
 	)

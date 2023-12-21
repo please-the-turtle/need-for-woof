@@ -27,4 +27,5 @@ visible = false
 
 [connection signal="dog_finished" from="FinishLine" to="." method="_on_finish_line_dog_finished"]
 [connection signal="home_button_pressed" from="LevelGUI" to="." method="_on_level_gui_home_button_pressed"]
+[connection signal="restart_button_toggled" from="LevelGUI" to="." method="_on_level_gui_restart_button_toggled"]
 [connection signal="is_over" from="LevelGUI/Countdown" to="." method="_on_countdown_is_over"]
