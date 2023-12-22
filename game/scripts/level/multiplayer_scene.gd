@@ -68,6 +68,7 @@ func _on_countdown_is_over():
 
 func _on_finish_line_dog_finished(dog):
 	if dog == _local_dog:
+		dog.fsm.transition_to("DogStateIdle")
 		_players_manager.set_local_player_ready_for_all(false)
 		_gui.show_finished_buttons()
 
