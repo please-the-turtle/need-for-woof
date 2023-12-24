@@ -58,3 +58,7 @@ func run_left() -> void:
 
 func run_right() -> void:
 	fsm.run_right()
+
+
+func push(impulse: Vector2) -> void:
+	fsm.push(impulse)

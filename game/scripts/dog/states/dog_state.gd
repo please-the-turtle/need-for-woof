@@ -17,3 +17,7 @@ func run_left() -> void:
 
 func run_right() -> void:
 	pass
+
+
+func push(_impulse: Vector2) -> void:
+	pass

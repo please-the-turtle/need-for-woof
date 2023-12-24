@@ -17,3 +17,6 @@ func run_right() -> void:
 	state.run_right()
 
 
+func push(impulse: Vector2) -> void:
+	state.push(impulse)
+

@@ -14,12 +14,12 @@ signal restart_button_toggled(toggled_on: bool)
 
 func show_dog_controls():
 	$DogControls.visible = true
+	$FinishedButtons/RestartButton.button_pressed = false
 	$FinishedButtons.visible = false
 
 
 func show_finished_buttons():
 	$DogControls.visible = false
-	$FinishedButtons/RestartButton.button_pressed = false
 	$FinishedButtons.visible = true
 
 

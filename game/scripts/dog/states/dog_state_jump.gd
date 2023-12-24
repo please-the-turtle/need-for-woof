@@ -26,6 +26,12 @@ func on_exit() -> void:
 	target.z_index = _initial_z_index
 
 
+func push(impulse: Vector2) -> void:
+	fsm.transition_to("DogStateBounce", {
+		"impulse": impulse,
+	})
+
+
 func _push_another_dogs() -> void:
 	var coll_count = target.get_slide_collision_count()
 	if coll_count < 1:
@@ -41,9 +47,7 @@ func _push_another_dogs() -> void:
 		var bounce_impulse: Vector2 = collision.get_normal()
 		bounce_impulse *= -1
 		bounce_impulse *= target.speed * target.speed_multiplier
-		collider.fsm.transition_to("DogStateBounce", {
-			"impulse": bounce_impulse
-		})
+		collider.push(bounce_impulse)
 		target.fsm.transition_to("DogStateRun")
 
 

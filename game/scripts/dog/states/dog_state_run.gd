@@ -33,3 +33,9 @@ func run_left() -> void:
 func run_right() -> void:
 	_direction += Vector2.RIGHT
 	pass
+
+
+func push(impulse: Vector2) -> void:
+	fsm.transition_to("DogStateBounce", {
+		"impulse": impulse,
+	}) 
