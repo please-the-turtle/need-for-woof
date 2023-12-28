@@ -90,12 +90,12 @@ func introduce_yourself():
 		COMMAND_READY, local_player.ready,
 		COMMAND_NICKNAME, local_player.nickname,
 	]
-	ServerClient.send_tcp(intro_mess)
+	ServerClient.send(intro_mess)
 
 
 func set_local_player_ready_for_all(ready: bool) -> Error:
 	var ready_message = "%s=%s" % [COMMAND_READY, ready]
-	var error = ServerClient.send_tcp(ready_message)
+	var error = ServerClient.send(ready_message)
 	if error == OK:
 		local_player.ready = ready
 		player_ready_changed.emit(local_player)
@@ -107,14 +107,14 @@ func set_local_player_ready_for_all(ready: bool) -> Error:
 func send_local_player_position(position: Vector2) -> Error:
 	# Sample: pos=200,240
 	var position_message = "%s=%s,%s" % [COMMAND_POSITION, position.x, position.y]
-	return ServerClient.send_udp(position_message)
+	return ServerClient.send(position_message)
 
 
 ## Sends information about the local player's animation to the remote players.
 func send_local_player_animation(animation_name: String) -> Error:
 	# Sample: anim=idle
 	var animation_message = "%s=%s" % [COMMAND_ANIMATION, animation_name]
-	return ServerClient.send_tcp(animation_message)
+	return ServerClient.send(animation_message)
 
 
 func is_all_players_ready() -> bool:

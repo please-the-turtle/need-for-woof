@@ -15,7 +15,6 @@ const MAX_RESPONSE_WAIT_TIME_MS = 3000
 
 
 var tcp: StreamPeerTCP = StreamPeerTCP.new()
-var udp: PacketPeerUDP = PacketPeerUDP.new()
 
 var client_id: String = ""
 var room_id: String = ""
@@ -59,14 +58,10 @@ func connect_to_server(addr: String) -> Error:
 	while client_id.is_empty():
 		if is_connection_timeout.call():
 			return ERR_TIMEOUT
-		var response = _get_string_from_tcp()
+		var response = _get_string_from_server()
 		if response.begins_with("ERR"):
 			return ERR_CONNECTION_ERROR
 		client_id = response
-	
-	error = udp.connect_to_host(host, port)
-	if error != OK:
-		return error
 	
 	emit_signal.call_deferred("connected")
 	set_process.call_deferred(true)
@@ -75,7 +70,6 @@ func connect_to_server(addr: String) -> Error:
 
 func disconnect_from_server():
 	tcp.disconnect_from_host()
-	udp.close()
 	client_id = ""
 	room_id = ""
 	emit_signal.call_deferred("disconnected")
@@ -86,13 +80,13 @@ func create_room() -> Error:
 	if not room_id.is_empty():
 		push_warning("Room not created: Client already in room.")
 		return ERR_CANT_CREATE
-	var error = send_tcp(CREATE_ROOM_COMMAND)
+	var error = send(CREATE_ROOM_COMMAND)
 	if error != OK:
 		return error
 	
 	var response = ""
 	while response.is_empty():
-		response = _get_string_from_tcp()
+		response = _get_string_from_server()
 		if response.begins_with("ERR"):
 			push_warning("Creting room error: ", response)
 			return ERR_QUERY_FAILED
@@ -106,13 +100,13 @@ func join_room(id: String) -> Error:
 		push_warning("Joining room failed: Client already in room.")
 		return FAILED
 	var message = "%s %s" % [JOIN_ROOM_COMMAND, id]
-	var error = send_tcp(message)
+	var error = send(message)
 	if error != OK:
 		return error
 	
 	var response = ""
 	while response.is_empty():
-		response = _get_string_from_tcp()
+		response = _get_string_from_server()
 		if response.begins_with("ERR"):
 			push_warning("Joining room error: ", response)
 			return ERR_QUERY_FAILED
@@ -122,39 +116,30 @@ func join_room(id: String) -> Error:
 
 
 func leave_room() -> Error:
-	var error = send_tcp(LEAVE_ROOM_COMMAND)
+	var error = send(LEAVE_ROOM_COMMAND)
 	if error == OK:
 		room_id = ""
 	
 	return error
 
 
-func send_tcp(message: String) -> Error:
+func send(message: String) -> Error:
 	message += '\n'
 	return tcp.put_data(message.to_utf8_buffer())
 
 
-func send_udp(message: String) -> Error:
-	if client_id.is_empty():
-		return ERR_UNCONFIGURED
-	
-	message = "%s: %s\n" % [client_id, message]
-	return udp.put_packet(message.to_utf8_buffer())
-
-
 func _process(_delta):
-	_listen_tcp()
-	_listen_udp()
+	_listen()
 
 
-func _listen_tcp():
+func _listen():
 	tcp.poll()
 	var status = tcp.get_status()
 	if status != tcp.STATUS_CONNECTED:
 		emit_signal("disconnected")
 		return
 
-	var recieved = _get_string_from_tcp()
+	var recieved = _get_string_from_server()
 	if recieved.is_empty():
 		return
 		
@@ -162,16 +147,7 @@ func _listen_tcp():
 		message_received.emit(message)
 
 
-func _listen_udp():
-	if not udp.is_socket_connected():
-		return
-	
-	while udp.get_available_packet_count() > 0:
-		var message = udp.get_packet().get_string_from_utf8().strip_edges()
-		message_received.emit(message)
-
-
-func _get_string_from_tcp() -> String:
+func _get_string_from_server() -> String:
 	var bytes = tcp.get_available_bytes()
 	if bytes <= 0:
 		return ""
