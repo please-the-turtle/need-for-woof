@@ -87,7 +87,7 @@ func _on_level_gui_home_button_pressed():
 	
 	SharedStorage.delete(SharedStorage.PLAYERS_MANAGER)
 	_players_manager.free()
-	ServerClient.leave_room()
+	ServerClient.disconnect_from_server()
 
 
 func _on_level_gui_restart_button_toggled(toggled_on):
