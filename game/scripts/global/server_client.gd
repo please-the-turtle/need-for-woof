@@ -6,7 +6,8 @@ signal disconnected
 signal message_received(String)
 
 
-const CREATE_ROOM_COMMAND = ":ROOM"
+const ROOM_CAPACITY = "4"
+const CREATE_ROOM_COMMAND = ":ROOM " + ROOM_CAPACITY
 const JOIN_ROOM_COMMAND = ":JOIN"
 const LEAVE_ROOM_COMMAND = ":LEAV"
 
