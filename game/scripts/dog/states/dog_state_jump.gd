@@ -51,8 +51,8 @@ func _push_another_dogs() -> void:
 		target.fsm.transition_to("DogStateRun")
 
 
-func _on_animation_finished(anim_name: String):
-	if anim_name != "jump":
+func _on_animation_finished(_anim_name: String):
+	if fsm.state.name != "DogStateJump":
 		return
 	target.fsm.transition_to("DogStateRun")
 
