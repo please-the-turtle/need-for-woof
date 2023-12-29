@@ -6,10 +6,19 @@ signal home_button_pressed
 signal restart_button_toggled(toggled_on: bool)
 
 
-@export var target: Dog
+@export var target: Dog:
+	get: 
+		return target
+	set(value):
+		target = value
+		set_process(value != null)
 
 
 @onready var stamina_bar: TextureProgressBar = %StaminaBar
+
+
+func _ready(): 
+	set_process(target != null)
 
 
 func show_dog_controls():
@@ -28,7 +37,6 @@ func _process(_delta):
 
 
 func _on_home_button_pressed():
-	SceneChanger.go_to_scene("res://scenes/ui/main_menu.tscn")
 	home_button_pressed.emit()
 
 

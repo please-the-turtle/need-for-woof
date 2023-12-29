@@ -32,4 +32,4 @@ var nickname: String = "":
 
 func update_info(player: Player):
 	nickname = player.nickname
-	player_ready = player.ready
+	player_ready = player.status == PlayerStatus.IN_ROOM_NOT_READY

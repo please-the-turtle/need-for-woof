@@ -1,0 +1,11 @@
+class_name PlayerStatus
+
+
+enum {
+	NOT_IN_THE_ROOM,
+	IN_ROOM_NOT_READY,
+	IN_ROOM_READY,
+	ON_LEVEL_NOT_READY,
+	ON_LEVEL_READY,
+	ON_LEVEL_ACTIVE,
+}

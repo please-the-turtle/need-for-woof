@@ -3,7 +3,7 @@ extends Object
 
 
 const _dogs_map: Dictionary = {
-	Player.DogType.SHIBAINU: "res://scenes/level/dog/shibainu.tscn",
+	DogType.SHIBAINU: "res://scenes/level/dog/shibainu.tscn",
 }
 
 var _loaded_dog_packed_scenes: Dictionary = {}
@@ -39,7 +39,7 @@ func create_remote_dog(remote_player: Player) -> Dog:
 
 
 func create_dog(player: Player) -> Dog:
-	var dog_scene: PackedScene = _loaded_dog_packed_scenes.get(player.DogType)
+	var dog_scene: PackedScene = _loaded_dog_packed_scenes.get(player.dog_type)
 	if dog_scene == null:
 		var scene_path = _dogs_map.get(player.dog_type)
 		var packed_scene = load(scene_path)

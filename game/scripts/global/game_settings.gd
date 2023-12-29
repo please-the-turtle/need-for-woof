@@ -6,16 +6,17 @@ const SETTINGS_PATH = "user://settings.json"
 const NICKNAME = "nickname"
 const SOUNDS_VOLUME = "sounds_volume"
 const MUSIC_VOLUME = "music_volume"
-const DEFAULT_SERVER_ADDR = "127.0.0.1:5558"
 const USE_CUSTOM_ADDR = "use_custom_address"
 const CUSTOM_SERVER_ADDR = "custom_server_address"
 
+const DEFAULT_SERVER_ADDR = "127.0.0.1:5558"
+
 const DEFAULT_SETTINGS = {
-	NICKNAME: "go0d boy",
+	NICKNAME: "go0d_boy",
 	SOUNDS_VOLUME: 50.0,
 	MUSIC_VOLUME: 50.0,
 	USE_CUSTOM_ADDR: false,
-	CUSTOM_SERVER_ADDR: "localhost:5553",
+	CUSTOM_SERVER_ADDR: "localhost:5558",
 }
 
 var _settings_dict: Dictionary

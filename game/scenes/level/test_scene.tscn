@@ -70,3 +70,5 @@ position = Vector2(118, -6574)
 
 [node name="FinishLine" parent="." instance=ExtResource("8_14nq3")]
 position = Vector2(241, -8099)
+
+[connection signal="home_button_pressed" from="LevelGUI" to="." method="_on_level_gui_home_button_pressed"]
