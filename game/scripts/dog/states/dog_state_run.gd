@@ -7,7 +7,7 @@ var _direction = Vector2.UP
 
 func on_enter(_msg := {}) -> void:
 	target.animation.play("run")
-	target.collision_mask = PlayerCollisionMasks.ON_GROUND_COLLISIONS
+	target.collision_mask = DogCollisionMasks.ON_GROUND_COLLISIONS
 
 
 func physics_update(_delta) -> void:

@@ -21,7 +21,7 @@ func physics_update(_delta) -> void:
 
 
 func on_exit() -> void:
-	target.collision_mask = PlayerCollisionMasks.ON_GROUND_COLLISIONS
+	target.collision_mask = DogCollisionMasks.ON_GROUND_COLLISIONS
 	target.speed_multiplier /= target.jumping_speed_boost
 	target.z_index = _initial_z_index
 
