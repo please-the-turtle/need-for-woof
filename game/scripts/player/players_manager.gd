@@ -8,6 +8,7 @@ signal player_status_changed(player: Player)
 signal player_nickname_changed(player: Player)
 signal player_position_changed(player_id: String, new_position: Vector2)
 signal player_animation_changed(player_id: String, animation_name: String)
+signal player_dog_pushed(player_id: String, impulse: Vector2)
 
 
 ## Separates the sender's ID from the message text
@@ -23,6 +24,7 @@ const COMMAND_NICKNAME = "nickname"
 const COMMAND_DOG_TYPE = "dog"
 const COMMAND_POSITION = "pos"
 const COMMAND_ANIMATION = "anim"
+const COMMAND_PUSH_DOG = "push"
 
 
 ## Data of local player
@@ -40,6 +42,7 @@ var _command_handlers: Dictionary = {
 	COMMAND_NICKNAME: _nickname_handler,
 	COMMAND_POSITION: _position_handler,
 	COMMAND_ANIMATION: _animation_handler,
+	COMMAND_PUSH_DOG: _push_dog_handler,
 }
 
 
@@ -117,6 +120,18 @@ func send_local_player_animation(animation_name: String) -> Error:
 	return ServerClient.send(animation_message)
 
 
+func send_push_dog(target: Dog, impulse: Vector2) -> Error:
+	# Sample: push=Qh10rXElnNakpoPl,-557.5348,-708.4188
+	var push_message = "%s=%s,%s,%s" % [
+		COMMAND_PUSH_DOG, 
+		target.name, 
+		impulse.x, 
+		impulse.y
+	]
+	
+	return ServerClient.send(push_message)
+
+
 ## Sends a message to remote players that the local player 
 ## has returned from the playing field to the room
 func send_local_player_returned_to_room() -> Error:
@@ -180,3 +195,21 @@ func _animation_handler(caller_id: String, params: String):
 		return
 	
 	player_animation_changed.emit(caller_id, params)
+
+
+func _push_dog_handler(caller_id: String, params: String):
+	if not remote_players.has(caller_id):
+		return
+	
+	if params.is_empty():
+		return
+	
+	var params_values = params.split(",", false, 3)
+	if params_values.size() < 3:
+		printerr("Push dog handler: incorrect command params format: ", params)
+	
+	var target = params_values[0]
+	var impulse_x = params_values[1].to_float()
+	var impulse_y = params_values[2].to_float()
+	
+	player_dog_pushed.emit(target, Vector2(impulse_x, impulse_y))

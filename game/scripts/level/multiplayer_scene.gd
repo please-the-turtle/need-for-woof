@@ -17,6 +17,7 @@ func _ready():
 	
 	_players_manager.player_status_changed.connect(_on_player_status_changed)
 	_players_manager.player_left.connect(_on_player_left)
+	_players_manager.player_dog_pushed.connect(_on_player_dog_pushed)
 	
 	_players_manager.set_local_player_status_for_all(PlayerStatus.ON_LEVEL_READY)
 
@@ -88,6 +89,14 @@ func _on_finish_line_dog_finished(dog):
 		dog.fsm.transition_to("DogStateIdle")
 		_players_manager.set_local_player_status_for_all(PlayerStatus.ON_LEVEL_NOT_READY)
 		_gui.show_finished_buttons()
+
+
+func _on_player_dog_pushed(player_id: String, impulse: Vector2):
+	var dog = find_child(player_id, false, false)
+	if dog == null:
+		return
+	
+	dog.push(impulse)
 
 
 func _on_player_left(player: Player):

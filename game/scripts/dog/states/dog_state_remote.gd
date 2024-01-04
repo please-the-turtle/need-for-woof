@@ -28,8 +28,8 @@ func on_exit() -> void:
 	_players_manager.player_animation_changed.disconnect(_on_player_animation_changed)
 
 
-func push(_impulse: Vector2) -> void:
-	pass
+func push(impulse: Vector2) -> void:
+	_players_manager.send_push_dog(target, impulse)
 
 
 func _on_player_position_changed(player_id: String, new_position: Vector2):
