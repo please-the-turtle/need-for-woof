@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvb7kic605fh5"]
 
 [ext_resource type="Script" path="res://scripts/ui/player_info.gd" id="1_lmeru"]
-[ext_resource type="Texture2D" uid="uid://celhlcodepjmn" path="res://assets/textures/ui/siba/siba_head.png" id="1_xfr2y"]
 [ext_resource type="Texture2D" uid="uid://dkqopvucgfqtw" path="res://assets/textures/ui/main_menu.png" id="2_1kvx6"]
+[ext_resource type="Texture2D" uid="uid://dnqtaq7lbutdv" path="res://assets/textures/ui/shibainu/shibainu_head.png" id="2_nl324"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpkg2"]
 atlas = ExtResource("2_1kvx6")
@@ -24,7 +24,7 @@ script = ExtResource("1_lmeru")
 [node name="DogIcon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture = ExtResource("1_xfr2y")
+texture = ExtResource("2_nl324")
 stretch_mode = 5
 
 [node name="Nickname" type="Label" parent="."]

@@ -3,7 +3,7 @@ extends Object
 
 
 const _dogs_map: Dictionary = {
-	Player.DogType.SIBA: "res://scenes/level/dog/siba.tscn",
+	Player.DogType.SHIBAINU: "res://scenes/level/dog/shibainu.tscn",
 }
 
 var _loaded_dog_packed_scenes: Dictionary = {}

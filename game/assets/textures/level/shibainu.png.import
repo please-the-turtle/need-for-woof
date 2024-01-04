@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsxv4lp8n7tw0"
-path="res://.godot/imported/siba.png-cf6a138ea0c156b6eda87414bbf93763.ctex"
+uid="uid://c7q7vkoxxkli3"
+path="res://.godot/imported/shibainu.png-87303a92a5c6e23365a1422d8feb627e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/siba/siba.png"
-dest_files=["res://.godot/imported/siba.png-cf6a138ea0c156b6eda87414bbf93763.ctex"]
+source_file="res://assets/textures/level/shibainu.png"
+dest_files=["res://.godot/imported/shibainu.png-87303a92a5c6e23365a1422d8feb627e.ctex"]
 
 [params]
 

@@ -3,13 +3,13 @@ extends Object
 
 
 enum DogType {
-	SIBA,
+	SHIBAINU,
 }
 
 
 var id: String = ""
 var nickname: String = "nickname"
-var dog_type: DogType = DogType.SIBA
+var dog_type: DogType = DogType.SHIBAINU
 var dog: Dog = null
 var ready: bool = false
 

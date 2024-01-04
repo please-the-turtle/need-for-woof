@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://ot6xv36mhi2t"]
 
 [ext_resource type="Script" path="res://scripts/dog/dog.gd" id="1_k3ryg"]
-[ext_resource type="Texture2D" uid="uid://ccpg47u3cq08e" path="res://assets/textures/level/siba/siba.png" id="1_ol7om"]
+[ext_resource type="Texture2D" uid="uid://c7q7vkoxxkli3" path="res://assets/textures/level/shibainu.png" id="1_ol7om"]
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_machine.gd" id="3_uedr2"]
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_idle.gd" id="4_cypq3"]
 [ext_resource type="Script" path="res://scripts/dog/states/dog_state_run.gd" id="4_ympsc"]
@@ -242,25 +242,25 @@ _data = {
 radius = 28.0
 height = 74.0
 
-[node name="Siba" type="CharacterBody2D"]
-collision_mask = 3
+[node name="Shibainu" type="CharacterBody2D"]
+collision_mask = 0
 motion_mode = 1
 platform_wall_layers = 7
 script = ExtResource("1_k3ryg")
 speed = 601.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 39)
 scale = Vector2(5, 5)
 texture = SubResource("AtlasTexture_8nqbn")
 
 [node name="Person" type="Sprite2D" parent="."]
-position = Vector2(0, -33.6886)
-scale = Vector2(5.46143, 5.46143)
+position = Vector2(0, -18)
+scale = Vector2(5, 5)
 texture = ExtResource("1_ol7om")
 hframes = 3
 vframes = 3
-frame = 2
 
 [node name="NicknameLabel" type="Label" parent="."]
 unique_name_in_owner = true
